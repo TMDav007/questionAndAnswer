@@ -1,0 +1,230 @@
+@import "mixins";
+@import "variables";
+@import "global";
+
+// header
+header {
+  nav{
+    top: 0;
+    width: 100%;
+    
+    .menu-icon {
+      @include menu-icon;
+    }
+  }
+
+  ul {
+    max-height: 0px;
+    padding: 0;
+    list-style: none;
+    overflow: hidden;
+    margin: 0;
+    transition: all 0.1s;
+    @media only screen and (min-width: 700px) {
+      max-height: 5em;
+      text-align: right;
+      padding-right: 1em;
+      position: absolute;
+      right: .9em;
+    }
+  }
+
+  li {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 1.3em 0;
+    text-align: center;
+    @media only screen and (min-width: 700px) {
+      display: inline-block;
+      padding: 20px 0;
+      width: 3.5em;
+    }
+    a {
+      text-decoration: none;
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 15px;
+      @media only screen and (min-width: 700px) {
+        font-size: 17px;
+      }
+
+      &:hover {
+        opacity: 0.6;
+        cursor: pointer;
+      }
+      &.current {
+        color: $white;
+      }
+    }
+  }
+}
+  #showcase {
+    height: 600px;
+    background-color: rgba(3, 7, 29, 0.361);
+    @media only screen and (min-width: 700px) {
+      height: 700px;
+    }
+    #bg-image {
+      position: absolute;
+      background: url("./../images/img1.jpg");
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      width: 100%;
+      height: 685px;
+      z-index: -2;
+      opacity: 0.85;
+      -webkit-transition: background-image 7s ease-in-out;
+      -moz-transition: background-image 7s ease-in-out;
+      -o-transition: background-image 7s ease-in-out;
+      transition: background-image 7s ease-in-out;
+      @media only screen and (min-width: 700px) {
+        height: 783px;
+      }
+    }
+    .content-wrap {
+      @media only screen and (min-width: 700px) {
+       // height: 800px;
+      }
+        #question_answer{
+          position: relative;
+          width: 18em;
+          margin: 0 auto;
+          top: 7em;
+
+          h1 {
+            padding-bottom: 0;
+            font-size: 180%;
+            font-family: "Oleo Script Swash Caps", cursive;
+            @media only screen and (min-width: 700px) {
+              font-family: "Acme", cursive;
+              text-shadow: 1px 1px 15px $black;
+              padding: 1em 0 .5em 0;
+            }
+          }
+          p {
+            font-family: "Poiret One", cursive;
+            font-weight: thin;
+            font-size: 1.1em;
+            margin-bottom: 1.2em;
+            @media only screen and (min-width: 700px) {
+              font-size: 150%;
+              text-shadow: 1px 1px 10px $black;
+              margin-bottom: .8em;
+            }
+          }
+          a {
+            text-decoration: none;
+            display: inline-block;
+            margin-bottom: .5em;
+            width: 100%;
+            background: #377166c9;
+            padding: 0.5em 0;
+            color: $white;
+            opacity: 0.6;
+            &:hover {
+              opacity: 0.3;
+              cursor: pointer;
+            }
+            @media only screen and (min-width: 700px) {
+              padding: 0.9em 0;
+            }
+        }
+        @media only screen and (min-width: 700px) {
+          width:20em;
+          top: 7em;
+        }
+      }
+
+      .fa {
+        // font-size: 3em;
+        color: rgba(0, 0, 0, 0.267);
+        text-decoration: none;
+        transition: all 0.5s;
+      }
+    }
+  }
+
+
+
+/* footer */
+#footer {
+  padding: 2em;
+  background: #2f3039;
+  color: #fff;
+  font-size: 1.2em;
+  text-align: center;
+  p {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.8em;
+  }
+  a {
+    text-decoration: none;
+  }
+  .fa {
+    padding: 0.4em;
+    font-size: 1.5em;
+    &:hover {
+      color: #d5d5d5;
+    }
+  }
+  .fa-twitter {
+    color: #00aced;
+  }
+  .fa-instagram {
+    color: #517fa4;
+  }
+  .fa-youtube {
+    color: #bb0000;
+  }
+}
+
+// SIGNUP $& LOGIN
+input[type="text"],
+input[type="password"],
+button[type="submit"] {
+  border: rgba(10, 10, 10, 0.34) 1px solid;
+ // border-radius: 5px;
+  height: 20px;
+  width: 90%;
+  margin-bottom: 10px;
+  padding: 4px 4px;
+  font-size: 12px;
+  @media only screen and (min-width: 700px) {
+    width: 90%;
+    font-size: 0.8em;
+    height: 30px;
+  }
+  @media only screen and (min-width: 900px) {
+    font-size: 0.8em;
+  }
+}
+
+button[type="submit"] {
+  color: #ffffff;
+  height: 35px;
+  background-color: #324e4a;
+  width: 93%;
+  transition: all 0.5s;
+  @media only screen and (min-width: 700px) {
+    padding: 0px 10px 2px 10px;
+    font-size: 0.9em;
+    border: none;
+    height: 40px;
+    margin: 0 auto;
+    transition: all 0.5s;
+  }
+  @media only screen and (min-width: 900px) {
+    // font-size: 0.9em;
+  }
+  @media only screen and (min-width: 1000px) {
+    // font-size: 0.9em;
+   // width: 6em;
+  }
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+  &:focus {
+    outline: none;
+  }
+}
