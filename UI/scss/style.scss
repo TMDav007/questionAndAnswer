@@ -29,10 +29,10 @@ header {
 
 }
   #showcase {
-    height: 600px;
+    height: 100vh;
     background-color: rgba(3, 7, 29, 0.361);
     @media only screen and (min-width: 700px) {
-      height: 700px;
+    //  height: 100vh;
     }
     #bg-image {
       @include background;
