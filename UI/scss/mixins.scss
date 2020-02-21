@@ -23,7 +23,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 685px;
+  height: 100vh;
   z-index: -2;
   opacity: 0.85;
   -webkit-transition: background-image 7s ease-in-out;
@@ -31,7 +31,7 @@
   -o-transition: background-image 7s ease-in-out;
   transition: background-image 7s ease-in-out;
   @media only screen and (min-width: 700px) {
-    height: 783px;
+    height: 100vh;
   }
 }
 
@@ -48,7 +48,9 @@
     font-size: 25px;
     @media only screen and (min-width: 700px) {
       font-size: 2em;
-      right: 5em;
+    }
+    @media only screen and (min-width: 1000px) {
+      right: 40%;
     }
   }
 
@@ -113,18 +115,47 @@
         font-size: 18px;
       }
     }
+    @media only screen and (min-width: 700px) {
+      display: none;
+    }
 }
 @mixin sidebar{
-  position: absolute;
-  top: 0px;
-  left: 0px;
+  display: grid;
+  grid-template-rows: auto;
   width: 200px;
   z-index:3;
-  height: 605px;
-  padding: 5em 0em;
+  height: 79vh;
+  padding: 2em 0em;
   background: #13161f;
   text-align: center;
   transform-origin: left;
   transform:perspective(1200px) rotateY(90deg);
-  transition: all 400ms ease;
+  transition: all 600ms ease;
+  @media only screen and (min-width: 700px) {
+   position: relative;
+   bottom: 1.45em;
+   width: 30%;
+   transform: none;
+   background: #0b0f19;
+ }
+   @media only screen and (min-width: 900px) {
+       width: 20%;
+       transform: none;
+   }
+   &.active{
+     transform: perspective(1200px) rotateY(0deg);
+ }
+
+ a{
+   display: inline-block;
+   color: $white;
+   font-size: .8em;
+   width: 100%;
+   text-align: center;
+   list-style-type: none;
+   text-decoration: none;
+   height: 40px;
+   border-bottom: 1px solid #ffffff1e;
+   line-height: 50px;
+ }
 }

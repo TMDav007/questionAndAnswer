@@ -11,7 +11,7 @@ header {
     width: 100%;
     @media only screen and (min-width: 700px) {
       grid-template-rows: minmax(min-content, 100px) min-content;
-    }
+    } 
     
     .menu-bar{
       @include menu-bar;
@@ -22,32 +22,9 @@ header {
    }
 
    .sidebar{
-    // @include dropdown;
-     display: grid;
-     grid-template-rows: auto;
-     width: 200px;
-     z-index:3;
-     height: 605px;
-     padding: 5em 0em;
-     background: #13161f;
-     text-align: center;
-     transform-origin: left;
-     transform:perspective(1200px) rotateY(90deg);
-     transition: all 600ms ease;
-     @media only screen and (min-width: 700px) {
-      width: 30%;
-      transform: none;
-      background: #0b0f19;
-    }
-      @media only screen and (min-width: 900px) {
-          width: 20%;
-          transform: none;
-      }
-      &.active{
-        transform: perspective(1200px) rotateY(0deg);
-        //display: none;
-    }
-  }
+      @include sidebar;
+   }
+
 }
 
 }
@@ -117,16 +94,13 @@ header {
 
     }
   }
-
 .container{
- // @include background;
-
-  .sidebar{
-    @include sidebar;
-  }
-  
+  height: 100vh;
 }
-
+  #user-background-image{
+    @include background;
+    opacity: 1;
+  }
 
 
 /* footer */

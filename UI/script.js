@@ -3,7 +3,7 @@ let sideBar =  document.querySelector(".sidebar");
 let menuBar = document.querySelector("nav .menu");
 
 const menu = () => {
-    if (dropDown.style.display === "grid"){
+    if (dropDown.style.display === "grid") {
       dropDown.style.display = "none";
       menuBar.innerHTML = "menu";
     }
@@ -25,7 +25,7 @@ const toggle = () => {
 }
 
 addEventListener("resize", ()=> {
-    if (window.innerWidth > 700) {
+    if ((window.innerWidth > 700) && (dropDown)) {
         dropDown.style.display = "none";
         menuBar.innerHTML = "menu";
     }
