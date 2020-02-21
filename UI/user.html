@@ -8,38 +8,38 @@
     <link rel="stylesheet" href="../UI/css/style.css">
     <link href="https://fonts.googleapis.com/css?family=Acme|Poiret+One|Oleo+Script+Swash+Caps"
         rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 </head>
 <body>
             <!--- Header  --->
     <header>
         <nav>
-            <div class="menu-icon">
-              <i class="fas fa-bars"></i>
+            <div class="menu-bar">
+                <h1><a href="index.html">Q&A</a></h1>
+                <div class="links">
+                    <a href="login.html">login</a>
+                    <a href="signup.html">sign up</a>
+                </div>
+                <i class="material-icons menu" onclick="toggle()">menu</i>
             </div>
-          <!--- <div class="logo">
-                <a href="index.html" class=""><img src="" alt=""></a>
-            </div> -->
-
-            <div class="menu">
-                <ul>
-                    <li><a href="">login</a></li>
-                    <li><a href="">sign up</a></li>
-                </ul>
-            </div> 
+            <div class="sidebar">
+                <a href="login.html">login</a>
+                <a href="signup.html">sign up</a>
+            </div>
         </nav>
     </header>
 
-      <!-- the body --->
-      <div id="showcase" class="grid">
-        <div id="bg-image"></div>
-      </div>
-    
-    <!---Footer-->
-    <footer id="footer" class="grid">
-      <div class="content-wrap"></div>
-  </footer>
-  <script src="script.js"></script>
-</body>
+    <div class="container">
+        <div class="dashboard">
+            
+        </div>
+    </div>
+
+
+        <!---Footer-->
+      <footer id="footer" class="grid">
+        <div class="content-wrap"></div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
 </html>
