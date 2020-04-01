@@ -353,12 +353,18 @@ header nav .sidebar a {
 }
 
 .main-content #ask_question {
-  position: relative;
-  left: 9em;
+  padding-top: 2em;
+  margin-bottom: 3em;
+}
+
+.main-content #ask_question input[type="text"] {
+  width: 70%;
+  border-radius: 4px;
 }
 
 .main-content #ask_question button[type="submit"] {
-  width: 9em;
+  width: 3.5em;
+  height: 32px;
   background-color: #0f1d1b;
 }
 
@@ -510,6 +516,10 @@ header nav .sidebar a {
   top: .9em;
 }
 
+.main-content .questions .menu_section .menu_icon:hover {
+  cursor: pointer;
+}
+
 /* footer */
 #footer {
   padding: 2em;
@@ -537,6 +547,12 @@ button[type="submit"] {
   margin-bottom: 10px;
   padding: 4px 4px;
   font-size: 12px;
+}
+
+input[type="text"] #submit_ask,
+input[type="password"] #submit_ask,
+button[type="submit"] #submit_ask {
+  width: 80%;
 }
 
 @media only screen and (min-width: 700px) {
@@ -715,5 +731,35 @@ span {
 
 span:hover {
   cursor: pointer;
+}
+
+.dropdown .menu_list {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  display: none;
+  -webkit-transition-delay: .5s;
+          transition-delay: .5s;
+  right: 3.5em;
+}
+
+.dropdown li {
+  background: #0f1d1b;
+  position: relative;
+  list-style: none;
+  border-bottom: #ffebcd0d 1px solid;
+  width: 100px;
+}
+
+.dropdown li a {
+  padding: 0 10px;
+  color: white;
+  text-decoration: none;
+  line-height: 35px;
+  font-size: 12px;
+}
+
+.dropdown li a:hover {
+  opacity: 0.7;
 }
 /*# sourceMappingURL=style.css.map */

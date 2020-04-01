@@ -24,18 +24,24 @@
             </div>
             <div class="sidebar">
                 <div class="sidebar-link">
-                    <a href="login.html">All Questions</a>
-                    <a href="signup.html">My Questions</a>
+                    <a href="all_questions.html">Home</a>
+                    <a href="">My Questions</a>
+                    <a href="">my profile</a>
+                    <a href="index.html">Log out</a>
                 </div>
             </div>
             <div id="user-background-image"></div>
         </nav>
     </header>
 
+ 
     <div class="container">
         <div class="main-content">
             <div id="ask_question">
-                <button type="submit" id="submit">Ask</button>
+                <input type="text" name="username" id="ask" placeholder=" ask your question">
+                <button type="submit" id="submit_ask">Ask
+                  <!--<i class="fa fa-sign-in"></i> Login -->
+              </button>
             </div>
             <div class="question">
                 <div class="questions">
@@ -53,7 +59,15 @@
                         </div>
                     </div>
                     <div class="menu_section">
-                        <img src="./images/elipsis.png" alt="" class="menu_icon">
+                        <img src="./images/elipsis.png" alt="" class="menu_icon" onclick="dropDownMenuList()">
+                        <div class="dropdown">
+                            <ul class="menu_list">
+                                <span class="close">&times;</span>
+                                <li><a href="http://">edit</a></li>
+                                <li><a href="http://">vote</a></li>
+                                <li><a href="http://">delete</a></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 

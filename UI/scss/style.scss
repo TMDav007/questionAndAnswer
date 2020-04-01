@@ -113,10 +113,21 @@ header {
   padding: 0 1em;
 
   #ask_question{
-    position: relative;
-    left: 9em;
+    padding-top: 2em;
+    margin-bottom: 3em;
+    input[type="text"]{
+      width: 70%;
+      border-radius: 4px;
+      @media only screen and (min-width: 700px) {
+    
+      }
+      @media only screen and (min-width: 900px) {
+      }
+    }
+    
     button[type="submit"] {
-      width: 9em;
+      width: 3.5em;
+      height: 32px;
       background-color: #0f1d1b;
     }
   }
@@ -198,6 +209,10 @@ header {
         position: relative;
         left: -4em;
         top: .9em;
+
+        &:hover{
+          cursor: pointer;
+        }
       }
     }
   }
@@ -231,6 +246,9 @@ button[type="submit"] {
   margin-bottom: 10px;
   padding: 4px 4px;
   font-size: 12px;
+  #submit_ask{
+    width: 80%;
+  }
   @media only screen and (min-width: 700px) {
     width: 90%;
     font-size: 0.8em;
@@ -240,6 +258,7 @@ button[type="submit"] {
     font-size: 0.8em;
   }
 }
+
 
 button[type="submit"] {
   color: #ffffff;
@@ -379,4 +398,37 @@ span{
   &:hover {
       cursor: pointer;
   }
+}
+
+
+//dropdown
+.dropdown{
+  .menu_list{
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    display: none;
+    transition-delay: .5s;
+    right:3.5em;
+  }
+    li{
+      background: #0f1d1b;
+      position : relative;
+      list-style: none;
+      border-bottom: #ffebcd0d 1px solid;
+      width: 100px;
+
+      a{
+        padding: 0 10px;
+        color: white;
+        text-decoration: none;
+        line-height: 35px;
+        font-size: 12px;
+        
+        &:hover{
+          opacity: 0.7;
+        }
+      }
+    }
+
 }

@@ -1,6 +1,7 @@
 let dropDown = document.querySelector("nav .dropdown") 
 let sideBar =  document.querySelector(".sidebar");
 let menuBar = document.querySelector("nav .menu");
+let dropDownMenu = document.querySelector(".menu_list");
 
 const menu = () => {
     if (dropDown.style.display === "grid") {
@@ -12,6 +13,18 @@ const menu = () => {
         menuBar.innerHTML = "close";
     }
   }
+
+const dropDownMenuList = () => {
+  //console.log("im here");
+  if (dropDownMenu.style.display === "block") {
+    console.log("im here");
+    dropDownMenu.style.display = "none";
+  } 
+  else {
+    dropDownMenu.style.display = "block";
+  }
+
+}
 
 const toggle = () => {
    if (sideBar.classList.contains("active")) {
