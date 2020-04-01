@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question&Answer</title>
+    <link rel="stylesheet" href="../UI/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Poiret+One|Oleo+Script+Swash+Caps"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+            <!--- Header  --->
+    <header>
+        <nav>
+            <div class="menu-bar">
+                <h1><a href="index.html">Q&A</a></h1>
+                <div class="links">
+                    <a href="login.html">login</a>
+                    <a href="signup.html">sign up</a>
+                </div>
+                <i class="material-icons menu" onclick="toggle()">menu</i>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-link">
+                    <a href="login.html">All Questions</a>
+                    <a href="signup.html">My Questions</a>
+                </div>
+            </div>
+            <div id="user-background-image"></div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div id="ask_question">
+                <button type="submit" id="submit">Ask</button>
+            </div>
+            <div class="question">
+                <div class="questions">
+                    <div class="profile_img_section">
+                        <img src="" alt="" class="profile_img">
+                    </div>
+                    <div class="questions_section">
+                        <h4 class="username">Username</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                        </p>
+                        <div class="icons">
+                            <img src="./images/comment.png" alt="" class="comment">    
+                            <img src="./images/like1.png" alt="" class="like"> 
+                        </div>
+                    </div>
+                    <div class="menu_section">
+                        <img src="./images/elipsis.png" alt="" class="menu_icon">
+                    </div>
+                </div>
+
+                <div class="questions">
+                    <div class="profile_img_section">
+                        <img src="" alt="" class="profile_img">
+                    </div>
+                    <div class="questions_section">
+                        <h4 class="username">Username</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                        </p>
+                        <div class="icons">
+                            <img src="./images/comment.png" alt="" class="comment">    
+                            <img src="./images/like1.png" alt="" class="like"> 
+                        </div>
+                    </div>
+                    <div class="menu_section">
+                        <img src="./images/elipsis.png" alt="" class="menu_icon">
+                    </div>
+                </div>
+
+                <div class="questions">
+                    <div class="profile_img_section">
+                        <img src="" alt="" class="profile_img">
+                    </div>
+                    <div class="questions_section">
+                        <h4 class="username">Username</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                        </p>
+                        <div class="icons">
+                            <img src="./images/comment.png" alt="" class="comment">    
+                            <img src="./images/like1.png" alt="" class="like"> 
+                        </div>
+                    </div>
+                    <div class="menu_section">
+                        <img src="./images/elipsis.png" alt="" class="menu_icon">
+                    </div>
+                </div>
+
+                <div class="questions">
+                    <div class="profile_img_section">
+                        <img src="" alt="" class="profile_img">
+                    </div>
+                    <div class="questions_section">
+                        <h4 class="username">Username</h4>
+                        <p>
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                        </p>
+                        <div class="icons">
+                            <img src="./images/comment.png" alt="" class="comment">    
+                            <img src="./images/like1.png" alt="" class="like"> 
+                        </div>
+                    </div>
+                    <div class="menu_section">
+                        <img src="./images/elipsis.png" alt="" class="menu_icon">
+                    </div>
+                </div>
+            </div>
+            <div class="question-buttons"></div> 
+        </div> 
+    </div>
+
+
+            <!--Modal-->
+            <div id="modal_make_comment">
+                <section>
+                    <div class="">
+                        <form id="make_comment_content">
+                            <span class="close">&times;</span>
+                            <fieldset>
+                                <legend>
+                                    <h1>Answer</h1>
+                                </legend>
+                                <table>
+                                    <tr>
+                                        <td >
+                                            <textarea rows="8" cols="10" placeholder="provide your answer here...."></textarea>
+                                            <br>
+                                            <br>
+                                        </td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td> <button type="submit" id="make_Request">Answer</button></td>
+                                    </tr> 
+                                </table>  
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+    
+            <div id="modal_ask_question">
+                <section>
+                    <div class="">
+                        <form id="make_comment_content">
+                            <span class="close">&times;</span>
+                            <fieldset>
+                                <legend>
+                                    <h1>Ask</h1>
+                                </legend>
+                                <table>
+                                    <tr>
+                                        <td >
+                                            <textarea rows="8" cols="10" placeholder="Ask your question...."></textarea>
+                                            <br>
+                                            <br>
+                                        </td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td> <button type="submit" id="make_Request">Ask</button></td>
+                                    </tr> 
+                                </table>  
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+    
+
+        <!---Footer-->
+      <footer id="footer" class="grid">
+        <div class="content-wrap"></div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
