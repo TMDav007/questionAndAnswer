@@ -132,86 +132,82 @@ header {
     }
   }
 
-  .questions{
-    display: grid;
-    grid-column-gap: 1.5em;
-    grid-template-columns: 5% 85% 10%;
-    border-bottom: #ffebcd2b 1px solid;
 
-    .profile_img_section{
-      margin: .8em 0 0 0;
-      .profile_img{
-        width: 3em;
-        height: 3em;
-        border: blanchedalmond 1px solid;
-        border-radius: 50%;
-      }
-    }
+  .question{
+    overflow: hidden;
+    .questions{
+      display: grid;
+      grid-column-gap: 1.5em;
+      grid-template-columns: 5% 85% 10%;
+      border-bottom: #ffebcd2b 1px solid;
 
-    .questions_section{
-      margin: 0 0 1em 0;
-      //width: 90%;
-      h4.username{
-        text-align: left;
-        margin: 1em 0 .5em 1em;
-        font-size: 1.2em;
-      }
-      p{
-        width: 92%;
-        margin: 0 0 1em 1em;
-        text-align: left;
-        color: #c7bdbd;
-       // white-space: nowrap;
-       // text-overflow: ellipsis;
-       // overflow: hidden;
-       }
-      .icons {
-        position: relative;
-        text-align: left;
-        img{
-          width: 2em;
-          display: inline-block;
-        }
-        .comment{
-          width: 2.7em;
-          margin: 0 1em;
-        }
-        .like{
-        position: relative;
-        bottom: .4em;
+      .profile_img_section{
+        margin: .8em 0 0 0;
+        .profile_img{
+          width: 3em;
+          height: 3em;
+          border: blanchedalmond 1px solid;
+          border-radius: 50%;
         }
       }
 
-     /* .menu_section{
+      .questions_section{
+        margin: 0 0 1em 0;
+        //width: 90%;
+        h4.username{
+          text-align: left;
+          margin: 1em 0 .5em 1em;
+          font-size: 1.2em;
+        }
+        p{
+          width: 92%;
+          margin: 0 0 1em 1em;
+          text-align: left;
+          color: #c7bdbd;
+        // white-space: nowrap;
+        // text-overflow: ellipsis;
+        // overflow: hidden;
+        }
+        .icons {
+          position: relative;
+          text-align: left;
+          img{
+            width: 2em;
+            display: inline-block;
+          }
+          .comment{
+            width: 2.7em;
+            margin: 0 1em;
+          }
+          .like{
+          position: relative;
+          bottom: .4em;
+          }
+        }
+
+        h3{ 
+          float:left;
+          padding-left:1em;
+        }
+      
+        @include Table;
+      
+        input[type="text"], button[type="submit"]{
+          border-radius: 5px;
+        }
+      }
+
+      .menu_section{
 
         .menu_icon{
-          width: 2em;
-        }
-      } */
-      
+          width:2em;
+          position: relative;
+          left: -4em;
+          top: .9em;
 
-       h3{ 
-         float:left;
-         padding-left:1em;
-       }
-     
-       @include Table;
-    
-       input[type="text"], button[type="submit"]{
-        border-radius: 5px;
-       }
-    }
-
-    .menu_section{
-
-      .menu_icon{
-        width:2em;
-        position: relative;
-        left: -4em;
-        top: .9em;
-
-        &:hover{
-          cursor: pointer;
+          &:hover{
+            cursor: pointer;
+          }
         }
       }
     }

@@ -368,7 +368,11 @@ header nav .sidebar a {
   background-color: #0f1d1b;
 }
 
-.main-content .questions {
+.main-content .question {
+  overflow: hidden;
+}
+
+.main-content .question .questions {
   display: -ms-grid;
   display: grid;
   grid-column-gap: 1.5em;
@@ -377,146 +381,140 @@ header nav .sidebar a {
   border-bottom: #ffebcd2b 1px solid;
 }
 
-.main-content .questions .profile_img_section {
+.main-content .question .questions .profile_img_section {
   margin: .8em 0 0 0;
 }
 
-.main-content .questions .profile_img_section .profile_img {
+.main-content .question .questions .profile_img_section .profile_img {
   width: 3em;
   height: 3em;
   border: blanchedalmond 1px solid;
   border-radius: 50%;
 }
 
-.main-content .questions .questions_section {
+.main-content .question .questions .questions_section {
   margin: 0 0 1em 0;
-  /* .menu_section{
-
-        .menu_icon{
-          width: 2em;
-        }
-      } */
 }
 
-.main-content .questions .questions_section h4.username {
+.main-content .question .questions .questions_section h4.username {
   text-align: left;
   margin: 1em 0 .5em 1em;
   font-size: 1.2em;
 }
 
-.main-content .questions .questions_section p {
+.main-content .question .questions .questions_section p {
   width: 92%;
   margin: 0 0 1em 1em;
   text-align: left;
   color: #c7bdbd;
 }
 
-.main-content .questions .questions_section .icons {
+.main-content .question .questions .questions_section .icons {
   position: relative;
   text-align: left;
 }
 
-.main-content .questions .questions_section .icons img {
+.main-content .question .questions .questions_section .icons img {
   width: 2em;
   display: inline-block;
 }
 
-.main-content .questions .questions_section .icons .comment {
+.main-content .question .questions .questions_section .icons .comment {
   width: 2.7em;
   margin: 0 1em;
 }
 
-.main-content .questions .questions_section .icons .like {
+.main-content .question .questions .questions_section .icons .like {
   position: relative;
   bottom: .4em;
 }
 
-.main-content .questions .questions_section h3 {
+.main-content .question .questions .questions_section h3 {
   float: left;
   padding-left: 1em;
 }
 
-.main-content .questions .questions_section .table_head {
+.main-content .question .questions .questions_section .table_head {
   padding-top: 10em;
   padding-bottom: 1.5em;
 }
 
 @media only screen and (min-width: 700px) {
-  .main-content .questions .questions_section .table_head {
+  .main-content .question .questions .questions_section .table_head {
     padding-top: 4em;
   }
 }
 
-.main-content .questions .questions_section h1 {
+.main-content .question .questions .questions_section h1 {
   margin: 0;
   line-height: 1em;
 }
 
-.main-content .questions .questions_section table {
+.main-content .question .questions .questions_section table {
   width: 100%;
   border-collapse: collapse;
   background: rgba(11, 10, 25, 0.588);
 }
 
-.main-content .questions .questions_section table thead {
+.main-content .question .questions .questions_section table thead {
   font-weight: bold;
   text-align: center;
   background-color: #ada29a;
 }
 
 @media only screen and (min-width: 700px) {
-  .main-content .questions .questions_section table thead {
+  .main-content .question .questions .questions_section table thead {
     font-size: 16px;
   }
 }
 
-.main-content .questions .questions_section table .fa {
+.main-content .question .questions .questions_section table .fa {
   border: 0;
   cursor: pointer;
   color: #ffffff94;
 }
 
-.main-content .questions .questions_section table a {
+.main-content .question .questions .questions_section table a {
   text-decoration: none;
   color: #161514;
 }
 
-.main-content .questions .questions_section table a:hover {
+.main-content .question .questions .questions_section table a:hover {
   border-bottom: rgba(22, 21, 20, 0.31) 1px solid;
   opacity: 0.8;
   cursor: pointer;
 }
 
 @media only screen and (min-width: 700px) {
-  .main-content .questions .questions_section table tbody {
+  .main-content .question .questions .questions_section table tbody {
     font-size: 16px;
   }
 }
 
-.main-content .questions .questions_section table tr, .main-content .questions .questions_section table td {
+.main-content .question .questions .questions_section table tr, .main-content .question .questions .questions_section table td {
   padding: 12px 7px;
   font-size: 11px;
   text-align: center;
 }
 
 @media only screen and (min-width: 700px) {
-  .main-content .questions .questions_section table tr, .main-content .questions .questions_section table td {
+  .main-content .question .questions .questions_section table tr, .main-content .question .questions .questions_section table td {
     font-size: 14px;
   }
 }
 
-.main-content .questions .questions_section input[type="text"], .main-content .questions .questions_section button[type="submit"] {
+.main-content .question .questions .questions_section input[type="text"], .main-content .question .questions .questions_section button[type="submit"] {
   border-radius: 5px;
 }
 
-.main-content .questions .menu_section .menu_icon {
+.main-content .question .questions .menu_section .menu_icon {
   width: 2em;
   position: relative;
   left: -4em;
   top: .9em;
 }
 
-.main-content .questions .menu_section .menu_icon:hover {
+.main-content .question .questions .menu_section .menu_icon:hover {
   cursor: pointer;
 }
 
