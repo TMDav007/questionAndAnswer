@@ -353,6 +353,8 @@ header nav .sidebar a {
 }
 
 .main-content #ask_question {
+  position: relative;
+  left: 1.5em;
   padding-top: 2em;
   margin-bottom: 3em;
 }
