@@ -510,10 +510,10 @@ header nav .sidebar a {
 }
 
 .main-content .question .questions .menu_section .menu_icon {
-  width: 2em;
+  font-size: 2em;
   position: relative;
-  left: -4em;
-  top: .9em;
+  top: .2em;
+  right: 1.7em;
 }
 
 .main-content .question .questions .menu_section .menu_icon:hover {
