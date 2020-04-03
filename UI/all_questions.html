@@ -31,12 +31,13 @@
                     <a href="index.html">Log out</a>
                 </div>
             </div>
-            <div id="user-background-image"></div>
+
         </nav>
     </header>
 
  
     <div class="container">
+        <div id="user-background-image"></div>
         <div class="main-content">
             <div id="ask_question">
                 <input type="text" name="username" id="ask" placeholder=" ask your question">
@@ -60,15 +61,20 @@
                         </div>
                     </div>
                     <div class="menu_section">
-                        <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
-                        <div class="dropdown">
-                            <ul class="menu_list">
+                      <!---- <i class="fa fa-sort-desc menu_icon" id="menu_icon" aria-hidden="true"></i> -->
+                        <select id="mySelect" class="menu_icon_select">
+                            <option>vote</option>
+                            <option>edit</option>
+                            <option>delete</option>
+                        </select>
+                     <!----  <div class="dropdown">
+                            <ul class="menu_list1">
                                 <span class="close">&times;</span>
                                 <li><a href="http://">edit</a></li>
                                 <li><a href="http://">vote</a></li>
                                 <li><a href="http://">delete</a></li>
                             </ul>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
 
@@ -87,15 +93,12 @@
                         </div>
                     </div>
                     <div class="menu_section">
-                        <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
-                        <div class="dropdown">
-                            <ul class="menu_list">
-                                <span class="close">&times;</span>
-                                <li><a href="http://">edit</a></li>
-                                <li><a href="http://">vote</a></li>
-                                <li><a href="http://">delete</a></li>
-                            </ul>
-                        </div>
+                       <!--- <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> -->
+                        <select id="mySelect" class="menu_icon_select">
+                            <option>vote</option>
+                            <option>edit</option>
+                            <option>delete</option>
+                        </select>
                     </div>
                 </div>
 
@@ -114,15 +117,12 @@
                         </div>
                     </div>
                     <div class="menu_section">
-                        <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
-                        <div class="dropdown">
-                            <ul class="menu_list">
-                                <span class="close">&times;</span>
-                                <li><a href="http://">edit</a></li>
-                                <li><a href="http://">vote</a></li>
-                                <li><a href="http://">delete</a></li>
-                            </ul>
-                        </div>
+                       <!--- <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> -->
+                        <select id="mySelect" class="menu_icon_select">
+                            <option>vote</option>
+                            <option>edit</option>
+                            <option>delete</option>
+                        </select>
                     </div>
                 </div>
 
@@ -141,20 +141,21 @@
                         </div>
                     </div>
                     <div class="menu_section">
-                        <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
-                        <div class="dropdown">
-                            <ul class="menu_list">
-                                <span class="close">&times;</span>
-                                <li><a href="http://">edit</a></li>
-                                <li><a href="http://">vote</a></li>
-                                <li><a href="http://">delete</a></li>
-                            </ul>
-                        </div>
+                       <!--- <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> -->
+                        <select id="mySelect" class="menu_icon_select">
+                            <option>vote</option>
+                            <option>edit</option>
+                            <option>delete</option>
+                        </select>
                     </div>
                 </div>
             </div>
             <div class="question-buttons"></div> 
         </div> 
+    </div>
+    <footer id="footer" class="grid">
+        <div class="content-wrap"></div>
+    </footer>
     </div>
 
 
@@ -185,7 +186,7 @@
                         </form>
                     </div>
                 </section>
-            </div>
+
     
             <div id="modal_ask_question">
                 <section>
@@ -217,9 +218,6 @@
     
 
         <!---Footer-->
-      <footer id="footer" class="grid">
-        <div class="content-wrap"></div>
-    </footer>
     <script src="script.js"></script>
   </body>
 </html>

@@ -509,6 +509,27 @@ header nav .sidebar a {
   border-radius: 5px;
 }
 
+.main-content .question .questions .menu_section .menu_icon_select {
+  width: 1.5em;
+  background: transparent;
+  color: white;
+  border-color: transparent;
+  position: relative;
+  right: 5em;
+  top: .3em;
+}
+
+.main-content .question .questions .menu_section .menu_icon_select:focus {
+  outline: none;
+}
+
+.main-content .question .questions .menu_section .menu_icon_select option {
+  right: 7em;
+  background-color: #0f1d1b;
+  font-size: 13px;
+  width: 2em;
+}
+
 .main-content .question .questions .menu_section .menu_icon {
   font-size: 2em;
   position: relative;
@@ -733,7 +754,7 @@ span:hover {
   cursor: pointer;
 }
 
-.dropdown .menu_list {
+.dropdown .menu_list1, .dropdown .menu_list2, .dropdown .menu_list3, .dropdown .menu_list4 {
   padding: 0;
   margin: 0;
   position: absolute;

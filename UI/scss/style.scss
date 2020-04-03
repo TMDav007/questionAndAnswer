@@ -200,6 +200,29 @@ header {
       }
 
       .menu_section{
+        .menu_icon_select{
+          width: 1.5em;
+          background: transparent;
+          color: white;
+          border-color: transparent;
+          position: relative;
+          right: 5em;
+          top: .3em;
+          
+
+          &:focus{
+            outline:none;
+          }
+      
+          option{
+            //position: absolute ;
+            right:7em;
+            background-color: #0f1d1b;
+            font-size: 13px;;
+            width: 2em;
+          }
+        }
+        
 
         .menu_icon{
           font-size: 2em;
@@ -401,7 +424,7 @@ span{
 
 //dropdown
 .dropdown{
-  .menu_list{
+  .menu_list1,.menu_list2, .menu_list3, .menu_list4{
     padding: 0;
     margin: 0;
     position: absolute;
