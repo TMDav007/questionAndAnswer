@@ -41,7 +41,8 @@ a:hover {
 }
 
 header nav {
-  position: absolute;
+  z-index: 3;
+  position: fixed;
   display: -ms-grid;
   display: grid;
   width: 100%;
@@ -56,7 +57,7 @@ header nav {
 }
 
 header nav .menu-bar {
-  background-color: #0b1213ba;
+  background-color: #0b1213;
   display: -ms-grid;
   display: grid;
   place-items: center;
@@ -66,6 +67,7 @@ header nav .menu-bar {
 }
 
 header nav .menu-bar h1 {
+  z-index: 5;
   position: relative;
   right: 30%;
   font-size: 25px;
@@ -135,7 +137,7 @@ header nav .dropdown {
   height: 10em;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
-  background-color: #0b1213ba;
+  background-color: #0b1213;
   top: 4em;
   position: absolute;
   z-index: 1;
@@ -173,15 +175,16 @@ header nav .dropdown a:hover {
 }
 
 header nav .sidebar {
+  position: absolute;
   display: -ms-grid;
   display: grid;
   -ms-grid-rows: auto;
       grid-template-rows: auto;
   width: 200px;
-  z-index: 3;
+  z-index: 1;
   height: 79vh;
   padding: 2em 0em;
-  background: #0b1213ba;
+  background: #0b1213;
   text-align: center;
   -webkit-transform-origin: left;
           transform-origin: left;
@@ -229,18 +232,18 @@ header nav .sidebar a {
 }
 
 #showcase {
-  height: 70em;
+  height: 100vh;
   background-color: rgba(3, 7, 29, 0.361);
 }
 
 #showcase #bg-image {
-  position: absolute;
+  position: fixed;
   background: url("./../images/img1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 70em;
+  height: 100vh;
   z-index: -2;
   opacity: 0.85;
   -webkit-transition: background-image 7s ease-in-out;
@@ -320,17 +323,17 @@ header nav .sidebar a {
 }
 
 .container {
-  height: 70em;
+  height: 100vh;
 }
 
 #user-background-image {
-  position: absolute;
+  position: fixed;
   background: url("./../images/img1.jpg");
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
   width: 100%;
-  height: 70em;
+  height: 100vh;
   z-index: -2;
   opacity: 0.85;
   -webkit-transition: background-image 7s ease-in-out;
@@ -350,11 +353,12 @@ header nav .sidebar a {
   top: 10em;
   font-size: .8em;
   padding: 0 1em;
+  overflow: hidden;
+  padding-bottom: 11em;
 }
 
 .main-content #ask_question {
   position: relative;
-  left: 1.5em;
   padding-top: 2em;
   margin-bottom: 3em;
 }
@@ -515,7 +519,7 @@ header nav .sidebar a {
   color: white;
   border-color: transparent;
   position: relative;
-  right: 5em;
+  right: 3.5em;
   top: .3em;
 }
 
@@ -543,11 +547,11 @@ header nav .sidebar a {
 
 /* footer */
 #footer {
-  padding: 2em;
   background: #080e0f;
-  color: #fff;
-  font-size: 1.2em;
-  text-align: center;
+  position: fixed;
+  width: 100%;
+  height: 3rem;
+  bottom: 0;
 }
 
 #footer p {
