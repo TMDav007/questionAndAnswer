@@ -1,7 +1,9 @@
 let dropDown = document.querySelector("nav .dropdown") 
 let sideBar =  document.querySelector(".sidebar");
 let menuBar = document.querySelector("nav .menu");
-let abc = document.querySelector(".menu_list2"); // || document.querySelector(".menu_list2") || document.querySelector(".menu_list3") || document.querySelector(".menu_list4");
+let abc = document.querySelector(".modal_dropdown"); 
+//let dropdownModal = document.querySelector()
+// || document.querySelector(".menu_list2") || document.querySelector(".menu_list3") || document.querySelector(".menu_list4");
 
 const menu = () => {
     if (dropDown.style.display === "grid") {
@@ -15,15 +17,17 @@ const menu = () => {
   }
 
 let dropDownMenuList = () => {
-  //console.log (abc.style.display = "none");
-  //console.log (dropDownMen.style.display= none);
   if (abc.style.display === "block") {
     abc.style.display = "none";
   } 
   else {
     abc.style.display = "block";
   }
+}
 
+const closeModalDropdown = () => {
+ // console.log("im here");
+  abc.style.display = "none";
 }
 
 const toggle = () => {
@@ -44,4 +48,4 @@ addEventListener("resize", ()=> {
     }
 });
 
-//document.querySelector(".menu_icon").addEventListener("click", dropDownMenuList(dropDownMenu));
+// document.querySelector(".close").addEventListener("click", );

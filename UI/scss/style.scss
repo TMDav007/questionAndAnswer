@@ -317,7 +317,7 @@ button[type="submit"] {
 
 // Modals
 #modal_make_comment,#modal_ask_question{
- display: none;
+  display: none;
   position: fixed;
   z-index: 1004;
   left: 0;
@@ -416,8 +416,9 @@ button[type="submit"] {
 span{
   position: absolute;
   font-size: 1.5em;
-  color: #000;
+  color: #fff;
   right: 10px;
+  z-index: 1;
   &:hover {
       cursor: pointer;
   }
@@ -454,4 +455,50 @@ span{
       }
     }
 
+}
+
+.modal_dropdown{
+  padding: 0;
+  margin: 0;
+  display: none;
+  position: fixed;
+  z-index: 1004;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.356);
+  #dropdown_section{
+    position: absolute;
+    bottom: 0;
+    //background-color: #080e0f;
+   // height: 25em;
+    width:100%;
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      background: #070c0cf5;
+      position : relative;
+      list-style: none;
+      border-bottom: #ffebcd0d 1px solid;
+      width: 100%;
+  
+      a{
+        padding: 0 10px;
+        color: white;
+        text-decoration: none;
+        line-height: 4em;
+        font-size: 13px;
+        
+        &:hover{
+          opacity: 0.7;
+        }
+      }
+    }
+
+  }
 }
