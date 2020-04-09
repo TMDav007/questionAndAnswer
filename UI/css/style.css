@@ -231,6 +231,10 @@ header nav .sidebar a {
   line-height: 50px;
 }
 
+header nav .sidebar #active_link {
+  color: #277379;
+}
+
 #showcase {
   height: 100vh;
   background-color: rgba(3, 7, 29, 0.361);
@@ -360,7 +364,21 @@ header nav .sidebar a {
 .main-content #ask_question {
   position: relative;
   padding-top: 2em;
-  margin-bottom: 3em;
+  margin-bottom: 1em;
+}
+
+.main-content #ask_question h3 {
+  text-align: left;
+  position: relative;
+  left: 2.5em;
+  font-size: 1.5em;
+  margin-bottom: 1em;
+}
+
+.main-content #ask_question p {
+  font-size: 15px;
+  text-align: left;
+  margin: 0 1em 0 1em;
 }
 
 .main-content #ask_question input[type="text"] {
@@ -418,6 +436,8 @@ header nav .sidebar a {
 .main-content .question .questions .questions_section .icons {
   position: relative;
   text-align: left;
+  top: .8em;
+  left: 1em;
 }
 
 .main-content .question .questions .questions_section .icons img {
@@ -426,13 +446,26 @@ header nav .sidebar a {
 }
 
 .main-content .question .questions .questions_section .icons .comment {
-  width: 2.7em;
-  margin: 0 1em;
+  position: relative;
+  bottom: .5em;
+  font-size: 1.7em;
+  color: #fff;
 }
 
-.main-content .question .questions .questions_section .icons .like {
+.main-content .question .questions .questions_section .icons .like, .main-content .question .questions .questions_section .icons .unlike {
   position: relative;
-  bottom: .4em;
+  bottom: .45em;
+  left: .7em;
+  font-size: 1.7em;
+  color: #fff;
+}
+
+.main-content .question .questions .questions_section .icons .like:hover, .main-content .question .questions .questions_section .icons .unlike:hover {
+  cursor: pointer;
+}
+
+.main-content .question .questions .questions_section .icons .unlike {
+  color: #b71515;
 }
 
 .main-content .question .questions .questions_section h3 {
@@ -545,6 +578,53 @@ header nav .sidebar a {
   cursor: pointer;
 }
 
+.main-content #profile_image {
+  position: relative;
+  padding-top: 2em;
+  margin-bottom: 1em;
+}
+
+.main-content #profile_image .profile_image_section .profile_image {
+  margin: 0 auto;
+  width: 8em;
+  height: 8em;
+  border: blanchedalmond 1px solid;
+  border-radius: 50%;
+}
+
+.main-content #profile_image .profile_image_section #profile_image_icon {
+  font-size: 2em;
+  position: relative;
+  left: 3em;
+  color: #7d8a8cb8;
+}
+
+.main-content #profile_form {
+  margin-top: 5em;
+}
+
+.main-content #profile_form input[type="text"],
+.main-content #profile_form input[type="number"] {
+  background: #0c131900;
+  border-bottom: rgba(195, 166, 166, 0.85) 1px solid;
+  width: 70%;
+}
+
+.main-content #profile_form button[type="submit"] {
+  border-bottom: rgba(195, 166, 166, 0.85) 0px solid;
+  width: 80%;
+  position: relative;
+  background: #031111;
+  top: 6em;
+}
+
+.main-content #profile_form #form_icon {
+  font-size: 1.3em;
+  position: relative;
+  top: .9em;
+  margin-left: 1em;
+}
+
 /* footer */
 #footer {
   background: #080e0f;
@@ -564,6 +644,7 @@ header nav .sidebar a {
 }
 
 input[type="text"],
+input[type="number"],
 input[type="password"],
 button[type="submit"] {
   border: rgba(10, 10, 10, 0.34) 1px solid;
@@ -575,6 +656,7 @@ button[type="submit"] {
 }
 
 input[type="text"] #submit_ask,
+input[type="number"] #submit_ask,
 input[type="password"] #submit_ask,
 button[type="submit"] #submit_ask {
   width: 80%;
@@ -582,6 +664,7 @@ button[type="submit"] #submit_ask {
 
 @media only screen and (min-width: 700px) {
   input[type="text"],
+  input[type="number"],
   input[type="password"],
   button[type="submit"] {
     width: 90%;
@@ -592,6 +675,7 @@ button[type="submit"] #submit_ask {
 
 @media only screen and (min-width: 900px) {
   input[type="text"],
+  input[type="number"],
   input[type="password"],
   button[type="submit"] {
     font-size: 0.8em;
@@ -747,6 +831,43 @@ button[type="submit"]:focus {
   }
 }
 
+#password_reset_modal {
+  display: none;
+  position: fixed;
+  z-index: 1004;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.356);
+}
+
+#password_reset_modal .password_reset_form {
+  position: relative;
+  z-index: 100;
+  background-color: #fefefe;
+  margin: 10% 0 10% 7%;
+  padding: 3em 1em;
+  top: 10em;
+  left: 1em;
+  width: 70%;
+}
+
+@media only screen and (min-width: 900px) {
+  #password_reset_modal .password_reset_form {
+    margin: 6em auto;
+    width: 35em;
+  }
+}
+
+#password_reset_modal .password_reset_form .close {
+  top: 0;
+  font-weight: bold;
+  font-size: 1.9em;
+  color: #6b5959;
+}
+
 span {
   position: absolute;
   font-size: 1.5em;
@@ -832,5 +953,28 @@ span:hover {
 
 .modal_dropdown #dropdown_section li a:hover {
   opacity: 0.7;
+}
+
+.comment_box {
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: auto;
+}
+
+.comment_box #comment_section {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}
+
+.comment_box #comment_section input[type="text"] {
+  background: #020b0c;
+  border-radius: 10px;
+  color: #fefefe;
+  height: 30px;
+  width: 95%;
 }
 /*# sourceMappingURL=style.css.map */

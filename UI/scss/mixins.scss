@@ -149,6 +149,8 @@
      transform: perspective(1200px) rotateY(0deg);
  }
 
+ 
+
  a{
    display: inline-block;
    color: $white;
@@ -161,6 +163,12 @@
    border-bottom: 1px solid #ffffff1e;
    line-height: 50px;
  }
+   #active_link{
+    color: #277379;
+   }
+
+
+
 }
 
 @mixin Table{
