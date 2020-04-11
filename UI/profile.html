@@ -15,11 +15,11 @@
             <!--- Header  --->
     <header>
         <nav>
-            <div class="menu-bar">
+            <div class="menu-bar" id="menubar">
                 <h1><a href="index.html">Q&A</a></h1>
                 <div class="links">
-                    <a href="login.html">login</a>
-                    <a href="signup.html">sign up</a>
+                    <a href="login.html"></a>
+                    <a href="signup.html"></a>
                 </div>
                 <i class="material-icons menu" onclick="toggle()">menu</i>
             </div>
@@ -28,7 +28,9 @@
                     <a href="user_home.html">Home</a>
                     <a href="all_questions.html">My Questions</a>
                     <a href="profile.html" id="active_link">my profile</a>
-                    <a href="index.html">Log out</a>
+                    <div id="log-out">
+                        <a href="index.html">Log out</a>
+                    </div>   
                 </div>
             </div>
         </nav>
@@ -38,38 +40,41 @@
     <div class="container">
         <div  id="user-background-image"></div>
         <div class="main-content">
-            <div id="profile_image">
-              <div class="profile_image_section">
-                <img src="" alt="" class="profile_image">
-                <i class="fa fa-camera" id="profile_image_icon" aria-hidden="true"></i>
-              </div>
+            <div id="sidebar_space"></div>
+            <div id="content_space">
+                <div id="profile_image">
+                    <div class="profile_image_section">
+                      <img src="" alt="" class="profile_image">
+                      <i class="fa fa-camera" id="profile_image_icon" aria-hidden="true"></i>
+                    </div>
+                  </div>
+      
+                  <div id="profile_form">
+                    <form action="login.html">
+                      <!--- <h1>Login</h1> -->
+                      <label for="username"> </label>
+                      <input type="text" name="username" id="username" placeholder="Username@2020" disabled>
+                      <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
+                      <br>
+                      <br>
+                      <label for="password"></label>
+                      <input type="text" name="email" id="email" placeholder="yourmail@yahoo.com" disabled>
+                      <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
+                      <br>
+                      <br>
+                      <label for="phone no"></label>
+                      <input type="number" name="phone_no" id="phone_no" placeholder="09086573458" disabled>
+                      <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
+                      <br>
+                      <br>
+                      <button type="submit" id="submit" onclick="displayPasswordResetModal()">Reset Password
+                        <!--<i class="fa fa-sign-in"></i> Login -->
+                      </button>
+      
+                  </form>
+                  </div>
             </div>
-
-            <div id="profile_form">
-              <form action="login.html">
-                <!--- <h1>Login</h1> -->
-                <label for="username"> </label>
-                <input type="text" name="username" id="username" placeholder="Username@2020" disabled>
-                <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
-                <br>
-                <br>
-                <label for="password"></label>
-                <input type="text" name="email" id="email" placeholder="yourmail@yahoo.com" disabled>
-                <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
-                <br>
-                <br>
-                <label for="phone no"></label>
-                <input type="number" name="phone_no" id="phone_no" placeholder="09086573458" disabled>
-                <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
-                <br>
-                <br>
-                <button type="submit" id="submit" onclick="displayPasswordResetModal()">Reset Password
-                  <!--<i class="fa fa-sign-in"></i> Login -->
-                </button>
-
-            </form>
-            </div>
-        </div> 
+        </div>
 
     </div>
 

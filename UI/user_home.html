@@ -15,11 +15,11 @@
             <!--- Header  --->
     <header>
         <nav>
-            <div class="menu-bar">
+            <div class="menu-bar" id="menubar">
                 <h1><a href="index.html">Q&A</a></h1>
                 <div class="links">
-                    <a href="login.html">login</a>
-                    <a href="signup.html">sign up</a>
+                    <a href="login.html"></a>
+                    <a href="signup.html"></a>
                 </div>
                 <i class="material-icons menu" onclick="toggle()">menu</i>
             </div>
@@ -28,7 +28,9 @@
                     <a href="user_home.html" id="active_link">Home</a>
                     <a href="all_questions.html">My Questions</a>
                     <a href="profile.html">my profile</a>
-                    <a href="index.html">Log out</a>
+                    <div id="log-out">
+                        <a href="index.html">Log out</a>
+                    </div>   
                 </div>
             </div>
         </nav>
@@ -37,86 +39,89 @@
  
     <div class="container">
         <div  id="user-background-image"></div>
+
         <div class="main-content">
-            <div id="ask_question">
-                <input type="text" name="username" id="ask" placeholder=" ask your question">
-                <button type="submit" id="submit_ask">Ask
-              </button>
-            </div>
-            <div class="question">
-                <div class="questions">
-                    <div class="profile_img_section">
-                        <img src="" alt="" class="profile_img">
-                    </div>
-                    <div class="questions_section">
-                        <h4 class="username">Username</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
-                        </p>
-                        <div class="icons">
-                            <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
-                            <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+            <div id="sidebar_space"></div>
+            <div id="content_space">
+                <div id="ask_question">
+                    <input type="text" name="username" id="ask" placeholder=" ask your question">
+                    <button type="submit" id="submit_ask">Ask
+                  </button>
+                </div>
+                <div class="question">
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
+                                <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                             </div>
+                        </div>
+                        <div class="menu_section">
+                            <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> 
                          </div>
                     </div>
-                    <div class="menu_section">
-                        <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> 
-                     </div>
-                </div>
-
-                <div class="questions">
-                    <div class="profile_img_section">
-                        <img src="" alt="" class="profile_img">
-                    </div>
-                    <div class="questions_section">
-                        <h4 class="username">Username</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
-                        </p>
-                        <div class="icons">
-                            <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
-                            <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
-                         </div>
-                    </div>
-                </div>
-
-                <div class="questions">
-                    <div class="profile_img_section">
-                        <img src="" alt="" class="profile_img">
-                    </div>
-                    <div class="questions_section">
-                        <h4 class="username">Username</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
-                        </p>
-                        <div class="icons">
-                            <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
-                            <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
-                         </div>
-                    </div>
-                </div>
-
-                <div class="questions">
-                    <div class="profile_img_section">
-                        <img src="" alt="" class="profile_img">
-                    </div>
-                    <div class="questions_section">
-                        <h4 class="username">Username</h4>
-                        <p>
-                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
-                        </p>
-                        <div class="icons">
-                            <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></i></a>
-                            <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+    
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
+                                <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                             </div>
                         </div>
                     </div>
-                    <div class="menu_section">
-                        <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> 
-                     </div>
+    
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
+                                <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                             </div>
+                        </div>
+                    </div>
+    
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></i></a>
+                                <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="menu_section">
+                            <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i> 
+                         </div>
+                    </div>
                 </div>
+                <div class="question-buttons"></div> 
             </div>
-            <div class="question-buttons"></div> 
-        </div> 
-
+        </div>
     </div>
 
 

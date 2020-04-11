@@ -16,21 +16,23 @@
   <!--- Header  --->
   <header>
     <nav>
-      <div class="menu-bar">
-        <h1><a href="index.html">Q&A</a></h1>
-        <div class="links">
-          <a href="login.html">login</a>
-          <a href="signup.html">sign up</a>
-        </div>
-        <i class="material-icons menu" onclick="toggle()">menu</i>
+      <div class="menu-bar" id="menubar">
+          <h1><a href="index.html">Q&A</a></h1>
+          <div class="links">
+              <a href="login.html"></a>
+              <a href="signup.html"></a>
+          </div>
+          <i class="material-icons menu" onclick="toggle()">menu</i>
       </div>
       <div class="sidebar">
-        <div class="sidebar-link">
-          <a href="user_home.html" id="active_link">Home</a>
-          <a href="all_questions.html">My Questions</a>
-          <a href="profile.html">my profile</a>
-          <a href="index.html">Log out</a>
-        </div>
+          <div class="sidebar-link">
+              <a href="user_home.html">Home</a>
+              <a href="all_questions.html" id="active_link">My Questions</a>
+              <a href="profile.html">my profile</a>
+              <div id="log-out">
+                  <a href="index.html">Log out</a>
+              </div>   
+          </div>
       </div>
     </nav>
   </header>
@@ -39,76 +41,78 @@
   <div class="container">
     <div id="user-background-image"></div>
     <div class="main-content">
-      <div id="ask_question">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a
-          odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus
-          officiis?
-        </p>
-        </button>
+      <div id="sidebar_space"></div>
+      <div id="content_space">
+        <div id="ask_question">
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo a
+            odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus
+            officiis?
+          </p>
+          </button>
+        </div>
+        <div class="question">
+          <div class="questions">
+            <div class="profile_img_section">
+              <img src="" alt="" class="profile_img">
+            </div>
+            <div class="questions_section">
+              <h4 class="username">Username</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem
+                illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium
+                voluptas possimus officiis?
+              </p>
+              <div class="icons">
+                <i class="fa fa-comment-o comment" aria-hidden="true"></i>
+                 <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+             </div>
+            </div>
+            <div class="menu_section">
+  
+            </div>
+          </div>
+  
+          <div class="questions">
+            <div class="profile_img_section">
+              <img src="" alt="" class="profile_img">
+            </div>
+            <div class="questions_section">
+              <h4 class="username">Username</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem
+                illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium
+                voluptas possimus officiis?
+              </p>
+              <div class="icons">
+                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
+                 <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+             </div>
+            </div>
+          </div>
+  
+          <div class="questions">
+            <div class="profile_img_section">
+              <img src="" alt="" class="profile_img">
+            </div>
+            <div class="questions_section">
+              <h4 class="username">Username</h4>
+              <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem
+                illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium
+                voluptas possimus officiis?
+              </p>
+              <div class="icons">
+                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
+                 <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+             </div>
+            </div>
+          </div>
+  
+        </div>
+        <div class="question-buttons"></div>
       </div>
-      <div class="question">
-        <div class="questions">
-          <div class="profile_img_section">
-            <img src="" alt="" class="profile_img">
-          </div>
-          <div class="questions_section">
-            <h4 class="username">Username</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem
-              illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium
-              voluptas possimus officiis?
-            </p>
-            <div class="icons">
-              <i class="fa fa-comment-o comment" aria-hidden="true"></i>
-               <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
-           </div>
-          </div>
-          <div class="menu_section">
-
-          </div>
-        </div>
-
-        <div class="questions">
-          <div class="profile_img_section">
-            <img src="" alt="" class="profile_img">
-          </div>
-          <div class="questions_section">
-            <h4 class="username">Username</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem
-              illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium
-              voluptas possimus officiis?
-            </p>
-            <div class="icons">
-              <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
-               <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
-           </div>
-          </div>
-        </div>
-
-        <div class="questions">
-          <div class="profile_img_section">
-            <img src="" alt="" class="profile_img">
-          </div>
-          <div class="questions_section">
-            <h4 class="username">Username</h4>
-            <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem
-              illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium
-              voluptas possimus officiis?
-            </p>
-            <div class="icons">
-              <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></a>
-               <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
-           </div>
-          </div>
-        </div>
-
-      </div>
-      <div class="question-buttons"></div>
     </div>
-
   </div>
 
 
@@ -172,7 +176,8 @@
 
   <!--Dropdown-->
   <div class="comment_box">
-    <section>
+    <section id="comment_section">
+      <div id=""></div>
       <div id="comment_section">
         <form action="">
           <input type="text" name="username" id="username" placeholder="Comment">

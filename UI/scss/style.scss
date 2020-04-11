@@ -17,6 +17,9 @@ header {
     .menu-bar{
       @include menu-bar;
     }
+    #menubar{
+      background: #080e0f;
+    }
 
     .dropdown {
       @include dropdown;
@@ -25,6 +28,7 @@ header {
    .sidebar{
       @include sidebar;
    }
+
 
 }
 
@@ -114,6 +118,11 @@ header {
   padding: 0 1em;
   overflow: hidden;
   padding-bottom: 11em;
+
+  @media only screen and (min-width: 700px) {
+    display: grid;
+    grid-template-columns: 23% 78%;
+}
 
   #ask_question{
     position: relative;
@@ -305,9 +314,17 @@ header {
       position: relative;
       background: #031111;
       top: 6em;
+
+      @media only screen and (min-width: 700px) {
+        width: 50%;
+      }
     }
 
-    
+    @media only screen and (min-width: 700px) {
+      width: 45em;
+      margin: 10em auto;
+  }
+
     #form_icon{
       font-size: 1.3em;
       position: relative;
@@ -634,6 +651,14 @@ span{
         color: #fefefe;
         height: 30px;
         width: 95%;
+
+        &:focus{
+          outline:none;
+        }
       }
+      @media only screen and (min-width: 700px) {
+        right: 3em;
+        width: 70%;
+    }
     }
 }

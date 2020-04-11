@@ -131,6 +131,10 @@ header nav .menu-bar .links {
   }
 }
 
+header nav #menubar {
+  background: #080e0f;
+}
+
 header nav .dropdown {
   display: none;
   width: 100%;
@@ -196,12 +200,12 @@ header nav .sidebar {
 
 @media only screen and (min-width: 700px) {
   header nav .sidebar {
-    position: relative;
-    bottom: 1.45em;
-    width: 30%;
+    position: absolute;
+    height: 100vh;
+    width: 20%;
     -webkit-transform: none;
             transform: none;
-    background: #0b0f19;
+    background: #080e0f;
   }
 }
 
@@ -216,6 +220,10 @@ header nav .sidebar {
 header nav .sidebar.active {
   -webkit-transform: perspective(1200px) rotateY(0deg);
           transform: perspective(1200px) rotateY(0deg);
+}
+
+header nav .sidebar .sidebar-link {
+  padding-top: 7em;
 }
 
 header nav .sidebar a {
@@ -233,6 +241,14 @@ header nav .sidebar a {
 
 header nav .sidebar #active_link {
   color: #277379;
+}
+
+@media only screen and (min-width: 700px) {
+  header nav .sidebar #log-out {
+    position: absolute;
+    bottom: 7em;
+    width: 100%;
+  }
 }
 
 #showcase {
@@ -359,6 +375,15 @@ header nav .sidebar #active_link {
   padding: 0 1em;
   overflow: hidden;
   padding-bottom: 11em;
+}
+
+@media only screen and (min-width: 700px) {
+  .main-content {
+    display: -ms-grid;
+    display: grid;
+    -ms-grid-columns: 23% 78%;
+        grid-template-columns: 23% 78%;
+  }
 }
 
 .main-content #ask_question {
@@ -616,6 +641,19 @@ header nav .sidebar #active_link {
   position: relative;
   background: #031111;
   top: 6em;
+}
+
+@media only screen and (min-width: 700px) {
+  .main-content #profile_form button[type="submit"] {
+    width: 50%;
+  }
+}
+
+@media only screen and (min-width: 700px) {
+  .main-content #profile_form {
+    width: 45em;
+    margin: 10em auto;
+  }
 }
 
 .main-content #profile_form #form_icon {
@@ -976,5 +1014,16 @@ span:hover {
   color: #fefefe;
   height: 30px;
   width: 95%;
+}
+
+.comment_box #comment_section input[type="text"]:focus {
+  outline: none;
+}
+
+@media only screen and (min-width: 700px) {
+  .comment_box #comment_section {
+    right: 3em;
+    width: 70%;
+  }
 }
 /*# sourceMappingURL=style.css.map */
