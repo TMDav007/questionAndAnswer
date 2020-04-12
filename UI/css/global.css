@@ -1,0 +1,42 @@
+body {
+  margin: 0;
+  font-family: 'Kanit', sans-serif;
+  background: #fff;
+  color: #fff;
+  font-size: 12px;
+  text-align: center;
+}
+
+@media only screen and (min-width: 700px) {
+  body {
+    font-size: 1em;
+  }
+}
+
+*, *:before, *:after {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+
+img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+h1, h2, h3 {
+  margin: 0;
+  padding: 1em 0;
+  line-height: 1em;
+}
+
+a {
+  text-decoration: none;
+  color: #fff;
+}
+
+a:hover {
+  cursor: pointer;
+}
+/*# sourceMappingURL=global.css.map */

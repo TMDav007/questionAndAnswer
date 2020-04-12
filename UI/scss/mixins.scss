@@ -1,0 +1,236 @@
+@import "variables";
+
+@mixin nav {
+  width: 100%;
+  background: $navbar;
+  // height: 60px;
+  text-align: right;
+  box-sizing: border-box;
+  z-index: 2;
+  // padding: 13px 24px;
+  color: #fff;
+  cursor: pointer;
+  
+
+  @media only screen and (min-width: 700px) {
+      display: none;
+  }
+}
+
+@mixin background{
+  position: fixed;
+  background: url("./../images/img1.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  height: 100vh;
+  z-index: -2;
+  opacity: 0.85;
+  -webkit-transition: background-image 7s ease-in-out;
+  -moz-transition: background-image 7s ease-in-out;
+  -o-transition: background-image 7s ease-in-out;
+  transition: background-image 7s ease-in-out;
+  @media only screen and (min-width: 700px) {
+    height: 100vh;
+  }
+}
+
+@mixin menu-bar{ 
+  background-color: $navbar;
+  display: grid;
+  place-items: center;
+  grid-auto-flow: column;
+  align-content: space-evenly;
+
+  h1 {
+    z-index: 5;
+    position: relative;
+    right: 30%;
+    font-size: 25px;
+    @media only screen and (min-width: 700px) {
+      font-size: 2em;
+    }
+    @media only screen and (min-width: 1000px) {
+      right: 40%;
+    }
+  }
+
+  
+  .menu{
+    position: relative;
+    left: 2em;
+    &:hover{
+      filter: opacity(50%);
+      cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+    @media only screen and (min-width: 700px) {
+      display: none;
+    }
+  }
+  .links {
+    display: none;
+    @media only screen and (min-width: 700px) {
+      display: grid;
+      position: relative;
+      left: 30%;
+      font-size: 1em;
+      grid-gap: 0px;
+      place-items: center;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(min-content, 70px);
+    }
+  }
+  @media only screen and (min-width: 700px) {
+    background-color: #00000000;
+  }
+}
+
+@mixin dropdown{
+  display: none;
+  width: 100%;
+  height: 10em;
+  grid-template-rows: auto;
+  background-color: $navbar;
+  top: 4em;
+  position: absolute;
+  z-index: 1;
+  text-align: center;
+
+  a{
+      font-size: 15px;
+      color: white;
+      padding: 20px 0;
+      width: 5em;
+      margin: auto;
+      text-decoration: none;
+
+      &:hover{
+        opacity: .7;
+        cursor: pointer;
+        user-select: none;
+        -webkit-user-select: none;;
+      }
+      @media only screen and (min-width: 700px) {
+        font-size: 18px;
+      }
+    }
+    @media only screen and (min-width: 700px) {
+      display: none;
+    }
+}
+@mixin sidebar{
+  position: absolute;
+  display: grid;
+  grid-template-rows: auto;
+  width: 200px;
+  z-index:1;
+  height: 79vh;
+  padding: 2em 0em;
+  background: $navbar;
+  text-align: center;
+  transform-origin: left;
+  transform:perspective(1200px) rotateY(90deg);
+  transition: all 600ms ease;
+  @media only screen and (min-width: 700px) {
+   position: absolute;
+   //bottom: 1.45em;
+   height: 100vh;
+   width: 20%;
+   transform: none;
+   background: #080e0f;
+ }
+   @media only screen and (min-width: 900px) {
+       width: 20%;
+       transform: none;
+   }
+   &.active{
+     transform: perspective(1200px) rotateY(0deg);
+ }
+
+  .sidebar-link{
+    padding-top: 7em;
+  } 
+
+ a{
+   display: inline-block;
+   color: $white;
+   font-size: .8em;
+   width: 100%;
+   text-align: center;
+   list-style-type: none;
+   text-decoration: none;
+   height: 40px;
+   border-bottom: 1px solid #ffffff1e;
+   line-height: 50px;
+ }
+   #active_link{
+    color: #277379;
+   }
+   #log-out{
+
+    @media only screen and (min-width: 700px) {
+      position: absolute;
+      bottom: 7em;
+      width: 100%;
+  }
+   
+   }
+}
+
+@mixin Table{
+  .table_head{
+    padding-top: 10em;
+    padding-bottom: 1.5em;
+    @media only screen and (min-width: 700px) {
+        padding-top: 4em;
+    }
+  }
+  h1{
+    margin: 0;
+    line-height: 1em;
+  }
+  table{
+      width :100%; 
+      border-collapse: collapse;
+      background: rgba(11, 10, 25, 0.588); 
+      thead{
+          font-weight: bold;
+          text-align:center;
+          background-color:#ada29a;
+          @media only screen and (min-width: 700px) {
+              font-size: 16px;
+          }
+      }
+      .fa{
+          border:0;
+          cursor:pointer;
+          color: #ffffff94;
+      }
+      a{
+          text-decoration:none;
+          color: #161514 ;
+          &:hover{
+              border-bottom: rgba(22, 21, 20, 0.31) 1px solid;
+              opacity:0.8;
+              cursor: pointer;
+          }
+      }
+      tbody {
+          @media only screen and (min-width: 700px) {
+              font-size: 16px;
+          }
+      } 
+      tr,td{
+          padding: 12px 7px;
+          font-size: 11px;
+          text-align:center;
+          @media only screen and (min-width: 700px) {
+              font-size: 14px;
+          }
+      }
+    }
+
+}

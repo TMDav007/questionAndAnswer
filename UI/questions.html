@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question&Answer</title>
+    <link rel="stylesheet" href="../UI/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Poiret+One|Oleo+Script+Swash+Caps"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+            <!--- Header  --->
+    <header>
+        <nav>
+            <div class="menu-bar">
+                <h1><a href="index.html">Q&A</a></h1>
+                <div class="links">
+                    <a href="login.html">login</a>
+                    <a href="signup.html">sign up</a>
+                </div>
+                <i class="material-icons menu" onclick="toggle()">menu</i>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-link">
+                    <a href="login.html">All Questions</a>
+                    <a href="signup.html">My Questions</a>
+                </div>
+            </div>
+            <div id="user-background-image"></div>
+        </nav>
+    </header>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="question">
+              <input type="text" name="username" id="ask" placeholder=" ask your question">
+              <button type="submit" id="submit_ask">Ask
+                <!--<i class="fa fa-sign-in"></i> Login -->
+            </button>
+            <div class="menu_section">
+                <img src="./images/elipsis.png" alt="" class="menu_icon">
+            </div>
+            <div class="dropdown">
+                <ul>
+                    <li><a href="http://">edit</a></li>
+                    <li><a href="http://">vote</a></li>
+                    <li><a href="http://">delete</a></li>
+                </ul>
+            </div>
+        
+            </div>
+            <div class="question-buttons"></div>
+        </div>
+    </div>
+
+
+
+        <!---Footer-->
+      <footer id="footer" class="grid">
+        <div class="content-wrap"></div>
+    </footer>
+    <script src="script.js"></script>
+  </body>
+</html>
+
+

@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question&Answer</title>
+    <link rel="stylesheet" href="../UI/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Poiret+One|Oleo+Script+Swash+Caps"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+            <!--- Header  --->
+    <header>
+        <nav>
+            <div class="menu-bar" id="menubar">
+                <h1><a href="index.html">Q&A</a></h1>
+                <div class="links">
+                    <a href="login.html"></a>
+                    <a href="signup.html"></a>
+                </div>
+                <i class="material-icons menu" onclick="toggle()">menu</i>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-link">
+                    <a href="user_home.html">Home</a>
+                    <a href="all_questions.html">My Questions</a>
+                    <a href="profile.html" id="active_link">my profile</a>
+                    <div id="log-out">
+                        <a href="index.html">Log out</a>
+                    </div>   
+                </div>
+            </div>
+        </nav>
+    </header>
+
+ 
+    <div class="container">
+        <div  id="user-background-image"></div>
+        <div class="main-content">
+            <div id="sidebar_space"></div>
+            <div id="content_space">
+                <div id="profile_image">
+                    <div class="profile_image_section">
+                      <img src="" alt="" class="profile_image">
+                      <i class="fa fa-camera" id="profile_image_icon" aria-hidden="true"></i>
+                    </div>
+                  </div>
+      
+                  <div id="profile_form">
+                    <form action="login.html">
+                      <!--- <h1>Login</h1> -->
+                      <label for="username"> </label>
+                      <input type="text" name="username" id="username" placeholder="Username@2020" disabled>
+                      <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
+                      <br>
+                      <br>
+                      <label for="password"></label>
+                      <input type="text" name="email" id="email" placeholder="yourmail@yahoo.com" disabled>
+                      <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
+                      <br>
+                      <br>
+                      <label for="phone no"></label>
+                      <input type="number" name="phone_no" id="phone_no" placeholder="09086573458" disabled>
+                      <i class="fa fa-pencil-square-o" id="form_icon" aria-hidden="true"></i>
+                      <br>
+                      <br>
+                      <button type="submit" id="submit" onclick="displayPasswordResetModal()">Reset Password
+                        <!--<i class="fa fa-sign-in"></i> Login -->
+                      </button>
+      
+                  </form>
+                  </div>
+            </div>
+        </div>
+
+    </div>
+
+
+            <!--Modal-->
+            <div id="password_reset_modal">
+                <section>
+                    <div class="password_reset_form">    
+                      <span class="close" onclick="closeModalPasswordReset()">&times;</span>                  
+                      <form action="" id="password_reset_form">
+                        <!--- <h1>Login</h1> -->
+                        <label for="username"> </label>
+                        <input type="password" name="username" id="username" placeholder="Current Password">
+                        <br>
+                        <br>
+                        <label for="password"></label>
+                        <input type="password" name="email" id="email" placeholder="New Password">
+                        <br>
+                        <br>
+                        <label for="phone no"></label>
+                        <input type="password" name="phone_no" id="phone_no" placeholder="Confirm Password">
+                        <br>
+                        <br>
+                        <button type="submit" id="submit">change password
+                          <!--<i class="fa fa-sign-in"></i> Login -->
+                        </button>
+        
+                    </form>
+                    </div>
+                </section>
+            </div>
+
+    
+            <div id="modal_ask_question">
+                <section>
+                    <div class="">
+                        <form id="make_comment_content">
+                           
+                            <fieldset>
+                                <legend>
+                                    <h1>Ask</h1>
+                                </legend>
+                                <table>
+                                    <tr>
+                                        <td >
+                                            <textarea rows="8" cols="10" placeholder="Ask your question...."></textarea>
+                                            <br>
+                                            <br>
+                                        </td>
+                                    </tr>
+        
+                                    <tr>
+                                        <td> <button type="submit" id="make_Request">Ask</button></td>
+                                    </tr> 
+                                </table>  
+                            </fieldset>
+                        </form>
+                    </div>
+                </section>
+            </div>
+    
+        <!---Footer-->
+        <footer id="footer" class="grid">
+          <div class="content-wrap"></div>
+      </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

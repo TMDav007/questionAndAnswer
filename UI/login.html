@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Question&Answer</title>
+  <link rel="stylesheet" href="../UI/css/style.css">
+  <link href="https://fonts.googleapis.com/css?family=Acme|Poiret+One|Oleo+Script+Swash+Caps"
+  rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+<body>
+      <!--- Header  --->
+<header>
+  <nav>
+      <div class="menu-bar">
+          <h1><a href="index.html">Q&A</a></h1>
+          <div class="links">
+              <a href="signup.html">sign up</a>
+          </div>
+          <i class="material-icons menu" onclick="menu()">menu</i>
+      </div>
+      <div class="dropdown">
+          <a href="signup.html">sign up</a>
+      </div>
+  </nav>
+</header>
+
+      <!-- the body --->
+      <div id="showcase" class="grid">
+        <div id="bg-image"></div>
+        <div class="content-wrap words">
+            <div id=question_answer>
+                <div id="get_started">
+                  <h1>Question&Answer</h1>
+                  <p>Get answers to your questions</p>
+                  <form action="all_questions.html">
+                  <!--- <h1>Login</h1> -->
+                    <label for="username"> </label>
+                    <input type="text" name="username" id="username" placeholder=" Username">
+                    <br>
+    
+                    <label for="password"></label>
+                    <input type="password" name="password" id="password"  placeholder=" Password">
+                    <br>
+                    <button type="submit" id="submit">log in
+                        <!--<i class="fa fa-sign-in"></i> Login -->
+                    </button>
+    
+                </form>
+                    <!---    <a href="signup.html">Get Started</a>
+                        <a href="signup.html">Login</a> -->
+                </div>
+            </div>
+        </div>
+    </div> 
+
+      <!---Footer-->
+  <footer id="footer" class="grid">
+    <div class="content-wrap"></div>
+  </footer>
+  <script src="script.js"></script>
+</body>
+</html>

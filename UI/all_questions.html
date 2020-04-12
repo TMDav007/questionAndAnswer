@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Question&Answer</title>
+    <link rel="stylesheet" href="../UI/css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Acme|Poiret+One|Oleo+Script+Swash+Caps" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body>
+    <!--- Header  --->
+    <header>
+        <nav>
+            <div class="menu-bar" id="menubar">
+                <h1><a href="index.html">Q&A</a></h1>
+                <div class="links">
+                    <a href="login.html"></a>
+                    <a href="signup.html"></a>
+                </div>
+                <i class="material-icons menu" onclick="toggle()">menu</i>
+            </div>
+            <div class="sidebar">
+                <div class="sidebar-link">
+                    <a href="user_home.html">Home</a>
+                    <a href="all_questions.html" id="active_link">My Questions</a>
+                    <a href="profile.html">my profile</a>
+                    <div id="log-out">
+                        <a href="index.html">Log out</a>
+                    </div>   
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+    <div class="container">
+        <div id="user-background-image"></div>
+        <div class="main-content">
+            <div id="sidebar_space"></div>
+            <div id="content_space">
+                <div id="ask_question">
+                    <h3>My Questions</h3>
+                </div>
+                <div class="question">
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
+                                nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
+                                quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></i></a>
+                                <i class="fa fa-heart like"  onclick= "likeButton(this)"  aria-hidden="true"></i>
+                             </div>
+                        </div>
+                        <div class="menu_section">
+                            <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
+                        </div>
+                    </div>
+    
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
+                                nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
+                                quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></i></a>
+                                 <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                             </div>
+                        </div>
+                        <div class="menu_section">
+                            <i class="fa fa-sort-desc menu_icon"  onclick="dropDownMenuList()" aria-hidden="true"></i>
+                        </div>
+                    </div>
+    
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
+                                nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
+                                quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                                <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></i></a>
+                                 <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                             </div>
+                        </div>
+                        <div class="menu_section">
+                            <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
+                        </div>
+                    </div>
+    
+                    <div class="questions">
+                        <div class="profile_img_section">
+                            <img src="" alt="" class="profile_img">
+                        </div>
+                        <div class="questions_section">
+                            <h4 class="username">Username</h4>
+                            <p>
+                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
+                                nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
+                                quis fugiat praesentium voluptas possimus officiis?
+                            </p>
+                            <div class="icons">
+                               <a href="comment.html"> <i class="fa fa-comment-o comment" aria-hidden="true"></i></i></a>
+                                <i class="fa fa-heart like" onclick= "likeButton(this)" aria-hidden="true"></i>
+                            </div>
+                        </div>
+                        <div class="menu_section">
+                            <i class="fa fa-sort-desc menu_icon" onclick="dropDownMenuList()" aria-hidden="true"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="question-buttons"></div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <!--Modal-->
+    <div id="modal_make_comment">
+        <section>
+            <div class="">
+                <form id="make_comment_content">
+                    <span class="close">&times;</span>
+                    <fieldset>
+                        <legend>
+                            <h1>Answer</h1>
+                        </legend>
+                        <table>
+                            <tr>
+                                <td>
+                                    <textarea rows="8" cols="10" placeholder="provide your answer here...."></textarea>
+                                    <br>
+                                    <br>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <button type="submit" id="make_Request">Answer</button></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+
+
+    <div id="modal_ask_question">
+        <section>
+            <div class="">
+                <form id="make_comment_content">
+                    <span class="close">&times;</span>
+                    <fieldset>
+                        <legend>
+                            <h1>Ask</h1>
+                        </legend>
+                        <table>
+                            <tr>
+                                <td>
+                                    <textarea rows="8" cols="10" placeholder="Ask your question...."></textarea>
+                                    <br>
+                                    <br>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td> <button type="submit" id="make_Request">Ask</button></td>
+                            </tr>
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+        </section>
+    </div>
+
+    <!--Dropdown-->
+    <div class="modal_dropdown">
+        <section>
+            <div id="dropdown_section">
+                <ul class="menu_list1">
+                    <span class="close" onclick="closeModalDropdown()">&times;</span>
+                    <li><a href="">edit</a></li>
+                    <li><a href="">vote</a></li>
+                    <li><a href="">delete</a></li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <!---Footer-->
+    <footer id="footer" class="grid">
+        <div class="content-wrap"></div>
+    </footer>
+    <script src="script.js"></script>
+</body>
+
+</html>
