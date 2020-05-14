@@ -7,25 +7,25 @@ const user = [
   },
   {
     id: 2,
-    name: 'OkaJayy',
+    username: 'OkaJayy',
     password: 'aj',
     role: 'user'
   },
   {
     id: 3,
-    name: 'tommyka',
+    username: 'tommyka',
     password: 'aj',
     role: 'user'
   },
   {
     id: 4,
-    name: 'Didyka',
+    username: 'Didyka',
     password: 'aj',
     role: 'user'
   },
   {
     id: 5,
-    name: 'teetay',
+    username: 'teetay',
     password: 'aj',
     role: 'user'
   }

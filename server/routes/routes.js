@@ -2,7 +2,7 @@ import questionsController from '../dummyController/questionsController'
 
 
 const {
-getAllQuestions
+getAllQuestions, getAQuestion,addAQuestion,addAComment
 } = questionsController;
 
 const routes = (app) => {
@@ -19,6 +19,10 @@ const routes = (app) => {
   );
 
   app.get('/api/v1/questions', getAllQuestions);
+  app.get('/api/v1/questions/:id', getAQuestion);
+
+  //app.post('/api/v1/questions', addAQuestion);
+  app.post('/api/v1/questions/:questionId/answers', addAComment);
 
 }
 

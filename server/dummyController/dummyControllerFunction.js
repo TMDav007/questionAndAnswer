@@ -17,8 +17,8 @@ const checkForRequest = (id) => {
   }
 };
 
-const getUser = (request) => {
-  const foundUser = users.some(user => user.name === request[0].name);
+const getUser = (question) => {
+  const foundUser = users.some(user => user.username === question[0].username);
   return foundUser;
 };
 
