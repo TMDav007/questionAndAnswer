@@ -27,6 +27,16 @@ const checkName = (name) => {
   return foundName;
 };
 
+const checkInput = (input) => {
+  if (Number.isInteger(Number(input))) {
+    return true
+  }
+}
+
+const removeElement = (elementId) => {
+  questions.splice(elementId - 1, 1);
+}
+
 export default {
-  checkForAdmin, getUser, checkName, checkForRequest
+  checkForAdmin, getUser, checkName, checkForRequest, removeElement, checkInput
 };

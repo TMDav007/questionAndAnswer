@@ -1,10 +1,12 @@
 import questions from '../dummyModel/question';
 import dummyControllerFunction from './dummyControllerFunction';
+import serverMessages from '../dummyController/serverMessage';
 
 const {
-  checkForAdmin, getUser, checkName, checkForRequest
+  checkForAdmin, getUser, checkName, checkForRequest, removeElement,checkInput
 } = dummyControllerFunction;
 
+const { serverMessage } = serverMessages;
 
 /**
  * it is a class that control all question api;
@@ -19,10 +21,7 @@ class questionsController {
   static getAllQuestions(req, res) {
     const admin = checkForAdmin();
     if (!admin) {
-      return res.status(403).json({
-        status: 'error',
-        message: 'you dont have the priviledge for this request'
-      });
+      return serverMessage(res, 'error', 'you dont have the priviledge for this request', 403);
     }
     // get all questions
     if (questions.length > 0) {
@@ -33,10 +32,7 @@ class questionsController {
         }
       });
     } else {
-      res.status(404).json({
-        status: 'error',
-        message: 'question not found'
-      });
+      return serverMessage(res, 'error', 'question not found', 404);
     }
   }
 
@@ -48,32 +44,24 @@ class questionsController {
    */
     static getAQuestion(req, res) {
       const { id } = req.params;
-      if (!Number.isInteger(Number(id))) {
-        return res.status(400).json({
-          status: 'error',
-          message: 'Input must be an integer'
-        });
+      if (!checkInput(id)) {
+      return serverMessage(res, 'error','input must be an integer', 400);
       }
-
+    
+  
     // get a question
     const newQuestion = questions.filter(question => question.id === parseInt(id, 10));
 
     // if question is not found
     if (newQuestion.length === 0) {
-      return res.status(404).json({
-        status: 'error',
-        message: 'question not found'
-      });
+      return serverMessage(res, 'error', 'question not found', 404);
     }
     // get user in users db
     const user = getUser(newQuestion);
 
     // check if user not found exist in user db
     if (!user) {
-      res.status(404).json({
-        status: 'error',
-        message: 'user not found in the database'
-      });
+      return serverMessage(res, 'error', 'user not found in the database', 404);
     } else {
       res.status(200).json({
         status: 'success',
@@ -117,11 +105,8 @@ class questionsController {
   static addAComment(req, res) {
     const { questionId }= req.params
 
-    if (!Number.isInteger(Number(questionId))) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'Input must be an integer'
-      });
+    if (!checkInput(questionId)) {
+      return serverMessage(res, 'error','input must be an integer', 400);
     }
 
   // get a question
@@ -129,10 +114,7 @@ class questionsController {
 
   // if question is not found
   if (newQuestion.length === 0) {
-    return res.status(404).json({
-      status: 'error',
-      message: 'question not found'
-    });
+    return serverMessage(res, 'error', 'question not found', 404);
   }
 
   newQuestion[0].numberOfAnswers++;
@@ -152,6 +134,103 @@ class questionsController {
         answer: newQuestion
       }
     });
+  }
+
+    /**
+   * it Delete a question
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} Delete a question
+   */
+  static deleteAQuestion(req, res) {
+    const { questionId }= req.params
+
+    if (!checkInput(questionId)) {
+      return serverMessage(res, 'error','input must be an integer', 400);
+    }
+
+  // get a question
+  const newQuestion = questions.filter(question => question.id === parseInt(questionId, 10));
+
+  // if question is not found
+  if (newQuestion.length === 0) {
+    return serverMessage(res, 'error','question not found', 404);
+  }
+
+  //delete question
+    removeElement(questionId);
+
+    return serverMessage(res, 'success','question was deleted', 201);
+  }
+
+      /**
+   * it edits a question
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} edit a question
+   */
+  static editAQuestion(req, res) {
+    const { questionId }= req.params
+
+    if (!checkInput(questionId)) {
+      return serverMessage(res, 'error','input must be an integer', 400);
+    }
+
+  // get a question
+  const updateQuestion = questions.filter(question => question.id === parseInt(questionId, 10));
+
+  // if question is not found
+  if (updateQuestion.length === 0) {
+    return serverMessage(res, 'error','question not found', 404);
+  }
+
+  const { question } = req.body;
+
+  updateQuestion[0].question = question || updateQuestion[0].question;
+
+  return serverMessage(res, 'success','Question updated successfully', 201);
+  }
+
+    /**
+   * it edit a comment
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} edit a comment
+   */
+  static editAComment(req, res) {
+    const { questionId, commentId }= req.params
+
+    if (!checkInput(questionId)) {
+      return serverMessage(res, 'error','input must be an integer', 400);
+    }
+
+  // get a question
+  const newQuestion = questions.filter(question => question.id === parseInt(questionId, 10));
+
+  console.log(newQuestion[0]);
+
+  // if question is not found
+  if (newQuestion.length === 0) {
+    return serverMessage(res, 'error', 'question not found', 404);
+  }
+
+  const updateComment = newQuestion[0].answers.filter(answer => answer.id === parseInt(commentId, 10));
+
+   // if comment is not found
+   if (updateComment[0].length === 0) {
+    return serverMessage(res, 'error', 'comment not found', 404);
+  }
+
+    const {
+     answer, like
+    } = req.body;
+
+    updateComment[0].answer = answer || updateComment[0].answer;
+    updateComment[0].like = like || updateComment[0].like;
+
+
+    //newQuestion[]0.answers.push(newAnswer);
+    return serverMessage(res, 'success','Comment updated successfully', 201);
   }
 }
 
