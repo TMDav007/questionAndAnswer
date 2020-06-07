@@ -2,7 +2,9 @@ import questionsController from '../dummyController/questionsController'
 
 
 const {
-getAllQuestions, getAQuestion,addAQuestion,addAComment,deleteAQuestion,editAQuestion,editAComment
+getAllQuestions, getAQuestion,addAQuestion,
+addAComment,deleteAQuestion,editAQuestion,
+editAComment,deleteAComment
 } = questionsController;
 
 const routes = (app) => {
@@ -28,6 +30,8 @@ const routes = (app) => {
   app.put('/api/v1/questions/:questionId/answers/:commentId', editAComment);
 
   app.delete('/api/v1/questions/:questionId', deleteAQuestion);
+  app.delete('/api/v1/questions/:questionId/answers/:commentId', deleteAComment);
+
 
 }
 

@@ -158,7 +158,7 @@ class questionsController {
   }
 
   //delete question
-    removeElement(questionId);
+    removeElement(questions,questionId);
 
     return serverMessage(res, 'success','question was deleted', 201);
   }
@@ -199,6 +199,7 @@ class questionsController {
    */
   static editAComment(req, res) {
     const { questionId, commentId }= req.params
+    const {  answer, like} = req.body;
 
     if (!checkInput(questionId)) {
       return serverMessage(res, 'error','input must be an integer', 400);
@@ -206,8 +207,6 @@ class questionsController {
 
   // get a question
   const newQuestion = questions.filter(question => question.id === parseInt(questionId, 10));
-
-  console.log(newQuestion[0]);
 
   // if question is not found
   if (newQuestion.length === 0) {
@@ -221,16 +220,44 @@ class questionsController {
     return serverMessage(res, 'error', 'comment not found', 404);
   }
 
-    const {
-     answer, like
-    } = req.body;
-
     updateComment[0].answer = answer || updateComment[0].answer;
     updateComment[0].like = like || updateComment[0].like;
 
-
-    //newQuestion[]0.answers.push(newAnswer);
     return serverMessage(res, 'success','Comment updated successfully', 201);
+  }
+
+     /**
+   * it deletes a comment
+   * @param {string} req
+   * @param {string} res
+   * @returns {object} delete a comment
+   */
+  static deleteAComment(req, res) {
+    const { questionId, commentId }= req.params
+
+    if (!checkInput(questionId)) {
+      return serverMessage(res, 'error','input must be an integer', 400);
+    }
+
+  // get a question
+  const newQuestion = questions.filter(question => question.id === parseInt(questionId, 10));
+
+  // if question is not found
+  if (newQuestion.length === 0) {
+    return serverMessage(res, 'error', 'question not found', 404);
+  }
+
+  const updateComment = newQuestion[0].answers.filter(answer => answer.id === parseInt(commentId, 10));
+
+   // if comment is not found
+   if (updateComment[0].length === 0) {
+    return serverMessage(res, 'error', 'comment not found', 404);
+  }
+
+  //delete comment
+  removeElement(newQuestion[0].answers,commentId);
+
+    return serverMessage(res, 'success','Comment deleted successfully', 201);
   }
 }
 

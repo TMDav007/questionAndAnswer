@@ -33,8 +33,8 @@ const checkInput = (input) => {
   }
 }
 
-const removeElement = (elementId) => {
-  questions.splice(elementId - 1, 1);
+const removeElement = (elements, elementId,) => {
+  elements.splice(elementId - 1, 1);
 }
 
 export default {
