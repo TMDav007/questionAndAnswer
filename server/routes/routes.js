@@ -1,11 +1,9 @@
-import questionsController from '../dummyController/questionsController'
-
+import userController from '../controller/userController';
 
 const {
-getAllQuestions, getAQuestion,addAQuestion,
-addAComment,deleteAQuestion,editAQuestion,
-editAComment,deleteAComment
-} = questionsController;
+  signUp, login
+} = userController;
+
 
 const routes = (app) => {
   app.get('', (req, res) =>
@@ -20,19 +18,9 @@ const routes = (app) => {
     })
   );
 
-  app.get('/api/v1/questions', getAllQuestions);
-  app.get('/api/v1/questions/:id', getAQuestion);
+  app.post('/api/v1/auth/signup', signUp);  
+  app.post('/api/v1/auth/login', login);  
 
-  app.post('/api/v1/questions', addAQuestion);
-  app.post('/api/v1/questions/:questionId/answers', addAComment);
-
-  app.put('/api/v1/questions/:questionId', editAQuestion);
-  app.put('/api/v1/questions/:questionId/answers/:commentId', editAComment);
-
-  app.delete('/api/v1/questions/:questionId', deleteAQuestion);
-  app.delete('/api/v1/questions/:questionId/answers/:commentId', deleteAComment);
-
-
-}
+};
 
 export default routes;
