@@ -1,13 +1,13 @@
 import userController from '../controller/userController';
-import adminController from '../controller/adminController';
+import AdminController from '../controller/adminController';
 
 const {
   signUp, login
 } = userController;
 
 const {
-  getAllUsers
-} = adminController
+  getAllUsers, deleteAUser
+} = AdminController;
 
 
 const routes = (app) => {
@@ -26,7 +26,9 @@ const routes = (app) => {
   app.post('/api/v1/auth/signup', signUp);  
   app.post('/api/v1/auth/login', login);  
 
-  app.get('/api/v1/getAllUsers', getAllUsers);
+  app.get('/api/v1/users/getAllUsers', getAllUsers);
+
+  app.delete('/api/v1/users/deleteAUser/:userId', deleteAUser);
 
 };
 
