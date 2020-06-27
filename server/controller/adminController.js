@@ -2,7 +2,7 @@ import utils from './../utils/index';
 import error from './../utils/errorMessage';
 
 const { pgConnect } = utils;
-const { errorMessage } = error;
+const { serverMessage } = error;
 const client = pgConnect();
 client.connect();
 
@@ -23,7 +23,7 @@ class AdminController {
     try {
       const getAllUsersQuery = `
           SELECT 
-          user_name, email
+          id, user_name, email
           FROM users
       `;
 
@@ -37,10 +37,46 @@ class AdminController {
       });
 
     } catch (error) {
-        errorMessage(res, 'fail', error.message, 500);
+        serverMessage(res, 'fail', error.message, 500);
     }
   }
 
+    /**
+   * @desc it deletes a user
+   *
+   * @param {object} req
+   * @param {object} res
+   *
+   * @return {object} delete a user
+   */
+
+  static async deleteAUser(req, res) {
+    try {
+
+      const { userId } = req.params;
+
+      const deleteAUserQuery = `
+       DELETE from users 
+       WHERE id = '${userId}'
+      `;
+
+      const deletedUser = await client.query(deleteAUserQuery);
+
+      const confirmUserDeleteQuery = `
+        SELECT from users
+        WHERE id = '${userId}'
+      `;
+
+      const userDeleted = await client.query(confirmUserDeleteQuery);
+      
+      if (userDeleted.rows[0] === undefined){
+        serverMessage(res, 'success', 'user deleted successfully', 200)
+      }
+    }
+    catch (error) {
+      serverMessage(res, 'fail', error.message, 500);
+    }
+  }
 }
 
 export default AdminController;
