@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/TMDav007/questionAndAnswer#readme",
   "dependencies": {
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-polyfill": "^6.26.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
