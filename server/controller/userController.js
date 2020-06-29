@@ -1,6 +1,7 @@
 import jwt from 'jsonwebtoken';
 
 import utils from './../utils/index'
+import error from './../utils/errorMessage';
 
 const { pgConnect } = utils;
 
@@ -44,10 +45,7 @@ class usersController {
         message: 'user created successfully'
       });
     } catch (error) {
-      res.status(500).json({
-        status: 'fail',
-        message: error.message
-      });
+      serverMessage(res, 'fail', error.message, 500);
     }
   }
 
@@ -87,10 +85,7 @@ static async login(req, res) {
       message: 'login successful'
     });
   } catch (error) {
-    res.status(500).json({
-      status: 'fail',
-      message: error.message
-    });
+    serverMessage(res, 'fail', error.message, 500);
   }
 }
 
