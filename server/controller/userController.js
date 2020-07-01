@@ -8,6 +8,8 @@ const { pgConnect } = utils;
 const client = pgConnect();
 client.connect();
 
+const { serverMessage } = error;
+
 /**
  * it is a class that control all user event method
  */
@@ -45,7 +47,7 @@ class usersController {
         message: 'user created successfully'
       });
     } catch (error) {
-      serverMessage(res, 'fail', error.message, 500);
+    return  serverMessage(res, 'fail', error.message, 500);
     }
   }
 
@@ -85,7 +87,7 @@ static async login(req, res) {
       message: 'login successful'
     });
   } catch (error) {
-    serverMessage(res, 'fail', error.message, 500);
+  return  serverMessage(res, 'fail', error.message, 500);
   }
 }
 

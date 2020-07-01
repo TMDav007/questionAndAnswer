@@ -1,12 +1,14 @@
 import utils from "./../utils/index";
 import error from './../utils/errorMessage';
 import query from './../utils/query';
+import middleware from './../middleware/validate';
 
 import { request } from "express";
 
 const { pgConnect, tokens } = utils;
 
 const { serverMessage } = error;
+const { checkInput } = middleware;
 
 const {getAUserQuestionQuery } = query;
 
@@ -135,6 +137,11 @@ class QuestionsController {
       const { questionId } = req.params;
       const token = await tokens(req);
 
+
+      if (!checkInput(questionId)) {
+        return serverMessage(res, 'error','input must be an integer', 400);
+      }
+
       const deleteAQuestionQuery = `
         DELETE from questions
         WHERE questions.id = '${questionId}'
@@ -170,6 +177,10 @@ class QuestionsController {
       const { questionId } = req.params;
       const { question } = req.body;
       const token = await tokens(req);
+
+      if (!checkInput(questionId)) {
+        return serverMessage(res, 'error','input must be an integer', 400);
+      }
 
     const foundQuestion = await client.query(getAUserQuestionQuery(questionId, token.id));
 

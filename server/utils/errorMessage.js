@@ -16,4 +16,5 @@ const serverMessage = (res, status, message,statusCode) => {
     });
 }
 
+
 export default { serverMessage };

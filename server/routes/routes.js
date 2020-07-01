@@ -1,6 +1,7 @@
 import userController from '../controller/userController';
 import AdminController from '../controller/adminController';
 import QuestionsController from '../controller/questionsController';
+import Middleware from '../middleware/middleware';
 
 const {
   signUp, login
@@ -12,7 +13,9 @@ const {
 
 const {
   createAQuestion, getAllQuestions, getAllQuestionsByAUser, deleteAQuestion,updateAQuestion
-} = QuestionsController
+} = QuestionsController;
+
+const { authenicateUser, authenicateAdmin, checkMail, checkUsername, validateSignUp, validateLogin, validateQuestion } = Middleware;
 
 
 const routes = (app) => {
@@ -28,19 +31,17 @@ const routes = (app) => {
     })
   );
 
-  app.post('/api/v1/auth/signup', signUp);  
+  app.post('/api/v1/auth/signup',validateSignUp, checkUsername, checkMail,signUp);  
   app.post('/api/v1/auth/login', login);  
 
-  app.get('/api/v1/users/getAllUsers', getAllUsers);
+  app.get('/api/v1/users/getAllUsers',authenicateAdmin, getAllUsers);
+  app.delete('/api/v1/users/deleteAUser/:userId',authenicateAdmin, deleteAUser);
 
-  app.delete('/api/v1/users/deleteAUser/:userId', deleteAUser);
-
-  app.post('/api/v1/questions', createAQuestion);
-  app.get('/api/v1/questions', getAllQuestions);
-  app.get('/api/v1/questions/user', getAllQuestionsByAUser);
-  app.put('/api/v1/questions/:questionId', updateAQuestion);
-
-  app.delete('/api/v1/questions/:questionId', deleteAQuestion);
+  app.post('/api/v1/questions',authenicateUser,validateQuestion, createAQuestion);
+  app.get('/api/v1/questions',authenicateUser, getAllQuestions);
+  app.get('/api/v1/questions/user',authenicateUser, getAllQuestionsByAUser);
+  app.put('/api/v1/questions/:questionId',authenicateUser, updateAQuestion);
+  app.delete('/api/v1/questions/:questionId',authenicateUser, deleteAQuestion);
 
 };
 
