@@ -3,14 +3,14 @@ import error from './../utils/errorMessage';
 import query from './../utils/query';
 import middleware from './../middleware/validate';
 
-import { request } from "express";
+// import { request } from "express";
 
 const { pgConnect, tokens } = utils;
 
 const { serverMessage } = error;
 const { checkInput } = middleware;
 
-const {getAUserQuestionQuery } = query;
+const {getAUserQuestionQuery, modifyAQuestionQuery} = query;
 
 const client = pgConnect();
 client.connect();
@@ -188,18 +188,8 @@ class QuestionsController {
       return  serverMessage(res, 'fail', 'question does not exist', 404);
       }
 
-      const mergedQuestion= { ...foundQuestion.rows[0], ...req.body };
-
-      const updateAQuestionQuery = `
-        UPDATE questions
-        SET
-        question = '${mergedQuestion.question}'
-        WHERE questions.id = '${questionId}'
-        AND questions.user_id = '${token.id}'
-        returning *;
-      `;
-    
-    const updatedQuestion = await client.query(updateAQuestionQuery);
+    const mergedQuestion= { ...foundQuestion.rows[0], ...req.body };
+    const updatedQuestion = await client.query(modifyAQuestionQuery(mergedQuestion.question, mergedQuestion.no_of_answers, questionId, token.id));
 
     return res.status(200).json({
       status: 'success',

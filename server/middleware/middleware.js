@@ -9,7 +9,7 @@ import validateObject from './../middleware/validate';
 
 const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
-const { signUpRules, signUpErrorMessage, loginRules, loginErrorMessage, questionRules, questionErrorMessage }  = validateObject;
+const { signUpRules, signUpErrorMessage, loginRules, loginErrorMessage, questionRules, questionErrorMessage, commentRules, commentErrorMessage }  = validateObject;
 
 const client = pgConnect();
 client.connect();
@@ -150,7 +150,31 @@ class Middleware {
     });
   }
 
+    /**
+   * @desc it validates input for create comment endpoint
+   *
+   * @param {object} req
+   * @param {object} res
+   * @param {object} next
+   *
+   * @returns {object} next
+   */
+  static validateComment(req, res, next) {
+    const { comment, likes} = req.body;
+    const data = { comment, likes};
+    const validation = new Validator(data, commentRules, commentErrorMessage);
+   
+    if (validation.passes()) {
+      return next();
+    }
 
+    return res.status(400).json({
+      status: 'fail',
+      data: {
+        error: validation.errors.all()
+      }
+    });
+  }
 
     /**
    * @desc checks if an email exist
