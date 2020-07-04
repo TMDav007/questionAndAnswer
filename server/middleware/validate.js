@@ -34,6 +34,13 @@ export default {
       question: 'the question is required',
       date: 'date should be valid with the format YYYY-MM-DD'
   },
+  commentRules : { 
+      comment: 'required'
+  },
+
+  commentErrorMessage: {
+      comment: 'the comment is required'
+  },
   signUpRules: {
       username: 'required|min:3|alpha',
       email: 'required|email',

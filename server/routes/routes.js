@@ -1,6 +1,7 @@
 import userController from '../controller/userController';
 import AdminController from '../controller/adminController';
 import QuestionsController from '../controller/questionsController';
+import CommentsController from '../controller/commentsController';
 import Middleware from '../middleware/middleware';
 
 const {
@@ -15,7 +16,9 @@ const {
   createAQuestion, getAllQuestions, getAllQuestionsByAUser, deleteAQuestion,updateAQuestion
 } = QuestionsController;
 
-const { authenicateUser, authenicateAdmin, checkMail, checkUsername, validateSignUp, validateLogin, validateQuestion } = Middleware;
+const { createAComment, getAComment, getAllCommentsByAQuestion,deleteAComment,updateAComment} = CommentsController;
+
+const { authenicateUser, authenicateAdmin, checkMail, checkUsername, validateSignUp, validateLogin, validateQuestion, validateComment } = Middleware;
 
 
 const routes = (app) => {
@@ -42,6 +45,12 @@ const routes = (app) => {
   app.get('/api/v1/questions/user',authenicateUser, getAllQuestionsByAUser);
   app.put('/api/v1/questions/:questionId',authenicateUser, updateAQuestion);
   app.delete('/api/v1/questions/:questionId',authenicateUser, deleteAQuestion);
+
+  app.post('/api/v1/comments',authenicateUser, validateComment, createAComment);
+  app.get('/api/v1/comments/:questionId',authenicateUser, getAllCommentsByAQuestion);
+  app.get('/api/v1/comment/:commentId',authenicateUser, getAComment);
+  app.put('/api/v1/comments/:commentId', authenicateUser,updateAComment);
+  app.delete('/api/v1/comments/:commentId',authenicateUser, deleteAComment);
 
 };
 
