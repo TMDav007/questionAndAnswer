@@ -22,9 +22,7 @@ class usersController {
   */
   static async signUp(req, res){
     try{
-      const {
-        username, email, password } = req.body;
-
+      const { username, email, password } = req.body;
         const createUser = `
           INSERT INTO users (
             user_name,
@@ -41,9 +39,7 @@ class usersController {
       const result = await client.query(createUser);
       return res.status(201).json({
         status: 'success',
-        data: {
-          newUser: result.rows[0]
-        },
+        data: { newUser: result.rows[0]},
         message: 'user created successfully'
       });
     } catch (error) {
@@ -51,47 +47,39 @@ class usersController {
     }
   }
 
-   /**
+/**
  * it creates a new user
  * @param {string} req
  * @param {string} res
  * @return {object} an object
  */
-static async login(req, res) {
-  try {
-    const {
-      email, password
-    } = req.body;
-
-    const checkEmailAndPassword = `
-          SELECT * 
-          FROM users
-          WHERE email = '${email}'
-          AND password = crypt('${password}', password)
-    `;
-
-    const foundEmail = await client.query(checkEmailAndPassword);
-    if (!foundEmail.rows[0]) {
-      return res.status(400).json({
-        status: 'error',
-        message: 'email or password is incorrect'
+  static async login(req, res) {
+    try {
+      const { email, password } = req.body;
+      const checkEmailAndPassword = `
+            SELECT * 
+            FROM users
+            WHERE email = '${email}'
+            AND password = crypt('${password}', password) `;
+      const foundEmail = await client.query(checkEmailAndPassword);
+      if (!foundEmail.rows[0]) {
+        return res.status(400).json({
+          status: 'error',
+          message: 'email or password is incorrect'
+        });
+      }
+      const token = await jwt.sign(foundEmail.rows[0], process.env.SECRET, { expiresIn: 86400 });
+      return res.status(200).json({
+        status: 'success',
+        data: {
+          token
+        },
+        message: 'login successful'
       });
+    } catch (error) {
+    return  serverMessage(res, 'fail', error.message, 500);
     }
-    const token = await jwt.sign(foundEmail.rows[0], process.env.SECRET, { expiresIn: 86400 });
-
-    return res.status(200).json({
-      status: 'success',
-      data: {
-        token
-      },
-      message: 'login successful'
-    });
-  } catch (error) {
-  return  serverMessage(res, 'fail', error.message, 500);
   }
-}
-
-
 }
 
 export default usersController;
