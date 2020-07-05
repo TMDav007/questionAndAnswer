@@ -1,4 +1,3 @@
-
 import Validator from 'validatorjs';
 import dotenv from 'dotenv';
 

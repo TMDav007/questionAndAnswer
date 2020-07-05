@@ -22,6 +22,9 @@ if (process.env.NODE_ENV === 'development') {
 const client = new pg.Client(config);
 client.connect();
 
-client.query(createAndSeed, () => {
+client.query(createAndSeed, (err) => {
+  if (err) {
+    console.log(err);
+  }
   client.end();
 });
