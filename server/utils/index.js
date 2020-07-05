@@ -11,7 +11,7 @@ let config;
 const pgConnect = () => {
   if (process.env.NODE_ENV === 'development'){
     config = developmentConfig;
-  } else if (process.NODE_ENV === 'test'){
+  } else if (process.env.NODE_ENV === 'test'){
     config = testConfig;
   } else {
     config = process.env.DATABASE_URL
