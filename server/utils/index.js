@@ -17,6 +17,7 @@ const pgConnect = () => {
     config = process.env.DATABASE_URL
   }
 
+
   const client = new pg.Client(config);
   return client;
 };

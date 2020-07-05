@@ -8,10 +8,18 @@ const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
 const { checkInput } = middleware;
 
-const {getAUserQuestionQuery, getACommentQuery, modifyAQuestionQuery, getACommentByAUserQuery,modifyACommentQuery } = query;
+const { getAUserQuestionQuery,
+        getACommentQuery,
+        modifyARequestQuery,
+        getACommentByAUserQuery,
+        createACommentQuery,
+        getCommentsByQuestionQuery,
+        getAQuestionQuery } = query;
 
 const client = pgConnect();
 client.connect();
+
+let token;
 
 /**
  * it is a class that control all a questions method
@@ -28,51 +36,29 @@ class CommentsController {
   static async createAComment(req, res) {
     try {
       const { comment, questionId } = req.body;
-      const token = await tokens(req);
-
-      const updateQuestionProperty = {
-        no_of_answers: ''
-      };
+      const updateQuestionProperty = {  no_of_answers: '' };
+      token = await tokens(req)
 
       if (!checkInput(questionId)) {
         return serverMessage(res, 'error','input must be an integer', 400);
       }
-      const foundQuestion = await client.query(getAUserQuestionQuery(questionId, token.id));
+      const foundQuestion = await client.query(getAQuestionQuery(questionId));
 
       if (foundQuestion.rows.length < 1) {
       return  serverMessage(res, 'fail', 'question does not exist', 404);
       }
 
-      const createACommentQuery = `
-        INSERT INTO comments(
-          comment,
-          users_id,
-          question_id
-        )
-        VALUES (
-          '${comment}',
-          '${token.id}',
-          '${questionId}'
-        ) returning *;
-      `;  
-
       // update no of comments in questions table
       // get all comments by a question
-      const getCommentsByQuestionQuery = `
-          SELECT 
-          comment, id
-          FROM comments
-          WHERE comments.question_id = '${questionId}';
-      `;
-      const foundCommentsByQuestion = await client.query(getCommentsByQuestionQuery);
+      const foundCommentsByQuestion = await client.query(getCommentsByQuestionQuery(questionId));
 
-    const createdComment = await client.query(createACommentQuery);
+    const createdComment = await client.query(createACommentQuery(comment,token.id,questionId));
 
     // modify the no of comments in questions table
     updateQuestionProperty.no_of_answers = foundCommentsByQuestion.rows.length;
     const mergedNoOfComments= { ...foundQuestion.rows[0], ...updateQuestionProperty };
     
-    const updatedQuestion = await client.query(modifyAQuestionQuery(mergedNoOfComments.question,mergedNoOfComments.no_of_answers, questionId, token.id));
+    const updatedQuestion = await client.query(modifyARequestQuery('questions','question', mergedNoOfComments.question,'no_of_answers',mergedNoOfComments.no_of_answers, 'questions.id',questionId,'questions.user_id', token.id));
     return res.status(201).json({
       status: 'success',
       data: {
@@ -116,7 +102,7 @@ class CommentsController {
       return res.status(201).json({
         status: 'success',
         data: {
-          Questions: allcomments.rows
+          Comments: allcomments.rows
         }
       });
     } catch (error) {
@@ -151,7 +137,7 @@ class CommentsController {
       return res.status(201).json({
         status: 'success',
         data: {
-          Questions: allcomments.rows
+          Comments: allcomments.rows
         }
       });
     } catch (error) {
@@ -225,7 +211,7 @@ class CommentsController {
 
     const mergedComment= { ...foundComment.rows[0], ...req.body };
 
-    const updatedComment = await client.query(modifyACommentQuery(mergedComment.comment, mergedComment.likes, commentId, token.id));
+    const updatedComment = await client.query(modifyARequestQuery('comments', 'comment',mergedComment.comment,'likes', mergedComment.likes, 'comments.id',commentId,'comments.users_id', token.id));
 
     return res.status(200).json({
       status: 'success',

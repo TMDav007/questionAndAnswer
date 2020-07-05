@@ -1,14 +1,18 @@
+
 import Validator from 'validatorjs';
 import dotenv from 'dotenv';
 
 import utils from './../utils/index';
 import error from './../utils/errorMessage';
 import validateObject from './../middleware/validate';
+import query from './../utils/query';
 
 
 const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
 const { signUpRules, signUpErrorMessage, loginRules, loginErrorMessage, questionRules, questionErrorMessage, commentRules, commentErrorMessage }  = validateObject;
+
+const { checkMail } = query;
 
 const client = pgConnect();
 client.connect();
@@ -132,10 +136,28 @@ class Middleware {
    *
    * @returns {object} next
    */
-  static validateQuestion(req, res, next) {
-    const { question, date} = req.body;
-    const data = { question, date};
-    const validation = new Validator(data, questionRules, questionErrorMessage);
+  static validateQuestionAndComment(req, res, next) {
+    const requestObject = req.originalUrl.slice(8, 17);
+    let data, validation, dataComment, dataQuestion;
+
+    let rule = {
+      comment: [commentRules, commentErrorMessage],
+      question: [questionRules, questionErrorMessage]
+    };
+
+    if (requestObject === 'comments') {
+       const { comment, likes} = req.body;
+       dataComment = { comment, likes};
+       data = dataComment;
+       validation = new Validator(data, rule.comment[0], rule.comment[1]);
+    }
+
+    if ( requestObject === 'questions') {
+      const  {question, date} = req.body;
+      dataQuestion = { question, date};
+      data = dataQuestion;
+      validation = new Validator(data, rule.question[0], rule.question[1]);
+    }
    
     if (validation.passes()) {
       return next();
@@ -149,34 +171,9 @@ class Middleware {
     });
   }
 
-    /**
-   * @desc it validates input for create comment endpoint
-   *
-   * @param {object} req
-   * @param {object} res
-   * @param {object} next
-   *
-   * @returns {object} next
-   */
-  static validateComment(req, res, next) {
-    const { comment, likes} = req.body;
-    const data = { comment, likes};
-    const validation = new Validator(data, commentRules, commentErrorMessage);
-   
-    if (validation.passes()) {
-      return next();
-    }
-
-    return res.status(400).json({
-      status: 'fail',
-      data: {
-        error: validation.errors.all()
-      }
-    });
-  }
 
     /**
-   * @desc checks if an email exist
+   * @desc checks if an email or username exist
    *
    * @param {object} req
    * @param {object} res
@@ -184,50 +181,27 @@ class Middleware {
    *
    * @returns {object} done
    */
-  static async checkMail(req, res, done) {
+  static async checkMailAndUsername(req, res, done) {
     try {
-      const { email } = req.body;
-      const checkEmail = `
-            SELECT * 
-            FROM users
-            WHERE email = '${email}'   
-      `;
-      const foundEmail = await client.query(checkEmail);
-      if (foundEmail.rows[0]) {
-        return serverMessage(res, 'fail', 'email is already existing', 409);
+      const { email, username } = req.body;
+      let foundValue;
+      foundValue = await client.query(checkMail('user_name', username));
+
+      if (foundValue.rows[0]) {
+        return serverMessage(res, 'fail','username is already existing', 409);
       }
+
+     foundValue = await client.query(checkMail('email', email));
+     if (foundValue.rows[0]) {
+      return serverMessage(res, 'fail', 'email is already existing', 409);
+    }
+
     } catch (error) {
       return serverMessage(res, 'fail', error.message, 500);
     }
     return done();
   }
 
-      /**
-   * @desc checks if an email exist
-   *
-   * @param {object} req
-   * @param {object} res
-   * @param {object} done
-   *
-   * @returns {object} done
-   */
-  static async checkUsername(req, res, done) {
-    try {
-      const { username } = req.body;
-      const checkUsernameQuery = `
-            SELECT * 
-            FROM users
-            WHERE user_name = '${username}'   
-      `;
-      const foundUser = await client.query(checkUsernameQuery);
-      if (foundUser.rows[0]) {
-        return serverMessage(res, 'fail', 'username is already existing', 409);
-      }
-    } catch (error) {
-      return serverMessage(res, 'fail', error.message, 500);
-    }
-    return done();
-  }
 
 }
 

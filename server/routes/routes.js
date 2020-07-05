@@ -18,7 +18,7 @@ const {
 
 const { createAComment, getAComment, getAllCommentsByAQuestion,deleteAComment,updateAComment} = CommentsController;
 
-const { authenicateUser, authenicateAdmin, checkMail, checkUsername, validateSignUp, validateLogin, validateQuestion, validateComment } = Middleware;
+const { authenicateUser, authenicateAdmin, checkMailAndUsername, validateSignUp, validateLogin, validateQuestionAndComment } = Middleware;
 
 
 const routes = (app) => {
@@ -34,19 +34,19 @@ const routes = (app) => {
     })
   );
 
-  app.post('/api/v1/auth/signup',validateSignUp, checkUsername, checkMail,signUp);  
-  app.post('/api/v1/auth/login', login);  
+  app.post('/api/v1/auth/signup',validateSignUp, checkMailAndUsername,signUp);  
+  app.post('/api/v1/auth/login',validateLogin, login);  
 
   app.get('/api/v1/users/getAllUsers',authenicateAdmin, getAllUsers);
   app.delete('/api/v1/users/deleteAUser/:userId',authenicateAdmin, deleteAUser);
 
-  app.post('/api/v1/questions',authenicateUser,validateQuestion, createAQuestion);
+  app.post('/api/v1/questions',authenicateUser,validateQuestionAndComment, createAQuestion);
   app.get('/api/v1/questions',authenicateUser, getAllQuestions);
   app.get('/api/v1/questions/user',authenicateUser, getAllQuestionsByAUser);
   app.put('/api/v1/questions/:questionId',authenicateUser, updateAQuestion);
   app.delete('/api/v1/questions/:questionId',authenicateUser, deleteAQuestion);
 
-  app.post('/api/v1/comments',authenicateUser, validateComment, createAComment);
+  app.post('/api/v1/comments',authenicateUser, validateQuestionAndComment, createAComment);
   app.get('/api/v1/comments/:questionId',authenicateUser, getAllCommentsByAQuestion);
   app.get('/api/v1/comment/:commentId',authenicateUser, getAComment);
   app.put('/api/v1/comments/:commentId', authenicateUser,updateAComment);

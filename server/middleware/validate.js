@@ -26,12 +26,12 @@ const isEmpty = (input) => {
 export default {
   checkInput, isEmpty,
   questionRules : { 
-      question: 'required',
+      question: 'required|min:10',
       date: 'required|date'
   },
 
   questionErrorMessage: {
-      question: 'the question is required',
+      question: 'the question is required|the question should have a minimum of 10 charaters',
       date: 'date should be valid with the format YYYY-MM-DD'
   },
   commentRules : { 
@@ -55,12 +55,12 @@ export default {
   },
   loginRules: {
     email: 'required|email',
-    password: 'required|min:7',
+    password: 'required|min:3',
   },
 
   loginErrorMessage: {
     email: 'the email is required|the email must be valid',
-    password: 'the password id required| the password length should have a minimum of 7'
+    password: 'the password required| the password length should have a minimum of 3'
   },
 
 }
