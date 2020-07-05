@@ -31,6 +31,10 @@ class QuestionsController {
     try {
       const { question, date, userId } = req.body;
 
+      if (!checkInput(userId)) {
+        return serverMessage(res, 'error','input must be an integer', 400);
+      }
+
       const createAQuestionQuery = `
         INSERT INTO questions (
           question,
@@ -42,7 +46,9 @@ class QuestionsController {
           '${date}',
           '${userId}'
         ) returning *;
-      `;      
+      `;     
+      
+//      console.log(userId);
       const createdQuestion = await client.query(createAQuestionQuery);
 
       return res.status(201).json({
@@ -81,7 +87,7 @@ class QuestionsController {
       return res.status(201).json({
         status: 'success',
         data: {
-          Questions: allQuestions.rows
+          questions: allQuestions.rows
         }
       });
     } catch (error) {

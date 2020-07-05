@@ -35,7 +35,7 @@ const routes = (app) => {
   );
 
   app.post('/api/v1/auth/signup',validateSignUp, checkUsername, checkMail,signUp);  
-  app.post('/api/v1/auth/login', login);  
+  app.post('/api/v1/auth/login',validateLogin, login);  
 
   app.get('/api/v1/users/getAllUsers',authenicateAdmin, getAllUsers);
   app.delete('/api/v1/users/deleteAUser/:userId',authenicateAdmin, deleteAUser);
