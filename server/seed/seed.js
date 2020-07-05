@@ -62,7 +62,7 @@ const createAndSeed = `
   )
   VALUES (
     'Request to fix the AC',
-    '23-09-2019',
+    '2019-09-23',
     2
   );
   
