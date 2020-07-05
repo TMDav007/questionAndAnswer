@@ -3,8 +3,8 @@ import jwt from 'jsonwebtoken';
 import utils from './../utils/index'
 import error from './../utils/errorMessage';
 
-const { pgConnect } = utils;
 
+const { pgConnect } = utils;
 const client = pgConnect();
 client.connect();
 
