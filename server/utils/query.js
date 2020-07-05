@@ -40,6 +40,24 @@ const getACommentQuery = (value) => {
 }
 
 /**
+ * @desc query to get a comment by question query
+ * 
+ * @param {integer} condition1 
+ * 
+ * @return {string} query
+ */
+
+const getCommentsByQuestionQuery = (value) => {
+  const query = `
+      SELECT 
+      comment, id
+      FROM comments
+      WHERE comments.question_id = '${value}';
+  `; 
+  return query;
+}
+
+/**
  * @desc query to get a comment
  * 
  * @param {integer} condition1 
@@ -64,6 +82,7 @@ const getACommentByAUserQuery = (value1, value2) => {
  * @param {int} value1 
  * @param {int} value2 
  * @param {int} value3 
+ * @param {int} value4
  * 
  * @return {obj} query
  */
@@ -76,6 +95,31 @@ const modifyAQuestionQuery = (value1, value2, value3, value4) => {
           WHERE questions.id = '${value3}'
           AND questions.user_id = '${value4}'
           returning *;
+          `;
+  return query;
+}
+
+/**
+ * @desc query to create a question 
+ * 
+ * @param {int} value1 
+ * @param {int} value2 
+ * @param {int} value3 
+ * 
+ * @return {obj} query
+ */
+const createAQuestionQuery = (value1, value2, value3) => {
+  const query =  `
+      INSERT INTO comments(
+        comment,
+        users_id,
+        question_id
+      )
+      VALUES (
+        '${value1}',
+        '${value2}',
+        '${value3}'
+      ) returning *;
           `;
   return query;
 }
@@ -107,5 +151,7 @@ export default {
   modifyAQuestionQuery,
   getACommentQuery,
   getACommentByAUserQuery,
-  modifyACommentQuery
+  modifyACommentQuery,
+  createAQuestionQuery,
+  getCommentsByQuestionQuery
 }
