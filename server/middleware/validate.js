@@ -42,13 +42,13 @@ export default {
       comment: 'the comment is required'
   },
   signUpRules: {
-      username: 'required|min:3|alpha',
+      username: 'required|min:6|alpha',
       email: 'required|email',
-      password: 'required|min:7|alpha_|confirmed',
+      password: 'required|min:7|alpha_dash|confirmed',
       password_confirmation: 'required',
   },
   signUpErrorMessage: {
-    username: 'the user name is required| the username should have a minimum of 3 charaters| the username should be an alphabet',
+    username: 'the user name is required| the username should have a minimum of 6 charaters| the username should be an alphabet',
     email: 'the email is required|the email must be valid',
     password: 'the password id required| the password length should have a minimum of 7| the password contain alphabet, numbers and special characters | you need to confirm your password',
     password_confirmation: 'pass confirmation is required' 
