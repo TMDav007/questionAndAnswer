@@ -130,6 +130,7 @@ const modifyAQuestionQuery = (value1, value2, value3, value4) => {
  * 
  * @return {obj} query
  */
+
 const createACommentQuery = (value1, value2, value3) => {
   const query =  `
       INSERT INTO comments(
@@ -177,4 +178,5 @@ export default {
   createACommentQuery,
   getCommentsByQuestionQuery,
   getAQuestionQuery
+
 }

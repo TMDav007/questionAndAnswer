@@ -8,7 +8,9 @@ const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
 const { checkInput } = middleware;
 
+
 const {getAUserQuestionQuery, getACommentQuery, modifyAQuestionQuery, getACommentByAUserQuery,modifyACommentQuery, createACommentQuery, getCommentsByQuestionQuery,getAQuestionQuery } = query;
+
 
 const client = pgConnect();
 client.connect();
