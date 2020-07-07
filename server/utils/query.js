@@ -22,6 +22,28 @@ const getAUserQuestionQuery = (condition1, condition2) => {
 }
 
 /**
+ * @desc query to get a user's question
+ * 
+ * @param {integer} condition1 
+ * 
+ * @return {string} query
+ */
+
+const getAQuestionQuery = (condition1) => {
+  const query = `
+    SELECT 
+    questions.id,
+    questions.question,
+    questions.no_of_answers,
+    questions.date
+    FROM questions, user
+    WHERE questions.id = ${condition1};
+    `;
+  return query;
+}
+
+
+/**
  * @desc query to get a comment
  * 
  * @param {integer} condition1 
@@ -108,7 +130,8 @@ const modifyAQuestionQuery = (value1, value2, value3, value4) => {
  * 
  * @return {obj} query
  */
-const createAQuestionQuery = (value1, value2, value3) => {
+
+const createACommentQuery = (value1, value2, value3) => {
   const query =  `
       INSERT INTO comments(
         comment,
@@ -152,6 +175,8 @@ export default {
   getACommentQuery,
   getACommentByAUserQuery,
   modifyACommentQuery,
-  createAQuestionQuery,
-  getCommentsByQuestionQuery
+  createACommentQuery,
+  getCommentsByQuestionQuery,
+  getAQuestionQuery
+
 }

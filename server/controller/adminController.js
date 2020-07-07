@@ -1,10 +1,13 @@
 import utils from './../utils/index';
 import error from './../utils/errorMessage';
+import middleware from './../middleware/validate';
 
 const { pgConnect } = utils;
 const { serverMessage } = error;
 const client = pgConnect();
 client.connect();
+
+const { checkInput } = middleware;
 
 /**
  * it is a class that control all event method
@@ -54,6 +57,10 @@ class AdminController {
     try {
 
       const { userId } = req.params;
+
+      if (!checkInput(userId)) {
+        return serverMessage(res, 'error','input must be an integer', 400);
+      }
 
       const deleteAUserQuery = `
        DELETE from users 

@@ -8,7 +8,9 @@ const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
 const { checkInput } = middleware;
 
-const {getAUserQuestionQuery, getACommentQuery, modifyAQuestionQuery, getACommentByAUserQuery,modifyACommentQuery, createAQuestionQuery, getCommentsByQuestionQuery } = query;
+
+const {getAUserQuestionQuery, getACommentQuery, modifyAQuestionQuery, getACommentByAUserQuery,modifyACommentQuery, createACommentQuery, getCommentsByQuestionQuery,getAQuestionQuery } = query;
+
 
 const client = pgConnect();
 client.connect();
@@ -36,7 +38,7 @@ class CommentsController {
       if (!checkInput(questionId)) {
         return serverMessage(res, 'error','input must be an integer', 400);
       }
-      const foundQuestion = await client.query(getAUserQuestionQuery(questionId, token.id));
+      const foundQuestion = await client.query(getAQuestionQuery(questionId));
 
       if (foundQuestion.rows.length < 1) {
       return  serverMessage(res, 'fail', 'question does not exist', 404);
@@ -96,7 +98,7 @@ class CommentsController {
       return res.status(201).json({
         status: 'success',
         data: {
-          Questions: allcomments.rows
+          Comments: allcomments.rows
         }
       });
     } catch (error) {
@@ -131,7 +133,7 @@ class CommentsController {
       return res.status(201).json({
         status: 'success',
         data: {
-          Questions: allcomments.rows
+          Comments: allcomments.rows
         }
       });
     } catch (error) {
