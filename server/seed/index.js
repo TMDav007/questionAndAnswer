@@ -14,6 +14,7 @@ dotenv.config();
 const client = pgConnect();
 client.connect();
 
+
 client.query(createAndSeed, (err) => {
   if (err) {
     console.log(err);

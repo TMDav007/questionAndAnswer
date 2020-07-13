@@ -281,8 +281,7 @@ describe('create a question', () => {
       .set('x-access-token', token)
       .send({
         question: 'Requests to fix the AC',
-        date: '2019-04-09',
-        userId: 3
+        date: '2019-04-09'
       })
       .end((err, res) => {
         expect(res.status).to.equal(201);
@@ -296,8 +295,7 @@ describe('create a question', () => {
       .post('/api/v1/questions')
       .send({
         question: 'Requests to fix the AC',
-        date: '2019-04-09',
-        userId: 2
+        date: '2019-04-09'
       })
       .end((err, res) => {
         expect(res.status).to.equal(401);
@@ -337,22 +335,6 @@ describe('create a question', () => {
       });
   });
 
-  it('it should not create question when userId is not integer ', (done) => {
-    request(app)
-      .post('/api/v1/questions')
-      .set('x-access-token', token)
-      .send({
-        question: 'Requests to fix the AC',
-        date: '2019-04-09',
-        userId: 'e'
-      })
-      .end((err, res) => {
-        expect(res.status).to.equal(400);
-        expect(res.body).to.haveOwnProperty('message');
-        expect(res.body.status).to.equal('error');
-        done();
-      });
-  });
 });
 
 // Test to modify a user's question
@@ -362,7 +344,7 @@ describe('UPDATE a question', () => {
       .put('/api/v1/questions/2')
       .set('x-access-token', token)
       .send({
-        question: 'Requests to fix the AC',
+        question: 'Requests to fix the AC'
       })
       .end((err, res) => {
         expect(res.status).to.equal(200);
@@ -521,7 +503,6 @@ describe('create a comment', () => {
         questionId: 1
       })
       .end((err, res) => {
-        console.log(res);
         expect(res.status).to.equal(201);
         expect(res.body.data).to.haveOwnProperty('newQuestion');
         expect(res.body.status).to.equal('success');
@@ -869,5 +850,4 @@ describe('GET all users', () => {
         done();
       });
   });
-
 });

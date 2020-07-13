@@ -8,9 +8,13 @@ const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
 const { checkInput } = middleware;
 
-
-const {getAUserQuestionQuery, getACommentQuery, modifyAQuestionQuery, getACommentByAUserQuery,modifyACommentQuery, createACommentQuery, getCommentsByQuestionQuery,getAQuestionQuery } = query;
-
+const { getAUserQuestionQuery,
+        getACommentQuery,
+        modifyARequestQuery,
+        getACommentByAUserQuery,
+        createACommentQuery,
+        getCommentsByQuestionQuery,
+        getAQuestionQuery } = query;
 
 const client = pgConnect();
 client.connect();
@@ -54,7 +58,7 @@ class CommentsController {
     updateQuestionProperty.no_of_answers = foundCommentsByQuestion.rows.length;
     const mergedNoOfComments= { ...foundQuestion.rows[0], ...updateQuestionProperty };
     
-    const updatedQuestion = await client.query(modifyAQuestionQuery(mergedNoOfComments.question,mergedNoOfComments.no_of_answers, questionId, token.id));
+    const updatedQuestion = await client.query(modifyARequestQuery('questions','question', mergedNoOfComments.question,'no_of_answers',mergedNoOfComments.no_of_answers, 'questions.id',questionId,'questions.user_id', token.id));
     return res.status(201).json({
       status: 'success',
       data: {
@@ -207,7 +211,7 @@ class CommentsController {
 
     const mergedComment= { ...foundComment.rows[0], ...req.body };
 
-    const updatedComment = await client.query(modifyACommentQuery(mergedComment.comment, mergedComment.likes, commentId, token.id));
+    const updatedComment = await client.query(modifyARequestQuery('comments', 'comment',mergedComment.comment,'likes', mergedComment.likes, 'comments.id',commentId,'comments.users_id', token.id));
 
     return res.status(200).json({
       status: 'success',

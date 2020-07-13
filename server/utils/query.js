@@ -80,6 +80,24 @@ const getCommentsByQuestionQuery = (value) => {
 }
 
 /**
+ * @desc query check if mail exist
+ * 
+ * @param {string} condition1 
+ * @param {string} condition2
+ * 
+ * @return {string} query
+ */
+
+const checkMail = (value1, value2) => {
+  const query = `
+      SELECT * 
+      FROM users
+      WHERE ${value1} = '${value2}';
+      `; 
+  return query;
+}
+
+/**
  * @desc query to get a comment
  * 
  * @param {integer} condition1 
@@ -101,6 +119,11 @@ const getACommentByAUserQuery = (value1, value2) => {
 /**
  * @desc query to modify a question 
  * 
+ * @param {string} table
+ * @param {string} key1
+ * @param {string} key2
+ * @param {string} key3
+ * @param {string} key4
  * @param {int} value1 
  * @param {int} value2 
  * @param {int} value3 
@@ -108,14 +131,14 @@ const getACommentByAUserQuery = (value1, value2) => {
  * 
  * @return {obj} query
  */
-const modifyAQuestionQuery = (value1, value2, value3, value4) => {
+const modifyARequestQuery = (table, key1, value1, key2, value2, key3, value3, key4, value4) => {
   const query =  `
-          UPDATE questions
+          UPDATE ${table}
           SET
-          question = '${value1}',
-          no_of_answers = '${value2}'
-          WHERE questions.id = '${value3}'
-          AND questions.user_id = '${value4}'
+          ${key1} = '${value1}',
+          ${key2} = '${value2}'
+          WHERE ${key3} = '${value3}'
+          AND ${key4} = '${value4}'
           returning *;
           `;
   return query;
@@ -147,36 +170,13 @@ const createACommentQuery = (value1, value2, value3) => {
   return query;
 }
 
-/** 
-* @desc query to modify a comment
-* 
-* @param {int} value1 
-* @param {int} value2 
-* @param {int} value3 
-* 
-* @return {obj} query
-*/
-const modifyACommentQuery = (value1, value2, value3, value4) => {
- const query =  `
-         UPDATE comments
-         SET
-         comment = '${value1}',
-         likes = '${value2}'
-         WHERE comments.id = '${value3}'
-         AND comments.users_id = '${value4}'
-         returning *;
-         `;
- return query;
-}
-
 export default {
   getAUserQuestionQuery,
-  modifyAQuestionQuery,
+  modifyARequestQuery,
   getACommentQuery,
   getACommentByAUserQuery,
-  modifyACommentQuery,
   createACommentQuery,
   getCommentsByQuestionQuery,
-  getAQuestionQuery
-
+  getAQuestionQuery,
+  checkMail
 }

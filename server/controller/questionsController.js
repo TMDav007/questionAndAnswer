@@ -10,10 +10,11 @@ const { pgConnect, tokens } = utils;
 const { serverMessage } = error;
 const { checkInput } = middleware;
 
-const {getAUserQuestionQuery, modifyAQuestionQuery} = query;
+const {getAUserQuestionQuery, modifyARequestQuery} = query;
 
 const client = pgConnect();
 client.connect();
+let token;
 
 /**
  * it is a class that control all a questions method
@@ -30,10 +31,7 @@ class QuestionsController {
   static async createAQuestion(req, res) {
     try {
       const { question, date, userId } = req.body;
-
-      if (!checkInput(userId)) {
-        return serverMessage(res, 'error','input must be an integer', 400);
-      }
+      token = await tokens(req);
 
       const createAQuestionQuery = `
         INSERT INTO questions (
@@ -44,12 +42,12 @@ class QuestionsController {
         VALUES (
           '${question}',
           '${date}',
-          '${userId}'
+          '${token.id}'
         ) returning *;
       `;     
-      
-//      console.log(userId);
-      const createdQuestion = await client.query(createAQuestionQuery);
+
+   const createdQuestion = await client.query(createAQuestionQuery);
+
 
       return res.status(201).json({
         status: 'success',
@@ -72,7 +70,6 @@ class QuestionsController {
    */
   static async getAllQuestions(req, res) {
     try {
-
       const getAllQuestionsQuery = `
         SELECT 
         questions.question,
@@ -106,7 +103,7 @@ class QuestionsController {
   static async getAllQuestionsByAUser(req, res) {
     try {
 
-      const token = await tokens(req);
+       token = await tokens(req);
 
       const getAllQuestionsByAUserQuery = `
         SELECT DISTINCT
@@ -141,7 +138,7 @@ class QuestionsController {
   static async deleteAQuestion(req, res) {
     try {
       const { questionId } = req.params;
-      const token = await tokens(req);
+      token = await tokens(req);
 
 
       if (!checkInput(questionId)) {
@@ -182,7 +179,7 @@ class QuestionsController {
     try {
       const { questionId } = req.params;
       const { question } = req.body;
-      const token = await tokens(req);
+       token = await tokens(req);
 
       if (!checkInput(questionId)) {
         return serverMessage(res, 'error','input must be an integer', 400);
@@ -195,7 +192,8 @@ class QuestionsController {
       }
 
     const mergedQuestion= { ...foundQuestion.rows[0], ...req.body };
-    const updatedQuestion = await client.query(modifyAQuestionQuery(mergedQuestion.question, mergedQuestion.no_of_answers, questionId, token.id));
+
+    const updatedQuestion = await client.query(modifyARequestQuery('questions','question',mergedQuestion.question,'no_of_answers', mergedQuestion.no_of_answers, 'questions.id', questionId, 'questions.user_id',token.id));
 
     return res.status(200).json({
       status: 'success',
