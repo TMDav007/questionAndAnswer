@@ -32,6 +32,7 @@ class QuestionsController {
     try {
       const { question, date, userId } = req.body;
       token = await tokens(req);
+
       const createAQuestionQuery = `
         INSERT INTO questions (
           question,
@@ -44,8 +45,9 @@ class QuestionsController {
           '${token.id}'
         ) returning *;
       `;     
-      
+
    const createdQuestion = await client.query(createAQuestionQuery);
+
 
       return res.status(201).json({
         status: 'success',

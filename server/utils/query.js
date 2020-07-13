@@ -153,6 +153,7 @@ const modifyARequestQuery = (table, key1, value1, key2, value2, key3, value3, ke
  * 
  * @return {obj} query
  */
+
 const createACommentQuery = (value1, value2, value3) => {
   const query =  `
       INSERT INTO comments(
