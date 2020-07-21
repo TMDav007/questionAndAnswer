@@ -4,11 +4,13 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start:app": "webpack-dev-server --open --mode development",
+    "build": "webpack --mode production",
     "start": "babel-node server/server.js",
     "start:dev": "set NODE_ENV=development&& nodemon --watch server --exec babel-node server/server.js",
     "db:migrate": "babel-node server/seed/index.js",
     "migrate": "set NODE_ENV=development&& babel-node server/seed/index.js",
-    "test": "set NODE_ENV=test&& babel-node server/seed/index.js && mocha --require babel-core/register --require babel-polyfill ./server/test/ --timeout 10000 --exit",
+    "test": "set NODE_ENV=test&& babel-node server/seed/index.js && mocha --require @babel/register --require babel-polyfill ./server/test/ --timeout 10000 --exit",
     "nyc": "nyc --reporter=lcov npm run test"
   },
   "repository": {
@@ -22,9 +24,9 @@
   },
   "homepage": "https://github.com/TMDav007/questionAndAnswer#readme",
   "dependencies": {
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-polyfill": "^6.26.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.10.4",
     "babel-cli": "^6.26.0",
+    "babel-polyfill": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
@@ -40,14 +42,31 @@
     "nodemon": "^2.0.3",
     "nyc": "^15.1.0",
     "pg": "^8.2.1",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1",
     "supertest": "^4.0.2",
     "validatorjs": "^3.18.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.3",
-    "babel-register": "^6.26.0",
+    "@babel/core": "^7.10.5",
+    "@babel/node": "^7.10.5",
+    "@babel/polyfill": "^7.10.4",
+    "@babel/preset-env": "^7.10.4",
+    "@babel/preset-react": "^7.10.4",
+    "@babel/register": "^7.10.5",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-loader": "^8.1.0",
+    "css-loader": "^3.6.0",
     "eslint": "^7.2.0",
     "eslint-config-airbnb": "^18.1.0",
-    "eslint-plugin-import": "^2.21.1"
+    "eslint-plugin-import": "^2.21.1",
+    "html-loader": "^1.1.0",
+    "html-webpack-plugin": "^4.3.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^9.0.2",
+    "style-loader": "^1.2.1",
+    "webpack": "^4.43.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
   }
 }
