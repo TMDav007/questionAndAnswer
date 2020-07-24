@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 
-export class homepage extends Component {
+export class homePageBody extends Component {
   render() {
     return (
       <div id="showcase" className="grid">
@@ -20,4 +20,4 @@ export class homepage extends Component {
   }
 }
 
-export default homepage
+export default homePageBody

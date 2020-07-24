@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export class navbar extends Component {
 
@@ -12,16 +13,16 @@ export class navbar extends Component {
       <div>
           <header>
                 <nav>
-                  <div className="menu-bar"><h1><a href="index.html">Q&A</a></h1>
+                  <div className="menu-bar"><Link to ="/"> <h1>Q&A</h1></Link>
                   <div className="links">
-                    <a href="login.html">login</a>
-                    <a href="signup.html">sign up</a>
+                    <Link to ="/login"> login </Link>
+                    <Link to ="/signup"> signup </Link>
                 </div>
-    <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
+  <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
               </div>
               <div className={isMenu ? "dropdown" : " "}>
-                  <a href="login.html">{isMenu ?'login': ''}</a>
-                  <a href="signup.html">{isMenu ? 'sign up' : ''}</a>
+                 <Link to ="/login"> {isMenu ?'login': ''}</Link>
+                 <Link to ="/signup"> {isMenu ? 'sign up' : ''}</Link>
               </div>
               </nav>
           </header>
