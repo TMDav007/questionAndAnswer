@@ -1,21 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { BrowserRouter as Router, Route, Switch, Redirect} from 'react-router-dom';
+
 import '@babel/polyfill';
 import "./styles/app.scss";
 
-import Navbar from './../components/navbar';
-import Homepage from './../components/homepage';
-import Footer from './../components/footer';
+//Pages
+import HomePage from './../pages/homepage';
+import LoginPage from './../pages/loginPage';
+import NotFoundPage from './../pages/notFoundPage';
 
 
 class Main extends React.Component {
     render() {
         return (
-          <div>
-            <Navbar />
-            <Homepage />
-            <Footer />
-          </div>
+          <Router>
+            <Switch>
+              <Route exact path='/' component={HomePage} />
+              <Route exact path='/login' component={LoginPage} />
+              <Route exact path='/404' component={NotFoundPage} />
+              <Redirect to='/404' />
+            </Switch>
+          </Router>
         );
     }
 }

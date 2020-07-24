@@ -1,7 +1,7 @@
+
 @import "mixins";
 @import "variables";
 @import "global";
-
 
 // header
 header {
@@ -58,15 +58,15 @@ header {
           h1 {
             padding-bottom: 0;
             font-size: 180%;
-            font-family: "Oleo Script Swash Caps", cursive;
+            font-family: 'Oleo Script Swash Caps', cursive;
             @media only screen and (min-width: 700px) {
-              font-family: "Acme", cursive;
+              font-family: 'Acme', cursive;
               text-shadow: 1px 1px 15px $black;
               padding: 1em 0 .5em 0;
             }
           }
           p {
-            font-family: "Poiret One", cursive;
+            font-family: 'Poiret One', cursive;
             font-weight: thin;
             font-size: 1.1em;
             margin-bottom: 1.2em;
