@@ -8,6 +8,7 @@ import "./styles/app.scss";
 //Pages
 import HomePage from './../pages/homepage';
 import LoginPage from './../pages/loginPage';
+import SignupPage from './../pages/signupPage';
 import NotFoundPage from './../pages/notFoundPage';
 
 
@@ -18,6 +19,7 @@ class Main extends React.Component {
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/login' component={LoginPage} />
+              <Route exact path='/signup' component={SignupPage} />
               <Route exact path='/404' component={NotFoundPage} />
               <Redirect to='/404' />
             </Switch>
