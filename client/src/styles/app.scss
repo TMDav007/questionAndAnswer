@@ -95,7 +95,7 @@ header {
         }
         @media only screen and (min-width: 700px) {
           width:20em;
-          top: 11em;
+          top: 8em;
         }
       }
 
@@ -296,6 +296,7 @@ header {
     margin-top: 5em;
 
     input[type="text"],
+    input[type="email"],
     input[type="number"]{
       background: #0c131900;
       border-bottom: rgba(195, 166, 166, 0.85) 1px solid;
@@ -347,6 +348,7 @@ header {
 
 // SIGNUP $& LOGIN
 input[type="text"],
+input[type="email"],
 input[type="number"],
 input[type="password"],
 button[type="submit"] {
