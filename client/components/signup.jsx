@@ -74,12 +74,13 @@ const { handleChange, handleSubmit, handleBlur, errors, values, isSubmitting } =
                     placeholder='Confirm Password'
                     type='password'
                     name='confirmPassword'
+                    value={values.confirmPassword}
                     noValidate
                     onBlur={handleBlur}
                     onChange={handleChange}
                     autoComplete='off'
                     />
-                    {errors.confirmPassword&& <span className='error-text'>{errors.confirmPassword} </span>}
+                    {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
                 </div>
                 <div className="login">
                   <button disabled={isSubmitting} type='submit' id='submit'>Get Started</button>
