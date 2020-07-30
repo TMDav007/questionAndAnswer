@@ -345,6 +345,19 @@ header {
     text-decoration: none;
   }
 }
+.error-input{
+  border: #ff4545 1.5px solid;
+}
+.error-text{
+  bottom: 8px;
+  position: relative;
+  margin: 0;
+  left: 1px;
+  color: #b9c8e8;
+  font-family: initial;
+  //font-style: italic;
+  font-size: 13px;
+}
 
 // SIGNUP $& LOGIN
 input[type="text"],
@@ -352,7 +365,7 @@ input[type="email"],
 input[type="number"],
 input[type="password"],
 button[type="submit"] {
-  border: rgba(10, 10, 10, 0.34) 1px solid;
+  //border: rgba(10, 10, 10, 0.34) 1px solid;
  // border-radius: 5px;
   height: 20px;
   width: 90%;
@@ -374,6 +387,7 @@ button[type="submit"] {
 
 
 button[type="submit"] {
+  border: rgba(10, 10, 10, 0.34) 1px solid;
   color: #ffffff;
   height: 35px;
   background-color: #324e4a;
@@ -402,6 +416,7 @@ button[type="submit"] {
     outline: none;
   }
 }
+
 
 //Modals
 

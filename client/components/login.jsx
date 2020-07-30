@@ -1,7 +1,17 @@
-import React, { Component } from 'react'
+import React, { Component, useState } from 'react'
+import ReactDOM from "react-dom";
 
-export class login extends Component {
-  render() {
+import formValidation from "./formValidation";
+import validateAuth from './validateAuth';
+
+const INITIAL_STATE = {
+  email: "",
+  password: ""
+}
+
+function login() {
+  const { handleChange, handleSubmit, handleBlur, errors, values, isSubmitting } = formValidation(INITIAL_STATE, validateAuth);
+
     return (
       <div id='showcase'>
         <div id='bg-image'></div>
@@ -10,31 +20,41 @@ export class login extends Component {
             <div id='get_started'>
               <h1>QuestionAnswer</h1>
               <p>Get answers to your questions</p>
-              <form action=''>
-                <div className= 'username'>
-                  <label htmlFor='username'></label>
+              <form onSubmit={handleSubmit}>
+                <div className= 'email'>
+                  <label htmlFor='email'></label>
                   <input 
-                    className=''
-                    placeholder='Username'
-                    type='text'
-                    name='username'
-                    formNoValidate
-                    onChange={this.handleChange}
+                    className={errors.email && 'error-input'}
+                    placeholder='email'
+                    type='email'
+                    name='email'
+                    value={values.email}
+                    noValidate
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    autoComplete='off'
                     />
+                     {errors.email && <span className='error-text'>{errors.email} </span>} 
                 </div>
+               
+               
                 <div className= 'password'>
                   <label htmlFor='password'></label>
                   <input 
-                    className=''
+                    className={errors.password && 'error-input'}
                     placeholder='Password'
                     type='password'
                     name='password'
+                    value={values.password}
                     formNoValidate
-                    onChange={this.handleChange}
+                    onBlur={handleBlur}
+                    onChange={handleChange}
+                    autoComplete='off'
                     />
+                    {errors.password && <span className='error-text'>{errors.password} </span>}
                 </div>
                 <div className="login">
-                  <button type='submit' id='submit'>Log in</button>
+                  <button disabled={isSubmitting} type='submit' id='submit'>Log in</button>
                 </div>
               </form>
             </div>
@@ -42,7 +62,6 @@ export class login extends Component {
         </div>
       </div>
     )
-  }
 }
 
 export default login
