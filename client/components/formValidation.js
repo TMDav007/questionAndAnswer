@@ -1,4 +1,9 @@
 import React, {useState, useEffect } from  "react";
+import axios from "axios";
+
+const api = axios.create({
+  baseURL: `https://questionsandanswer.herokuapp.com/`
+})
 
 function formValidation(initalState, validate) {
   const [values, setValues] = useState(initalState);
@@ -11,7 +16,8 @@ function formValidation(initalState, validate) {
     if (isSubmitting) {
       const noErrors = Object.keys(errors).length === 0;
       if (noErrors) {
-        console.log("authenticated!", values)
+        //console.log("authenticated!", values)
+        createUser(values);
         setSubmitting(false);
       } else {
         setSubmitting(false);
@@ -39,6 +45,17 @@ function formValidation(initalState, validate) {
   }
 
   return { handleBlur, handleChange, handleSubmit, errors, values, isSubmitting }
+}
+
+const createUser = async (value) => {
+  try {
+    const userData = value;
+    let response = await api.post('/api/v1/auth/signup', userData);
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+
 }
 
 export default formValidation;
