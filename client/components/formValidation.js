@@ -73,7 +73,7 @@ function formValidation(initalState, validate) {
     }
   }
 
-  //display server error
+  //display server message
   const Dialog = (props) => {
     return (
       <div id='modal_error_display'>
@@ -87,7 +87,5 @@ function formValidation(initalState, validate) {
 
   return { handleBlur, handleChange, handleSubmit, Dialog, errors, values, isSubmitting, isMessage }
 }
-
-
 
 export default formValidation;

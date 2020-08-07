@@ -11,7 +11,6 @@ const INITIAL_STATE = {
   password: "",
   password_confirmation: ""
 }
-//const [count, setCount] = useState(0);
 
 function signup () {
 const { handleChange, handleSubmit, handleBlur, Dialog, errors, values, isSubmitting , isMessage} = formValidation(INITIAL_STATE, validateAuth);
