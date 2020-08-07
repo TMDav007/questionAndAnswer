@@ -10,12 +10,12 @@ import HomePage from './../pages/homepage';
 import LoginPage from './../pages/loginPage';
 import SignupPage from './../pages/signupPage';
 import NotFoundPage from './../pages/notFoundPage';
-
+import history from './history';
 
 class Main extends React.Component {
     render() {
         return (
-          <Router>
+          <Router history={history}>
             <Switch>
               <Route exact path='/' component={HomePage} />
               <Route exact path='/login' component={LoginPage} />
