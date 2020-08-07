@@ -13,7 +13,7 @@ app.use(bodyParser.json({ type: 'application/json'}));
 
 routes(app);
 
-app.use('/client',express.static(path.join(__dirname,'../client')));
+app.use('/public',express.static(path.join(__dirname,'../client/public')));
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);

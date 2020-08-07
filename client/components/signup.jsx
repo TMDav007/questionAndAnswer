@@ -1,24 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component, useEffect, useState } from 'react'
 import ReactDOM from "react-dom";
 
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
+// import Dialog from './dialog';
 
 const INITIAL_STATE = {
   username: "",
   email: "",
   password: "",
-  confirmPassword: ""
+  password_confirmation: ""
 }
 
 function signup () {
-const { handleChange, handleSubmit, handleBlur, errors, values, isSubmitting } = formValidation(INITIAL_STATE, validateAuth);
-
+const { handleChange, handleSubmit, handleBlur, Dialog, errors, values, isSubmitting , isMessage} = formValidation(INITIAL_STATE, validateAuth);
     return (
       <div id='showcase'>
         <div id='bg-image'></div>
         <div className='content-wrap words'>
           <div id='question_answer'>
+              {isMessage && <Dialog props={isMessage} /> }
             <div id='get_started'>
               <h1>QuestionAnswer</h1>
               <p>Get answers to your questions</p>
@@ -70,17 +71,17 @@ const { handleChange, handleSubmit, handleBlur, errors, values, isSubmitting } =
                 <div className= 'confirmPassword'>
                   <label htmlFor='confirm password'></label>
                   <input 
-                    className={errors.confirmPassword && 'error-input'}
+                    className={errors.password_confirmation && 'error-input'}
                     placeholder='Confirm Password'
                     type='password'
-                    name='confirmPassword'
-                    value={values.confirmPassword}
+                    name='password_confirmation'
+                    value={values.password_confirmation}
                     noValidate
                     onBlur={handleBlur}
                     onChange={handleChange}
                     autoComplete='off'
                     />
-                    {errors.confirmPassword && <span className='error-text'>{errors.confirmPassword}</span>}
+                    {errors.password_confirmation && <span className='error-text'>{errors.password_confirmation}</span>}
                 </div>
                 <div className="login">
                   <button disabled={isSubmitting} type='submit' id='submit'>Get Started</button>

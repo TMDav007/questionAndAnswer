@@ -17,10 +17,10 @@ function validateAuth(values) {
     errors.password = 'Password must be at least 6 characters';
   } 
 
-  if (!values.confirmPassword) {
-    errors.confirmPassword = "Required Password";
-  } else if (values.password != values.confirmPassword) {
-    errors.confirmPassword = 'password must match';
+  if (!values.password_confirmation) {
+    errors.password_confirmation = "Required Password";
+  } else if (values.password != values.password_confirmation) {
+    errors.password_confirmation= 'password must match';
   } 
 
   //username check
