@@ -3,6 +3,8 @@ import axios from "axios";
 import { Redirect} from 'react-router-dom';
 import history from './../src/history';
 
+import loginUser from './loginUser';
+
 const api = axios.create({
   baseURL: `https://questionsandanswer.herokuapp.com`
 })
@@ -13,20 +15,32 @@ function formValidation(initalState, validate) {
   const [errors, setErrors] = useState({});
   const [isSubmitting, setSubmitting] = useState(false);
   const [isMessage, setMessage] = useState("");
+  const [createNewUser, setCreateNewUser] = useState(false);
+  const [loginUser, setloginUser] = useState(false);
 
 
   let validationErrors = validate(values);
 
   useEffect(() => {
-    if (isSubmitting) {
+    //console.log(handleSubmit.signup, "hdhd")
+    if (createNewUser) {
+      console.log(errors);
       const noErrors = Object.keys(errors).length === 0;
+      console.log(noErrors, "error");
       if (noErrors) {
-        createUser(values);
-        setSubmitting(false);
+       createUser(values);
+        //loginUser(values);
       } else {
         setSubmitting(false);
       }
-    }
+    } 
+    if (loginUser) {
+      console.log(errors);
+      const noErrors = Object.keys(errors).length === 0;
+      console.log(noErrors, "no error");
+
+    } 
+   
   }, [errors])
 
   function handleChange(event) {
@@ -45,7 +59,15 @@ function formValidation(initalState, validate) {
     event.preventDefault();
     const validationErrors = validate(values);
     setErrors(validationErrors);
-    setSubmitting(true);
+  }
+
+  const signup = (event) => {
+    handleSubmit.call(this, event);
+    setCreateNewUser(true);
+  }
+  const login = (event) => {
+    handleSubmit.call(this, event);
+    setloginUser(true);
   }
 
   const createUser = async (value) => {
@@ -85,7 +107,7 @@ function formValidation(initalState, validate) {
     )
   }
 
-  return { handleBlur, handleChange, handleSubmit, Dialog, errors, values, isSubmitting, isMessage }
+  return { handleBlur, handleChange, handleSubmit,Dialog, errors, values, createNewUser,signup,loginUser,login,setSubmitting, isMessage }
 }
 
 export default formValidation;
