@@ -11,25 +11,34 @@ function validateAuth(values) {
     errors.email = 'invalid email address';
   }
   //Password check
+
   if (!values.password) {
     errors.password = "Required Password";
   } else if (values.password.length < 6) {
     errors.password = 'Password must be at least 6 characters';
   } 
 
-  if (!values.password_confirmation) {
-    errors.password_confirmation = "Required Password";
-  } else if (values.password != values.password_confirmation) {
-    errors.password_confirmation= 'password must match';
-  } 
+
+  if (values.hasOwnProperty('password_confirmation') ) {
+    if (!values.password_confirmation) {
+      errors.password_confirmation = "Required Password";
+    } else if (values.password != values.password_confirmation) {
+      errors.password_confirmation= 'password must match';
+    } 
+  
+  }  
 
   //username check
-  if (!values.username) {
-    errors.username = "Required Username";
-  } else if (values.username.length < 6) {
-    errors.username = 'Username must be at least 6 characters';
-  } 
+  if (values.hasOwnProperty('username') ) {
+    if (!values.username) {
+      errors.username = "Required Username";
+    } else if ( values.username.length < 6) {
+      errors.username = 'Username must be at least 6 characters';
+    } 
+  }
+
   return errors;
 }
+
 
 export default validateAuth;

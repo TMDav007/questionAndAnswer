@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 
 export class homePageBody extends Component {
   render() {
@@ -10,8 +11,8 @@ export class homePageBody extends Component {
                 <h1>Question&Answer</h1>
                 <p>Get answers to your questions</p>
                 <div id="get_started">
-                    <a href="signup.html">Get Started</a>
-                    <a href="login.html">Login</a>
+                  <Link to ="/signup"> Get Started </Link>
+                  <Link to ="/login"> login </Link>                
                 </div>
             </div>
         </div>

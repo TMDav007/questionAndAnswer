@@ -13,7 +13,7 @@ const INITIAL_STATE = {
 }
 
 function signup () {
-const { handleChange, handleSubmit, handleBlur, Dialog, errors, values, isSubmitting , isMessage} = formValidation(INITIAL_STATE, validateAuth);
+const { handleChange, handleBlur, Dialog, errors, values, createNewUser,signup , isMessage} = formValidation(INITIAL_STATE, validateAuth);
     return (
       <div id='showcase'>
         <div id='bg-image'></div>
@@ -23,7 +23,7 @@ const { handleChange, handleSubmit, handleBlur, Dialog, errors, values, isSubmit
             <div id='get_started'>
               <h1>QuestionAnswer</h1>
               <p>Get answers to your questions</p>
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={signup}>
                 <div className= 'username'>
                   <label htmlFor='username'></label>
                   <input 
@@ -84,7 +84,7 @@ const { handleChange, handleSubmit, handleBlur, Dialog, errors, values, isSubmit
                     {errors.password_confirmation && <span className='error-text'>{errors.password_confirmation}</span>}
                 </div>
                 <div className="login">
-                  <button disabled={isSubmitting} type='submit' id='submit'>Get Started</button>
+                  <button disabled={createNewUser} type='submit' id='submit'>Get Started</button>
                 </div>
               </form>
             </div>
