@@ -1,19 +1,35 @@
 import React, { Component } from 'react'
+import { connect } from 'react-redux';
 
 import NavBar from './../components/navbar';
 import LoginForm from './../components/login';
 import Footer from './../components/footer';
+import { loginUser, removeMessage } from './../redux/actions'
 
-export class loginPage extends Component {
+class loginPage extends Component {
   render() {
     return (
       <div>
         <NavBar />
-        <LoginForm />
+        <LoginForm props={this.props}/>
         <Footer />
       </div>
     )
   }
 }
 
-export default loginPage
+const mapStateToProps = state => ({
+  message: state.login.serverMessage,
+  isLoading: state.login.isLoading
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    loginUser: (value) => dispatch(loginUser(value)),
+    removeMessage: () => dispatch(removeMessage())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(loginPage);
+
+//export default loginPage
