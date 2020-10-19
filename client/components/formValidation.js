@@ -3,14 +3,16 @@ import axios from "axios";
 import { Redirect} from 'react-router-dom';
 import history from './../src/history';
 
+
 import loginUser from './loginUser';
+
 
 const api = axios.create({
   baseURL: `https://questionsandanswer.herokuapp.com`
 })
 
 
-function formValidation(initalState, validate) {
+const formValidation = (initalState, validate) => {
   const [values, setValues] = useState(initalState);
   const [errors, setErrors] = useState({});
   const [isSubmitting, setSubmitting] = useState(false);
@@ -18,10 +20,13 @@ function formValidation(initalState, validate) {
   const [createNewUser, setCreateNewUser] = useState(false);
   const [loginUser, setloginUser] = useState(false);
 
+   //console.log(this.props);
 
   let validationErrors = validate(values);
 
   useEffect(() => {
+    //const noErrors = Object.keys(errors).length === 0;
+    //console.log(noErrors, "error");
     //console.log(handleSubmit.signup, "hdhd")
     if (createNewUser) {
       console.log(errors);
@@ -61,7 +66,7 @@ function formValidation(initalState, validate) {
     setErrors(validationErrors);
   }
 
-  const signup = (event) => {
+  const signupp = (event) => {
     handleSubmit.call(this, event);
     setCreateNewUser(true);
   }
@@ -107,7 +112,8 @@ function formValidation(initalState, validate) {
     )
   }
 
-  return { handleBlur, handleChange, handleSubmit,Dialog, errors, values, createNewUser,signup,loginUser,login,setSubmitting, isMessage }
+  return { handleBlur, handleChange, handleSubmit,Dialog, errors, values, createNewUser,signupp,loginUser,login,setSubmitting, isMessage }
 }
+
 
 export default formValidation;

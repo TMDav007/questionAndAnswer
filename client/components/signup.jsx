@@ -1,9 +1,13 @@
 import React, { Component, useEffect, useState } from 'react'
 import ReactDOM from "react-dom";
+import { connect } from "react-redux";
 
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
 // import Dialog from './dialog';
+
+
+
 
 const INITIAL_STATE = {
   username: "",
@@ -12,18 +16,35 @@ const INITIAL_STATE = {
   password_confirmation: ""
 }
 
-function signup () {
-const { handleChange, handleBlur, Dialog, errors, values, createNewUser,signup , isMessage} = formValidation(INITIAL_STATE, validateAuth);
+
+function signup (props) {
+  const { registerUser, isLoading, message, removeMessage } = props.props;
+  const { handleChange, handleBlur,handleSubmit, errors, values} = formValidation(INITIAL_STATE, validateAuth);
+
+  const onSubmitSignup = () => {
+    handleSubmit.call(this, event);
+    const noErrors = Object.keys(errors).length === 0;
+    if (noErrors){
+      registerUser(values);
+    }
+  
+  }
     return (
       <div id='showcase'>
         <div id='bg-image'></div>
         <div className='content-wrap words'>
           <div id='question_answer'>
-              {isMessage && <Dialog props={isMessage} /> }
+              {message && 
+                     <div id='modal_error_display'>
+                     <div id='serverMessage'>
+                       <span className="close" onClick={() => removeMessage() } >&times;</span>
+                       { message }
+                     </div>
+                   </div>}
             <div id='get_started'>
               <h1>QuestionAnswer</h1>
               <p>Get answers to your questions</p>
-              <form onSubmit={signup}>
+              <form onSubmit={onSubmitSignup}>
                 <div className= 'username'>
                   <label htmlFor='username'></label>
                   <input 
@@ -84,7 +105,7 @@ const { handleChange, handleBlur, Dialog, errors, values, createNewUser,signup ,
                     {errors.password_confirmation && <span className='error-text'>{errors.password_confirmation}</span>}
                 </div>
                 <div className="login">
-                  <button disabled={createNewUser} type='submit' id='submit'>Get Started</button>
+                  <button disabled={isLoading} type='submit' id='submit'>Get Started</button>
                 </div>
               </form>
             </div>
@@ -93,5 +114,7 @@ const { handleChange, handleBlur, Dialog, errors, values, createNewUser,signup ,
       </div>
     )
 }
+
+
 
 export default signup
