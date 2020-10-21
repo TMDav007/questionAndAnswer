@@ -4,6 +4,8 @@ const initialState = {
   isRegistered: false,
   isLoading: false,
   serverMessage: "",
+  isAuthenticated: false,
+  user: {},
   errors: {}
 }
 

@@ -6,3 +6,4 @@ export const AUTH_ERROR = "AUTH_ERROR";
 export const LOAD_USER = "LOAD_USER";
 export const IS_LOADING = "IS_LOADING";
 export const REMOVE_MESSAGE = "REMOVE_MESSAGE";
+export const SET_CURRENT_USER = "SET_CURRENT_USER";

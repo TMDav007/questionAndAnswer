@@ -5,7 +5,7 @@ const loginReducer = (state = initialState, action) => {
   const { type, payload } = action;
     switch(type){
       case actionTypes.LOGIN_SUCCESS:
-        localStorage.setItem('token',payload.data.token);
+        localStorage.setItem('token',payload.data.data.token);
           return {
             ...state,
             isLoading: false,
@@ -17,7 +17,7 @@ const loginReducer = (state = initialState, action) => {
         return {
           ...state,
           isLoggedIn: true
-        }
+        }        
       case actionTypes.IS_LOADING:
         return {
           ...state,
