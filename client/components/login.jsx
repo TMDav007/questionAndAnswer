@@ -12,7 +12,7 @@ const INITIAL_STATE = {
 
 function login(props) {
   const { isloading, message, removeMessage, loginUser} = props.props;
-  const { handleChange, handleBlur, handleSubmit,login,errors, values, } = formValidation(INITIAL_STATE, validateAuth);
+  const { handleChange, handleBlur, handleSubmit,errors, values, } = formValidation(INITIAL_STATE, validateAuth);
 
   const onSubmitLogin = () => {
     handleSubmit.call(this, event);

@@ -91,22 +91,24 @@
 @mixin dropdown{
   display: grid;
   width: 100%;
-  height: 10em;
+  //height: 10em;
   grid-template-rows: auto;
   background-color: $navbar;
   top: 4em;
   position: absolute;
   z-index: 1;
   text-align: center;
-  transition: all 600ms ease;;
+  transition: all 600ms ease;
 
   a{
       font-size: 15px;
       color: white;
       padding: 20px 0;
-      width: 5em;
+      width: 100%;
       margin: auto;
       text-decoration: none;
+      transition: all 600ms ease;
+      background: $navbar;
 
       &:hover{
         opacity: .7;
@@ -116,6 +118,7 @@
       }
       @media only screen and (min-width: 700px) {
         font-size: 18px;
+        width:5em
       }
     }
     @media only screen and (min-width: 700px) {
