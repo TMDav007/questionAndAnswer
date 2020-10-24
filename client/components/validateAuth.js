@@ -2,21 +2,35 @@ import React from 'react'
 
 function validateAuth(values) {
   let errors = {};
-  //email check
-  if (!values.email) {
-    errors.email = 'Required Email';
-  } else if (
-    !/^[A-Z0-9._%]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-  ){
-    errors.email = 'invalid email address';
-  }
-  //Password check
 
+    //Question
+   //Questioncheck
+   if (values.hasOwnProperty('question')) {
+    if (!values.question) {
+      errors.question = 'Question is required';
+    } 
+   }
+
+  //email check
+  if (values.hasOwnProperty('email')) {
+    if (!values.email) {
+      errors.email = 'Required Email';
+    } else if (
+      !/^[A-Z0-9._%]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+    ){
+      errors.email = 'invalid email address';
+    }
+  }
+
+  //Password check
+if (values.hasOwnProperty('password')) {
   if (!values.password) {
     errors.password = "Required Password";
   } else if (values.password.length < 6) {
     errors.password = 'Password must be at least 6 characters';
   } 
+}
+
 
 
   if (values.hasOwnProperty('password_confirmation') ) {
@@ -36,6 +50,9 @@ function validateAuth(values) {
       errors.username = 'Username must be at least 6 characters';
     } 
   }
+
+
+
 
   return errors;
 }

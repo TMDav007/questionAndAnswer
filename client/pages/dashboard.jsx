@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import NavBar from './../components/navbar';
-import Dashboard from './../components/dashboardbody';
+import {Dashboardbody}  from './../components/dashboardbody';
 import Footer from './../components/footer';
 
 export class dashboard extends Component {
@@ -9,7 +9,7 @@ export class dashboard extends Component {
     return (
       <div>
         <NavBar />
-        <Dashboard />
+        <Dashboardbody />
         <Footer />
       </div>
     )
