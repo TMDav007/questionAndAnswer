@@ -37,7 +37,7 @@ function signup (props) {
               {message && 
                      <div id='modal_error_display'>
                      <div id='serverMessage'>
-                       <span className="close" onClick={() => removeMessage() } >&times;</span>
+                       <span className="popup_close" onClick={() => removeMessage() } >&times;</span>
                        { message }
                      </div>
                    </div>}

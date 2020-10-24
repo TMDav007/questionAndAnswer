@@ -1,88 +1,73 @@
-import React, { Component } from 'react';
+import React, { Component,useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import allQuestions from '../pages/allQuestion';
 
-export class allQuestionsBody extends Component {
-  render() {
+import { getAllMyQuestions, removeMessage } from './../redux/actions'
+
+export let AllQuestionsBody = (props) => {
+    const { message, removeMessage,myQuestions, getAllMyQuestions} = props;
+    useEffect( ()=> {
+      getAllMyQuestions();
+    }, [])
     return (
       <div className="container">
         <div id="user-background-image"></div>
         <div className="main-content">
           <div id="sidebar_space"></div>
           <div id="content_space">
+          {message && 
+                  <div id='modal_error_display'>
+                  <div id='serverMessage'>
+                    <span className="popup_close" onClick={() => removeMessage() } >&times;</span>
+                    { message }
+                  </div>
+                </div>}
             <div id="ask_question">
               <h3>My Questions</h3>
             </div>
             <div className="question"> 
-              <div className="questions">
+            {
+              myQuestions.map((question, key) => {
+                return <div className="questions" key={key}> 
                 <div className="profile_img_section">
-                  <img src="" alt="" className="profile_img" />
+                <img src="" alt={question.username} className="profile_img" />
                 </div>
                 <div className="questions_section">
-                  <h4 className="username">Username</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
-                    nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
-                    quis fugiat praesentium voluptas possimus officiis?
-                  </p>
-                  <div className="icons">
-                    <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-                    <i className="fa fa-heart like" aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div className="menu_section">
-                  <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
-                </div>
-              </div>
+                  <h4 className="username">{question.user_name}</h4>
+                  <p>{question.question}</p>
 
-              <div className="questions">
-                <div className="profile_img_section">
-                  <img src="" alt="" className="profile_img" />
-                </div>
-                <div className="questions_section">
-                  <h4 className="username">Username</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
-                    nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
-                    quis fugiat praesentium voluptas possimus officiis?
-                  </p>
-                  <div className="icons">
-                    <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-                    <i className="fa fa-heart like"  aria-hidden="true"></i>
-                  </div>
+                <div className="icons">
+                  <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
+                  <i className="fa fa-heart like"  aria-hidden="true"></i>
+                </div> 
                 </div>
                 <div className="menu_section">
-                  <i className="fa fa-sort-desc menu_icon" aria-hidden="true"></i>
-                </div>
+                <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
+                </div> 
               </div>
-
-              <div className="questions">
-                <div className="profile_img_section">
-                  <img src="" alt="" className="profile_img" />
-                </div>
-                <div className="questions_section">
-                  <h4 className="username">Username</h4>
-                  <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas
-                    nesciunt quidem illo a odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur
-                    quis fugiat praesentium voluptas possimus officiis?
-                  </p>
-                  <div className="icons">
-                    <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-                    <i className="fa fa-heart like"   aria-hidden="true"></i>
-                  </div>
-                </div>
-                <div className="menu_section">
-                  <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
-                </div>
-              </div>
-                    
+              })
+            }          
             </div>
             <div className="question-buttons"></div>
         </div>
       </div>
     </div>
     )
+}
+
+const mapStateToProps = (state) => ({
+  message: state.questions.serverMessage,
+  isLoading: state.questions.isLoading,
+  myQuestions: state.questions.allQuestions
+})
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getAllMyQuestions: () => dispatch(getAllMyQuestions()),
+    removeMessage: () => dispatch(removeMessage())
   }
 }
 
-export default allQuestionsBody;
+AllQuestionsBody = connect(mapStateToProps, mapDispatchToProps)(AllQuestionsBody);
+

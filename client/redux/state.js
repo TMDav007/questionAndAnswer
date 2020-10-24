@@ -5,8 +5,9 @@ const initialState = {
   isLoading: false,
   serverMessage: "",
   isAuthenticated: false,
+  allQuestions: [],
   user: {},
-  errors: {}
+  errors: {},
 }
 
 export default initialState;
