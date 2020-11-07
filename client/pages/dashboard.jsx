@@ -9,7 +9,7 @@ export class dashboard extends Component {
     return (
       <div>
         <NavBar />
-        <Dashboardbody />
+        <Dashboardbody/>
         <Footer />
       </div>
     )

@@ -4,8 +4,11 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getAllQuestions, removeMessage, askQuestion } from './../redux/actions'
+import { DropdownMenu } from './../components/dropdown/dropdown'
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
+
+import { QuestionComponent } from './questions/questionComponent';
 
 const todaysDate = () => {
   let today = new Date();
@@ -24,6 +27,7 @@ const todaysDate = () => {
  return today;
 }
 
+
 const currentDate = todaysDate();
 
 const INITIAL_STATE = {
@@ -32,6 +36,7 @@ const INITIAL_STATE = {
 }
 
 export let Dashboardbody = (props) => {
+ 
   const { message, removeMessage, allQuestions,getAllQuestions, askQuestion,isLoading} = props;
   const { handleChange, handleBlur,handleSubmit, errors, values} = formValidation(INITIAL_STATE, validateAuth);
   useEffect( ()=> {
@@ -43,12 +48,10 @@ export let Dashboardbody = (props) => {
     console.log(errors);
     const noErrors = Object.keys(errors).length === 0;
     values.date= todaysDate();
-   // console.log(values, "va;ue")
     if (noErrors){
       askQuestion(values);
       window.location.reload();
     }
-   // 
   
   }
     return (
@@ -80,28 +83,7 @@ export let Dashboardbody = (props) => {
                 <button disabled={isLoading} type="submit" id="submit_ask">Ask </button>
               </form>
             </div>
-            <div className="question">
-                {
-              allQuestions.map((question, key) => {
-               return <div className="questions" key={key}> 
-                  <div className="profile_img_section">
-                  <img src="" alt={question.username} className="profile_img" />
-                  </div>
-                  <div className="questions_section">
-                    <h4 className="username">{question.user_name}</h4>
-                    <p>{question.question}</p>
-
-                  <div className="icons">
-                    <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-                    <i className="fa fa-heart like"  aria-hidden="true"></i>
-                  </div> 
-                  </div>
-                  <div className="menu_section">
-                  <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
-                  </div> 
-                </div>
-              })}
-            </div>
+            <QuestionComponent />
             <div className="question-buttons"></div>
           </div>
         </div>
