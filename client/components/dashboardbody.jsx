@@ -55,14 +55,14 @@ export let Dashboardbody = (props) => {
   
   }
     return (
-      <div className="container">
+      <div className="containa">
         <div id="user-background-image"></div>
         <div className="main-content">
           <div id="sidebar_space"></div>
           <div id="content_space">
           {message && 
                 <div id='modal_error_display'>
-                <div id='serverMessage'>
+                  <div id='serverMessage'>
                   <span className="popup_close" onClick={() => removeMessage() } >&times;</span>
                   { message }
                   </div>

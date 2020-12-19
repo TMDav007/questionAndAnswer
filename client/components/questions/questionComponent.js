@@ -4,51 +4,52 @@ import { connect } from 'react-redux';
 
 import { getAllQuestions, removeMessage, askQuestion } from './../../redux/actions';
 import { DropdownMenu } from './../dropdown/dropdown'
+import CarretLink from './../carretLink/carret'
 import './../dropdown/style.scss';
 
 export let QuestionComponent = (props) => {
-  const { message, removeMessage, allQuestions,getAllQuestions, askQuestion,isLoading} = props;
-  const [open, setOpen] = useState(false);
-  const [element, setElement] = useState(null)
-  let id;
-  const inputRef = useRef();
-  id = {
-     display: 'block'
+  const { message, removeMessage, allQuestions,getAllQuestions, currentUser,askQuestion,isLoading} = props;
+  const [open, setOpen] = useState({});
+  const [element, setElement] = useState(null);
+  const [userDropdown, setUserDropdown] = useState(false);
+
+  function genToggleFn(index, username, currentUser) {
+    return function () {
+      Object.keys(open).forEach(function(key){
+        if (open[index]){
+          return;
+        }
+        open[key] = false
+       }) 
+       setOpen({ ...open, [index]: !open[index] })
+    }
   }
-  if (open){
-    id= "menu-item1";
-  }
-  useEffect( ()=> {
-    getAllQuestions();
-  }, [])
 
   return (
-    <div className="question">
+    <div className="question" >
     {
-  allQuestions.map((question, key) => {
-   return <div className="questions" key={key}> 
+    allQuestions.map((question) => {
+      
+    return <div className="questions" key={question.id}> 
       <div className="profile_img_section">
       <img src="" alt={question.username} className="profile_img" />
       </div>
       <div className="questions_section">
         <h4 className="username">{question.user_name}</h4>
         <p>{question.question}</p>
-
       <div className="icons">
         <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
         <i className="fa fa-heart like"  aria-hidden="true"></i>
       </div> 
       </div>
+      
       <div className="menu_section" >
-      /** this is the section */ 
-  <i className="fa fa-sort-desc menu_icon"  aria-hidden="true" key={key} id={key} ref={inputRef} onClick={(e) =>setOpen(!open) }> {open? <div className="dropdown">
-    <ul key={key} id='menu-item1' >
-    <li>Edit</li>
-    <li>Vote</li>
-    <li>Delete</li>
-    </ul>
-</div> : "" }
-</i>
+      { (currentUser === question.user_name) ?
+       <i className="fa fa-sort-desc menu_icon"  aria-hidden="true" onClick={genToggleFn(question.id)
+       } > { 
+      open[question.id] ? <DropdownMenu id={question.id} user={userDropdown} />: "" }
+       </i> : ""
+      }
       </div> 
     </div>
   })}
@@ -59,7 +60,8 @@ export let QuestionComponent = (props) => {
 const mapStateToProps = (state) => ({
   message: state.questions.serverMessage,
   allQuestions: state.questions.allQuestions,
-  isLoading: state.questions.isLoading
+  isLoading: state.questions.isLoading,
+  currentUser: state.auth.user.user_name
 })
 
 const mapDispatchToProps = (dispatch) => {

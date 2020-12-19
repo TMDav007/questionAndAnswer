@@ -71,15 +71,6 @@ ul {
 
 /* Dropdown Menu */
 dropdown {
-  /*position: absolute;
-  width: 100px;
-  right:3.5em;
-  //transform: translateX(-45%);
-  background-color: #0f1d1b;
-  border-bottom: #ffebcd0d 1px ;
-  border-radius: var(--border-radius);
-  padding: 1rem;
-  overflow: hidden; */
 
   .menu-item {
     height: 50px;
@@ -97,17 +88,16 @@ dropdown {
 
 //dropdown
 .dropdown{
-  #menu-item1{
+  
+  .menu-item{
     padding: 0;
     margin: 0;
     position: absolute;
-    //display: none;
     transition-delay: .5s;
-    right:.4em;
+    right: 1.2em;
+    bottom: -5em;
   }
-  #menu{
-    display: none;
-  }
+
     li{
       background: #0f1d1b;
       position : relative;

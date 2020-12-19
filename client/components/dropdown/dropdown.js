@@ -16,10 +16,10 @@ const DropdownApp = () => {
   );
 }
 
-export const DropdownMenu = () => {
+export const DropdownMenu = (props) => {
    const DropdownItem = (props) => {
       return (
-        <li><a className="">
+        <li onClick={(e) => console.log(props)}><a className="">
           {props.children}
         </a></li>
       )
@@ -27,13 +27,14 @@ export const DropdownMenu = () => {
 
   return (
     <div className="dropdown">
-      <ul id="menu-item">
-      <DropdownItem >Edit</DropdownItem>
-      <DropdownItem>Vote</DropdownItem>
-      <DropdownItem>Delete</DropdownItem>
+      <ul className="menu-item">
+        <DropdownItem id={props.id}> Edit</DropdownItem>
+        <DropdownItem>Vote</DropdownItem>
+        <DropdownItem>Delete</DropdownItem>
       </ul>
     </div>
-  )
+  ) 
+  
 }
 
 const Navbar = (props) => {
