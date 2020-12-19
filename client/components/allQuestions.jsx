@@ -29,7 +29,7 @@ export let AllQuestionsBody = (props) => {
             <div className="question"> 
             {
               myQuestions.map((question, key) => {
-                return <div className="questions" key={key}> 
+                return <div className="questions" key={question.id}> 
                 <div className="profile_img_section">
                 <img src="" alt={question.username} className="profile_img" />
                 </div>
@@ -43,7 +43,7 @@ export let AllQuestionsBody = (props) => {
                 </div> 
                 </div>
                 <div className="menu_section">
-                <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
+                  <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
                 </div> 
               </div>
               })

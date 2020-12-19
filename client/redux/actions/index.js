@@ -105,11 +105,13 @@ export const getAllQuestions = () => async dispatch => {
         'x-access-token': localStorage.token
       }
     });
+    console.log(response.data.data.questions);
     dispatch({
       type: actionTypes.FETCH_ALL_QUESTIONS,
       payload: response.data.data.questions
     })
   } catch(error) {
+    console.log(error.response);
       if(!error.response){
       return dispatch({
         type: actionTypes.FETCH_ALL_QUESTIONS_FAIL,
@@ -119,6 +121,12 @@ export const getAllQuestions = () => async dispatch => {
       type: actionTypes.FETCH_ALL_QUESTIONS_FAIL,
       payload: error.response.data.message
     })
+    setTimeout(() => { 
+      if(error.response.status === 401){
+        localStorage.removeItem('token');
+      }
+      history.push("/login")
+      window.location.reload() }, 2000);
   }
 }
 

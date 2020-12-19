@@ -3,11 +3,9 @@
 @mixin nav {
   width: 100%;
   background: $navbar;
-  // height: 60px;
   text-align: right;
   box-sizing: border-box;
   z-index: 2;
-  // padding: 13px 24px;
   color: #fff;
   cursor: pointer;
   

@@ -72,6 +72,7 @@ class QuestionsController {
     try {
       const getAllQuestionsQuery = `
         SELECT 
+        questions.id,
         questions.question,
         questions.no_of_answers,
         questions.date,
