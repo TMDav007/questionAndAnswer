@@ -10,8 +10,8 @@ import setAuthorizationToken from './../utils';
 
 let token;
 const api = axios.create({
- // baseURL: `https://questionsandanswer.herokuapp.com`
-  baseURL: `http://localhost:8000/`
+  baseURL: `https://questionsandanswer.herokuapp.com`
+  //baseURL: `http://localhost:8000/`
   //"x-access-token": localStorage.token
 })
 
@@ -51,6 +51,23 @@ export const registerUser = (value) => async dispatch => {
 export const removeMessage = () => dispatch => {
   dispatch({
     type: actionTypes.REMOVE_MESSAGE
+  })
+}
+
+export const isEdit = () => dispatch => {
+  dispatch({
+    type: actionTypes.IS_EDIT
+  })
+}
+export const isAsk = () => dispatch => {
+  dispatch({
+    type: actionTypes.IS_ASK
+  })
+}
+
+export const showModal = () => dispatch => {
+  dispatch({
+    type: actionTypes.IS_SHOW
   })
 }
 export const setCurrentUser = (user) => {
@@ -135,28 +152,26 @@ export const askQuestion = (value) => async dispatch => {
     type: actionTypes.IS_LOADING
   })
   try {
-    let response = await api.post('/api/v1/questions', value, {
+    let response = await api.post('/api/v1/questions', {value}, {
       headers: {
         'x-access-token': localStorage.token
       }
     });
-    console.log(response)
     dispatch({
       type: actionTypes.ASK_QUESTION,
       payload: response
     })
-    dispatch({
+  return  dispatch({
       type: actionTypes.FETCH_ALL_QUESTIONS,
       payload: response.data.data.questions
     })
   } catch(error) {
-    console.log(error.data, "error");
       if(!error.response.data){
       return dispatch({
         type: actionTypes.ASK_QUESTION_FAIL,
         payload: error.message
       }) }
-    dispatch({
+   return dispatch({
       type: actionTypes.ASK_QUESTION_FAIL,
       payload: error.response.data.message
     })
@@ -182,6 +197,59 @@ export const getAllMyQuestions = () => async dispatch => {
       }) }
     dispatch({
       type: actionTypes.GET_ALL_MY_QUESTION_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const editQuestion = (values) => async dispatch => {
+  dispatch({
+    type: actionTypes.IS_LOADING
+  })
+  try {
+    let response = await api.put(`/api/v1/questions/${values.id}`,  {question: values.question, date: values.date}, {
+      headers: {
+        'x-access-token': localStorage.token
+      }
+    });
+    dispatch({
+      type: actionTypes.ASK_QUESTION, //editQuestion,
+      payload: response
+    })
+  } catch(error) {
+      if(!error.response.data){
+      return dispatch({
+        type: actionTypes.ASK_QUESTION_FAIL,
+        payload: error.message
+      }) }
+   return dispatch({
+      type: actionTypes.ASK_QUESTION_FAIL,
+      payload: error.response.data.message
+    })
+  }
+}
+
+export const deleteAQuestion = (element) => async dispatch => {
+  try {
+    let response = await api.delete(`/api/v1/questions/${element}`, {
+      headers: {
+        'x-access-token': localStorage.token
+      }
+    });
+
+    dispatch({
+      type: actionTypes.DELETE_QUESTION,
+      payload: response
+    })
+  }
+  catch (error) {
+    if(!error.response.data){
+      return dispatch({
+        type: actionTypes.DELETE_QUESTION_FAIL,
+        payload: error.message
+      }) }
+   return dispatch({
+      type: actionTypes.DELETE_QUESTION_FAIL,
       payload: error.response.data.message
     })
   }

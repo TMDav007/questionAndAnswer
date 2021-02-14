@@ -1,19 +1,19 @@
 import React, { Component } from 'react'
 
 import NavBar from './../components/navbar';
-import {Dashboardbody}  from './../components/dashboardbody';
 import Footer from './../components/footer';
+import { EditQuestion } from '../components/editQuestions/editQuestion';
 
-export class dashboard extends Component {
+export class editQuestion extends Component {
   render() {
     return (
       <div>
         <NavBar />
-        <Dashboardbody/>
-        
+        <EditQuestion/>
+        <Footer />
       </div>
     )
   }
 }
 
-export default dashboard
+export default editQuestion

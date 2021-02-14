@@ -24,12 +24,17 @@ const questionsReducer = (state = initialState, action) => {
           errors: payload,
           serverMessage: payload
         }
-      case actionTypes.ASK_QUESTION:
+      case actionTypes.ASK_QUESTION, actionTypes.DELETE_QUESTION:
         return {
           ...state,
           isLoading: false
         }
-      case actionTypes.ASK_QUESTION_FAIL:
+ /*       case actionTypes.DELETE_QUESTION:
+          return {
+            ...state,
+            isLoading: false
+          } */
+      case actionTypes.ASK_QUESTION_FAIL, actionTypes.DELETE_QUESTION_FAIL:
         return {
           ...state,
           isLoading: false,
@@ -46,6 +51,21 @@ const questionsReducer = (state = initialState, action) => {
           ...state,
           isLoading: true
         }
+      case actionTypes.IS_SHOW:
+        return {
+          ...state,
+          show: true
+        }
+      case actionTypes.IS_EDIT:
+        return {
+          ...state,
+          submitType: "Edit"
+        }
+        case actionTypes.IS_ASK:
+          return{
+            ...state,
+            submitType: "Ask"
+          }
       default:
         return state;
     } 

@@ -424,7 +424,7 @@ button[type="submit"] {
 
 // Modals
 #modal_make_comment,#modal_ask_question{
-  display: none;
+  //display: none;
   position: fixed;
   z-index: 1004;
   left: 0;
@@ -435,18 +435,28 @@ button[type="submit"] {
   background-color: rgba(0, 0, 0, 0.356);
 }
 
-#make_comment_content{
+#make_comment_content, #ask_question_content {
   position: relative;
   z-index: 100;
   background-color: #fefefe;
-  margin: 10% 0 10% 7%;
+  margin: 15% auto 15% auto;
   padding: 0 1em;
-  top: 4em;
+  top: 15em;
   width: 70%;
   padding-bottom: 30px;
   @media only screen and (min-width: 900px) {
       margin: 6em auto;
       width:35em;
+  }
+  span.close{
+    position: absolute;
+    font-size: 2.4em;
+    top: -.2em;
+    color: #000;
+    right: 10px;
+    &:hover {
+        cursor: pointer;
+    }
   }
   h1{
       color: #000;
@@ -459,6 +469,7 @@ button[type="submit"] {
   table{
       width: 100%;
       margin: 0 auto;
+      border-spacing:0;
   }
   label {
       color: #000;
@@ -506,10 +517,11 @@ button[type="submit"] {
   }
 
   button[type='submit']{
-      width: 8em;
+      width: 7em;
+      height: 20px;
       float: right;
       margin-right: 1em;
-      font-size: .7em;
+      font-size: .8em;
       background-color: #051313;    
       @media only screen and (min-width: 700px) {
       float: none;

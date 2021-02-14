@@ -8,6 +8,8 @@ const initialState = {
   allQuestions: [],
   user: {},
   errors: {},
+  show: false,
+  submitType: "Ask"
 }
 
 export default initialState;
