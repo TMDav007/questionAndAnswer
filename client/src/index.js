@@ -16,6 +16,7 @@ import NotFoundPage from './../pages/notFoundPage';
 import Dashboard from './../pages/dashboard';
 import Profile from './../pages/profile';
 import AllQuestions from './../pages/allQuestion';
+import EditQuestion from './../pages/editQuestion';
 
 
 import { ProtectedRoute } from './../components/protectedRoute';
@@ -36,6 +37,7 @@ class Main extends React.Component {
               <Route exact path='/' component={HomePage} />
               <Route exact path='/login' component={LoginPage} />
               <ProtectedRoute exact path='/dashboard' component={Dashboard} />
+              <ProtectedRoute exact path='/edit' component={EditQuestion} />
               <ProtectedRoute exact path='/profile' component={Profile} />
               <ProtectedRoute exact path='/questions' component={AllQuestions} />
               <Route exact path='/signup' component={SignupPage} />
