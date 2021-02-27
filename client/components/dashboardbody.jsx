@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 
 import { getAllQuestions, removeMessage, askQuestion, isAsk, editQuestion } from './../redux/actions'
 import { DropdownMenu, ModalQuestion, DeleteQuestion} from './../components/dropdown/dropdown'
-import { QuestionDropdown} from './../components/dropdown/questionDropdown'
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
 
@@ -27,7 +26,6 @@ const todaysDate = () => {
  return today;
 }
 
-
 const currentDate = todaysDate();
 
 const INITIAL_STATE = {
@@ -40,6 +38,7 @@ export let Dashboardbody = (props) => {
   const { handleChange, handleBlur,handleSubmit, errors, values} = formValidation(INITIAL_STATE, validateAuth);
   useEffect( ()=> {
     getAllQuestions();
+    localStorage.removeItem("data")
   }, [])
 
   const [isOpen, setIsOpen] = useState(false);

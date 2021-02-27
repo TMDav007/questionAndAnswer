@@ -4,6 +4,8 @@ import signupReducers from './signupReducers'
 import loginReducer from './loginReducer';
 import authReducer from './authReducer';
 import questionsReducer from './questionsReducer';
+import loadingReducer from './loaderReducer';
+import commentsReducer from './commentsReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -11,7 +13,9 @@ const rootReducer = combineReducers({
   auth: authReducer,
   signup: signupReducers,
   login: loginReducer,
-  questions: questionsReducer
+  questions: questionsReducer,
+  loading: loadingReducer,
+  comments: commentsReducer
 })
 
 

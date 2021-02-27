@@ -150,21 +150,24 @@ const modifyARequestQuery = (table, key1, value1, key2, value2, key3, value3, ke
  * @param {int} value1 
  * @param {int} value2 
  * @param {int} value3 
+ * @param {string} value4
  * 
  * @return {obj} query
  */
 
-const createACommentQuery = (value1, value2, value3) => {
+const createACommentQuery = (value1, value2, value3, value4) => {
   const query =  `
       INSERT INTO comments(
         comment,
         users_id,
-        question_id
+        question_id,
+        likes
       )
       VALUES (
         '${value1}',
         '${value2}',
-        '${value3}'
+        '${value3}',
+        '${value4}'
       ) returning *;
           `;
   return query;

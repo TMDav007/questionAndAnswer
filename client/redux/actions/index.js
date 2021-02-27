@@ -10,8 +10,8 @@ import setAuthorizationToken from './../utils';
 
 let token;
 const api = axios.create({
-  baseURL: `https://questionsandanswer.herokuapp.com`
-  //baseURL: `http://localhost:8000/`
+ // baseURL: `https://questionsandanswer.herokuapp.com`
+  baseURL: `http://localhost:8000/`
   //"x-access-token": localStorage.token
 })
 
@@ -32,10 +32,11 @@ export const registerUser = (value) => async dispatch => {
     })  
       history.push("/login")
       window.location.reload() }, 2000);
-
-
   } catch (error) {
-    console.log(error)
+    dispatch({
+      type: actionTypes.TOGGLE_LOADER
+    })
+    console.log(error.response.data.data.error)
     if (error.message) {
       return dispatch({
         type: actionTypes.REGISTER_FAIL,
@@ -51,6 +52,14 @@ export const registerUser = (value) => async dispatch => {
 export const removeMessage = () => dispatch => {
   dispatch({
     type: actionTypes.REMOVE_MESSAGE
+  })
+}
+
+export const getAQuestion = (data) => dispatch => {
+  localStorage.setItem("data", JSON.stringify(data))
+  dispatch({
+    type: actionTypes.GET_A_QUESTION,
+    payload: data
   })
 }
 
@@ -80,9 +89,12 @@ export const loginUser = (value) => async dispatch => {
   dispatch({
     type: actionTypes.IS_LOADING
   })
+  dispatch({
+    type: actionTypes.TOGGLE_LOADER
+  })
   try {
     let response = await api.post('/api/v1/auth/login', value);
-     token = response.data.data.token;
+    token = response.data.data.token;
     setAuthorizationToken(token);
     dispatch(setCurrentUser(jwt.decode(token)));
     dispatch({
@@ -96,14 +108,23 @@ export const loginUser = (value) => async dispatch => {
     history.push("/dashboard") }, 2000);
   } catch (error) {
     if (!error.response) {
-     return dispatch({
+     dispatch({
         type: actionTypes.LOGIN_FAIL,
         payload: error.message
-      }) }
+      }) 
+     return setTimeout(() => { 
+        dispatch({
+        type: actionTypes.REMOVE_MESSAGE
+      }) }, 2000);
+    }
     dispatch({
       type: actionTypes.LOGIN_FAIL,
       payload: error.response.data.message
     })
+    setTimeout(() => { 
+      dispatch({
+      type: actionTypes.REMOVE_MESSAGE
+    }) }, 2000);
   }
 }
 
@@ -122,6 +143,9 @@ export const getAllQuestions = () => async dispatch => {
         'x-access-token': localStorage.token
       }
     });
+    dispatch({
+      type: actionTypes.TOGGLE_LOADER
+    })
     console.log(response.data.data.questions);
     dispatch({
       type: actionTypes.FETCH_ALL_QUESTIONS,
@@ -161,7 +185,7 @@ export const askQuestion = (value) => async dispatch => {
       type: actionTypes.ASK_QUESTION,
       payload: response
     })
-  return  dispatch({
+  return dispatch({
       type: actionTypes.FETCH_ALL_QUESTIONS,
       payload: response.data.data.questions
     })

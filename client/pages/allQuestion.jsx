@@ -10,7 +10,6 @@ export class allQuestions extends Component {
       <div>
         <NavBar />
         <AllQuestionsBody />
-        <Footer />
       </div>
     )
   }

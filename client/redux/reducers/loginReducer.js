@@ -29,7 +29,6 @@ const loginReducer = (state = initialState, action) => {
           serverMessage: ""
         }
 
-      case actionTypes.AUTH_ERROR: 
       case actionTypes.LOGIN_FAIL:
         localStorage.removeItem('token');
         return {

@@ -11,7 +11,7 @@ export let AllQuestionsBody = (props) => {
       getAllMyQuestions();
     }, [])
     return (
-      <div className="container">
+      <div className="containa">
         <div id="user-background-image"></div>
         <div className="main-content">
           <div id="sidebar_space"></div>
@@ -38,12 +38,11 @@ export let AllQuestionsBody = (props) => {
                   <p>{question.question}</p>
 
                 <div className="icons">
-                  <Link to="/comment"><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-                  <i className="fa fa-heart like"  aria-hidden="true"></i>
+                  <i className="fa fa-comment-o comment" aria-hidden="true"><span style={{fontSize: "11px", marginLeft: "3px"}}>{question.no_of_answers}</span></i>
                 </div> 
                 </div>
                 <div className="menu_section">
-                  <i className="fa fa-sort-desc menu_icon"  aria-hidden="true"></i>
+                 
                 </div> 
               </div>
               })
