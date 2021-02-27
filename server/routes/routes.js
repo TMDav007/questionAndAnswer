@@ -50,7 +50,7 @@ const routes = (app) => {
   app.get('/api/v1/comments/:questionId',authenicateUser, getAllCommentsByAQuestion);
   app.get('/api/v1/comment/:commentId',authenicateUser, getAComment);
   app.put('/api/v1/comments/:commentId', authenicateUser,updateAComment);
-  app.delete('/api/v1/comments/:commentId',authenicateUser, deleteAComment);
+  app.delete('/api/v1/comments/:questionId/:commentId',authenicateUser, deleteAComment);
 
 };
 

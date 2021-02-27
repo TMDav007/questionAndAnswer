@@ -35,7 +35,7 @@ class CommentsController {
    */
   static async createAComment(req, res) {
     try {
-      const { comment, questionId } = req.body;
+      const { comment, questionId, likes } = req.body;
       const updateQuestionProperty = {  no_of_answers: '' };
       token = await tokens(req)
 
@@ -51,13 +51,12 @@ class CommentsController {
       // update no of comments in questions table
       // get all comments by a question
       const foundCommentsByQuestion = await client.query(getCommentsByQuestionQuery(questionId));
-
-    const createdComment = await client.query(createACommentQuery(comment,token.id,questionId));
+    const createdComment = await client.query(createACommentQuery(comment,token.id,questionId,likes));
 
     // modify the no of comments in questions table
-    updateQuestionProperty.no_of_answers = foundCommentsByQuestion.rows.length;
+    updateQuestionProperty.no_of_answers = foundCommentsByQuestion.rows.length + 1;
     const mergedNoOfComments= { ...foundQuestion.rows[0], ...updateQuestionProperty };
-    
+
     const updatedQuestion = await client.query(modifyARequestQuery('questions','question', mergedNoOfComments.question,'no_of_answers',mergedNoOfComments.no_of_answers, 'questions.id',questionId,'questions.user_id', token.id));
     return res.status(201).json({
       status: 'success',
@@ -69,7 +68,6 @@ class CommentsController {
       serverMessage(res, 'fail', error.message, 500);
     }
   }
-
 
     /**
    * @desc it gets all comments by a question
@@ -90,8 +88,10 @@ class CommentsController {
 
       const getAllQuestionsByACommentQuery = `
           SELECT 
-          comment, id
+          comments.comment,comments.id, users.user_name, comments.likes
           FROM comments
+          INNER JOIN users ON
+          comments.users_id = users.id
           WHERE comments.question_id = '${questionId}';
       `;  
       const allcomments = await client.query(getAllQuestionsByACommentQuery);
@@ -156,14 +156,33 @@ class CommentsController {
    */
   static async deleteAComment(req, res) {
     try {
-      const { commentId } = req.params;
+      const { commentId, questionId } = req.params;
+      const updateQuestionProperty= {
+        no_of_answers: ''
+      }
       const token = await tokens(req);
 
 
-      if (!checkInput(commentId)) {
+      if (!checkInput(commentId) || !checkInput(questionId)) {
         return serverMessage(res, 'error','input must be an integer', 400);
       }
 
+      const foundQuestion = await client.query(getAQuestionQuery(questionId));
+
+      if (foundQuestion.rows.length < 1) {
+        return  serverMessage(res, 'fail', 'question does not exist', 404);
+        }
+
+       // get all comments by a question
+      const foundCommentsByQuestion = await client.query(getCommentsByQuestionQuery(questionId));
+
+      // modify the no of comments in questions table
+      updateQuestionProperty.no_of_answers = foundCommentsByQuestion.rows.length - 1;
+      const mergedNoOfComments= { ...foundQuestion.rows[0], ...updateQuestionProperty };
+
+      const updatedQuestion = await client.query(modifyARequestQuery('questions','question', mergedNoOfComments.question,'no_of_answers',mergedNoOfComments.no_of_answers, 'questions.id',questionId,'questions.user_id', token.id));
+
+      
       const deleteACommentQuery = `
         DELETE from comments
         WHERE comments.id = '${commentId}'

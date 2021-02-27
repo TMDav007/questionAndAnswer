@@ -678,10 +678,16 @@ button[type="submit"] {
         color: #fefefe;
         height: 30px;
         width: 95%;
-
+        margin-left: 1em;
         &:focus{
           outline:none;
         }
+      }
+      button[type='submit']{
+        height: 30px;
+        border-radius: 10px;
+        
+
       }
       @media only screen and (min-width: 700px) {
         right: 3em;
@@ -714,4 +720,40 @@ button[type="submit"] {
   z-index: 1;
   width: 80%;
   font-size: 1em;
+}
+
+.comment_box{
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  overflow: auto;
+  transition: all 600ms ease;
+    #comment_section{
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+      #comment_form{
+        display: grid;
+        //grid-column-gap: 1.5em;
+        grid-template-columns: 85% 15%;
+
+      input[type="text"]{
+        background: #020b0c;
+        border-radius: 10px;
+        color: #fefefe;
+        height: 30px;
+        width: 95%;
+
+        &:focus{
+          outline:none;
+        }
+      }
+    }
+      @media only screen and (min-width: 700px) {
+        right: 3em;
+        width: 70%;
+    }
+    }
 }

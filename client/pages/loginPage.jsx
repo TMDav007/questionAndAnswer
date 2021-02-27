@@ -4,13 +4,17 @@ import { connect } from 'react-redux';
 import NavBar from './../components/navbar';
 import LoginForm from './../components/login';
 import Footer from './../components/footer';
-import { loginUser, removeMessage } from './../redux/actions'
+import Spinners from './../components/spinner/spinner.component';
+import { loginUser, removeMessage } from './../redux/actions';
 
 class loginPage extends Component {
   render() {
+    const { isLoading } = this.props;
+    console.log(isLoading)
     return (
       <div>
         <NavBar />
+        { isLoading ? <Spinners /> : null }
         <LoginForm props={this.props}/>
         <Footer />
       </div>

@@ -6,23 +6,34 @@ const questionsReducer = (state = initialState, action) => {
     switch(type){
       case actionTypes.FETCH_ALL_QUESTIONS:
         return {
-          allQuestions: payload
+          allQuestions: payload,
+          comments :[],
+          isLoading:false
         }
         case actionTypes.GET_ALL_MY_QUESTION:
           return {
-            allQuestions: payload
+            allQuestions: payload,
+            isLoading: false
           }
         case actionTypes.GET_ALL_MY_QUESTION_FAIL:
           return {
             ...state,
             errors: payload,
-            serverMessage: payload
+            serverMessage: payload,
+            isLoading: false
+          }
+        case actionTypes.GET_A_QUESTION:
+          return {
+            ...state,
+            question: payload,
+            isLoading: false
           }
       case actionTypes.FETCH_ALL_QUESTIONS_FAIL:
         return {
           ...state,
           errors: payload,
-          serverMessage: payload
+          serverMessage: payload,
+          isLoading: false
         }
       case actionTypes.ASK_QUESTION, actionTypes.DELETE_QUESTION:
         return {

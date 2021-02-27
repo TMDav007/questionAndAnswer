@@ -2,14 +2,22 @@ import React, { useState,useEffect, useRef, useCallback } from 'react';
 import  { Link } from 'react-router-dom';
 import { connect } from 'react-redux'
 import './style.scss';
-import { QuestionDropdown } from './questionDropdown';
 
 import { getAllQuestions, showModal, isEdit, deleteAQuestion } from './../../redux/actions'
+import {deleteAComment} from './../../redux/actions/actionComment';
 
-let elemId;
+let elemObj= {};
 export const ModalQuestion = (props) => {
-  const {setIsOpen, handleBlur, handleChange, isLoading, onSubmitQuestion, values,errors,submitType, onSubmitEdit} = props;
+  const {setIsOpen, handleBlur, handleChange, isLoading, onSubmitQuestion, values,errors,submitType, onSubmitEdit, onSubmitEditComment} = props;
  
+  const submitCategory = (event) => {
+    event.preventDefault()
+    if(submitType) {
+     const summitType= submitType === "Ask" ? onSubmitQuestion() : onSubmitEdit();
+    return summitType;
+    }
+   return onSubmitEditComment();
+  }
  const  modalRef = useRef();
   const closeModal = (event => {
     if(modalRef.current === event.target){
@@ -32,11 +40,12 @@ export const ModalQuestion = (props) => {
 
   return ( 
     <div id="modal_ask_question" ref={modalRef}onClick = {closeModal}>
-      <form id="ask_question_content" onSubmit={submitType === "Ask" ? onSubmitQuestion : onSubmitEdit}>
+      <form id="ask_question_content" onSubmit={submitCategory} >
         <span className="close" onClick={() => setIsOpen(false)}>&times; </span>
         <fieldset>
           <legend>
-            <h1>{submitType} Question</h1>
+            {submitType && <h1>{submitType} Question</h1> }
+            {!submitType && <h1>Edit Comment</h1>}
           </legend>
           <table>
             <thead></thead>
@@ -48,7 +57,7 @@ export const ModalQuestion = (props) => {
                   rows={4} 
                   colSpan={50}
                   name="question"
-                  value={values.question}
+                  value={values.question || values.comment}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Question details..."/>
@@ -91,26 +100,28 @@ const DropdownApp = () => {
 
 
 export let DropdownMenu = (props) => {
-   const {showModal, show, allQuestions, isEdit} = props;
-   const {setIsOpen, handleBlur, handleChange, isLoading, values, errors,setOpenDeleteModal} = props.props
+   const {showModal, show, allQuestions, isEdit, data, setIsOpen, handleBlur, handleChange, isLoading, values, errors, setOpenDeleteModal, questionId} = props;
     
   const [open, isOpen] = useState(false);
 
-   const editQuestionClick = (id) => {
-    const question = allQuestions.filter(question => question.id === id)
-    values.question = question[0].question;
-    values.id = id;
-    values.date = question[0].date.slice(0, 10)
-    setIsOpen(true);
+  const getEditData = (dat, val) => {
+    dat.question ? val.question = dat.question : "";
+    dat.date? val.date = dat.date.slice(0, 10) : "";
+    dat.id? val.id = dat.id: "";
+    dat.comment ? val.comment = dat.comment : "";
+    questionId? val.questionId = questionId : "";
+    return val
+   }
 
-    <ModalQuestion setIsOpen={setIsOpen} handleBlur={handleBlur} handleChange={handleChange} isLoading={isLoading} values={values} />
+  const editQuestionClick = (data, values) => {
+    const valuez = getEditData(data, values)
+    setIsOpen(true);
+  <ModalQuestion setIsOpen={setIsOpen} handleBlur={handleBlur} handleChange={handleChange} isLoading={isLoading} values={valuez} />
   } 
 
   const showDeleteModal = () => {
       setOpenDeleteModal(true)
   }
-
-
 
    const DropdownItem = (props) => {
       return (
@@ -119,13 +130,14 @@ export let DropdownMenu = (props) => {
         </a></li>
       )
    }
-   elemId = props.id;
+   elemObj.id = props.id;
+   elemObj.questId= props.questionId
   return  (
     <div className="dropdown">
       <ul className="menu-item">
         <li id={props.id} onClick={()=>{
           isEdit() 
-          editQuestionClick(props.id)}}><a>Edit</a></li>
+          editQuestionClick(data,props.values)}}><a>Edit</a></li>
         <li><a>Vote</a></li>
         <li onClick={()=> showDeleteModal()}><a>Delete</a></li>
       </ul>
@@ -135,11 +147,8 @@ export let DropdownMenu = (props) => {
 }
 
 
-
 export let DeleteQuestion = (props) => {
-  console.log(props);
-  const {setOpenDeleteModal, deleteAQuestion} = props;
-
+  const {setOpenDeleteModal, deleteAQuestion,deleteAComment, type} = props;
   const  modalRef = useRef();
   const closeModal = (event => {
     if(modalRef.current === event.target){
@@ -159,16 +168,18 @@ export let DeleteQuestion = (props) => {
     }, [keyPress]
   )
 
-  const deleteItem =(element) => {
-    deleteAQuestion(element);
+  const deleteItem =(element, type) => {
+   type === "Question"?  deleteAQuestion(element.id) : deleteAComment(element);
+
     window.location.reload();
   }
+
   return (
     <div className="modal_delete" ref={modalRef} onClick={closeModal}>
       <div id="delete_content">
         <div id = ""> 
             <div id="delete_head">
-            <span id="delete_title"> Delete Video  </span>
+            <span id="delete_title"> Delete {type}  </span>
             <span className="close" onClick={() => setOpenDeleteModal(false)}>&times; </span>
             </div>
            
@@ -176,7 +187,7 @@ export let DeleteQuestion = (props) => {
         </div>
         <div id="delete_btn">
          <button onClick={() =>setOpenDeleteModal(false)} id="left">Cancel</button>
-         <button onClick={()=> deleteItem(elemId)} id="right">Yes</button>
+         <button onClick={()=> deleteItem(elemObj)} id="right">Yes</button>
         </div>
       </div>
     </div>
@@ -215,7 +226,8 @@ const mapDispatchToProps = (dispatch) => {
   return {
     showModal: () => dispatch(showModal()),
     isEdit: () => dispatch(isEdit()),
-    deleteAQuestion: (element) => dispatch(deleteAQuestion(element))
+    deleteAQuestion: (element) => dispatch(deleteAQuestion(element)),
+    deleteAComment: (element) => dispatch(deleteAComment(element))
   }
 }
 DropdownMenu = connect(mapStateToProps, mapDispatchToProps)(DropdownMenu);

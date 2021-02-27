@@ -6,6 +6,8 @@ const initialState = {
   serverMessage: "",
   isAuthenticated: false,
   allQuestions: [],
+  comments:[],
+  question: [],
   user: {},
   errors: {},
   show: false,

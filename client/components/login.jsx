@@ -1,9 +1,10 @@
 import React, { Component, useState } from 'react'
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
-
+import { toast } from 'react-toastify'
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
+import Spinners from './../components/spinner/spinner.component';
 
 const INITIAL_STATE = {
   email: "",
@@ -27,13 +28,13 @@ function login(props) {
       <div id='bg-image'></div>
       <div className='content-wrap words'>
         <div id='question_answer'>
-          {message && 
-                  <div id='modal_error_display'>
+          {message &&  toast.success(message)}
+                 { /*<div id='modal_error_display'>
                   <div id='serverMessage'>
                     <span className="popup_close" onClick={() => removeMessage() } >&times;</span>
                     { message }
                   </div>
-                </div>}
+                  </div> */}
           <div id='get_started'>
             <h1>QuestionAnswer</h1>
             <p>Get answers to your questions</p>
