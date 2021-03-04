@@ -22,6 +22,7 @@ const pgConnect = () => {
   }
 
 
+
   const client = new pg.Client(config);
   return client;
 };
