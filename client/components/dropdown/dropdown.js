@@ -5,6 +5,7 @@ import './style.scss';
 
 import { getAllQuestions, showModal, isEdit, deleteAQuestion } from './../../redux/actions'
 import {deleteAComment} from './../../redux/actions/actionComment';
+import Spinners from './../spinner/spinner.component'
 
 let elemObj= {};
 export const ModalQuestion = (props) => {
@@ -41,6 +42,7 @@ export const ModalQuestion = (props) => {
   return ( 
     <div id="modal_ask_question" ref={modalRef}onClick = {closeModal}>
       <form id="ask_question_content" onSubmit={submitCategory} >
+      {isLoading ? <Spinners /> : null}
         <span className="close" onClick={() => setIsOpen(false)}>&times; </span>
         <fieldset>
           <legend>
@@ -61,6 +63,7 @@ export const ModalQuestion = (props) => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   placeholder="Question details..."/>
+                  <br/>
                   {errors.question && <span style={{bottom:"1px"}}className='error-text'>{errors.question}</span>}
                   <br />
                   <br />
@@ -148,13 +151,14 @@ export let DropdownMenu = (props) => {
 
 
 export let DeleteQuestion = (props) => {
-  const {setOpenDeleteModal, deleteAQuestion,deleteAComment, type} = props;
+  const {setOpenDeleteModal, deleteAQuestion,deleteAComment, type, isLoading} = props;
   const  modalRef = useRef();
   const closeModal = (event => {
     if(modalRef.current === event.target){
       setOpenDeleteModal(false)
     }
     })
+   
   const keyPress = useCallback( event => {
     if(event.key === "Escape" && setOpenDeleteModal){
       setOpenDeleteModal(false)
@@ -169,15 +173,15 @@ export let DeleteQuestion = (props) => {
   )
 
   const deleteItem =(element, type) => {
-   type === "Question"?  deleteAQuestion(element.id) : deleteAComment(element);
-
-    window.location.reload();
+  type === "Question" ? deleteAQuestion(element.id) : deleteAComment(element)
+   isLoading ? "": location.reload(true);
   }
 
   return (
     <div className="modal_delete" ref={modalRef} onClick={closeModal}>
       <div id="delete_content">
         <div id = ""> 
+        {isLoading ? <Spinners /> : null}
             <div id="delete_head">
             <span id="delete_title"> Delete {type}  </span>
             <span className="close" onClick={() => setOpenDeleteModal(false)}>&times; </span>
@@ -187,7 +191,7 @@ export let DeleteQuestion = (props) => {
         </div>
         <div id="delete_btn">
          <button onClick={() =>setOpenDeleteModal(false)} id="left">Cancel</button>
-         <button onClick={()=> deleteItem(elemObj)} id="right">Yes</button>
+         <button onClick={()=> deleteItem(elemObj, type)} id="right">Yes</button>
         </div>
       </div>
     </div>

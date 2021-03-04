@@ -10,6 +10,7 @@ const loginReducer = (state = initialState, action) => {
             ...state,
             isLoading: false,
             isLoggedIn: true,
+            user: payload.data.data.user,
             serverMessage: "you have successfully logged in"
           }
       case actionTypes.LOAD_USER:

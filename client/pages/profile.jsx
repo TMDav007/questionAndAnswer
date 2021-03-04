@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 
 import NavBar from './../components/navbar';
-import ProfileBody from './../components/profileBody';
+import { ProfileBody } from './../components/profileBody';
 import Footer from './../components/footer';
 
 export class profile extends Component {

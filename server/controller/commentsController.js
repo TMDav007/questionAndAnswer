@@ -22,7 +22,7 @@ client.connect();
 let token;
 
 /**
- * it is a class that control all a questions method
+ * it is a class that control all a comments method
  */
 class CommentsController {
   /**
@@ -43,6 +43,7 @@ class CommentsController {
         return serverMessage(res, 'error','input must be an integer', 400);
       }
       const foundQuestion = await client.query(getAQuestionQuery(questionId));
+
 
       if (foundQuestion.rows.length < 1) {
       return  serverMessage(res, 'fail', 'question does not exist', 404);

@@ -12,7 +12,10 @@ header {
     width: 100%;
     @media only screen and (min-width: 700px) {
       grid-template-rows: minmax(min-content, 100px) min-content;
-    } 
+      width: 100%;
+      height: 4em;
+      background: #080e0f;
+      } 
     
     .menu-bar{
       @include menu-bar;
@@ -54,7 +57,7 @@ header {
           position: relative;
           width: 18em;
           margin: 0 auto;
-          top: 10em;
+          top: 14em;
 
           h1 {
             padding-bottom: 0;
@@ -96,7 +99,7 @@ header {
         }
         @media only screen and (min-width: 700px) {
           width:20em;
-          top: 8em;
+          top: 13em;
         }
       }
 
@@ -118,7 +121,8 @@ header {
   top: 10em;
   font-size: .8em;
   padding: 0 1em;
-  overflow: hidden;
+  height: 40em;
+  //overflow: hidden;
   padding-bottom: 3em;
 
   @media only screen and (min-width: 700px) {
@@ -166,8 +170,8 @@ header {
     //overflow: hidden;
     .questions{
       display: grid;
-      grid-column-gap: 1.5em;
-      grid-template-columns: 5% 85% 10%;
+      grid-column-gap: 1em;
+      grid-template-columns: 5% 83% 8%;
       border-bottom: #ffebcd2b 1px solid;
 
       .profile_img_section{
@@ -272,26 +276,59 @@ header {
   }
 
   #profile_image{
-    position: relative;
-    padding-top: 2em;
-    margin-bottom: 1em;
+    margin: 50px auto;
+    width: 12em;
+    height: 12em;
+    position:relative;
+    border: blanchedalmond 4px solid;
+    border-radius: 50%;
+    background-size: 100% 100%;
+    overflow: hidden;
 
-    .profile_image_section{
+      #img_upload{
+        position: absolute;
+        bottom: 0;
+        outline: none;
+        color: transparent;
+        width:100%;
+        right: 0;
+        box-sizing: border-box;
+        padding: 15px 40px;
+        cursor: pointer;
+        transition: 0.5s;
+        background: rgba(51, 35, 35, 0.5);
+        opacity: 0.5;
+        &::-webkit-file-upload-button{
+          visibility: hidden;
+        }
+        &::before{
+          content: '\f030';
+          font-family: fontAwesome;
+          font-size: 20px;
+          color: #fff;
+          display: inline-block;
+          @media only screen and (min-width: 700px) {
+            margin-left: 1em
+          }
+          -webkit-user-select: none;
+        }
+        &::after{
+          content: 'upload';
+          font-family: arial;
+          color: #fff;
+          display: block;
+          top:35px;
+          right: 2.5em;
+          position: absolute;
 
-      .profile_image{
-        margin: 0 auto;
-        width: 8em;
-        height: 8em;
-        border: blanchedalmond 1px solid;
-        border-radius: 50%;
+          @media only screen and (min-width: 700px) {
+            right:4em
+          }
+        }
+        &:hover{
+          opacity: 1;
+        }
       }
-      #profile_image_icon{
-        font-size: 2em;
-        position: relative;
-        left: 3em;
-        color: #7d8a8cb8;
-      }
-    }
   }
 
   #profile_form{
@@ -303,22 +340,26 @@ header {
       background: #0c131900;
       border-bottom: rgba(195, 166, 166, 0.85) 1px solid;
       width: 70%;
+      color: #fff;
     }
     button[type="submit"] {
       border-bottom: rgba(195, 166, 166, 0.85) 0px solid;
-      width: 80%;
+      width: 72%;
       position: relative;
       background: #031111;
-      top: 6em;
+      top: 3em;
 
       @media only screen and (min-width: 700px) {
-        width: 50%;
+        width: 70%;
+      }
+      @media only screen and (min-width: 1000px) {
+        //width: 70%;
       }
     }
 
     @media only screen and (min-width: 700px) {
       width: 45em;
-      margin: 10em auto;
+      margin: 4em auto 0 auto;
   }
 
     #form_icon{
@@ -338,7 +379,7 @@ header {
   position: relative;
   width: 100%;
   height: 3rem;
-  margin-top:3em;
+  //margin-top:3em;
   p {
     font-family: Arial, Helvetica, sans-serif;
     font-size: 0.8em;
@@ -446,7 +487,8 @@ button[type="submit"] {
   padding-bottom: 30px;
   @media only screen and (min-width: 900px) {
       margin: 6em auto;
-      width:35em;
+      top:10em;
+      width:40em;
   }
   span.close{
     position: absolute;
@@ -524,9 +566,9 @@ button[type="submit"] {
       font-size: .8em;
       background-color: #051313;    
       @media only screen and (min-width: 700px) {
-      float: none;
-      width: 11em;
-      margin: 1em 0 0 8em;
+      //float: none;
+      width: 9em;
+      margin: 1em 2.5em 2em 0em;
     }
   }
 }
@@ -757,3 +799,4 @@ button[type="submit"] {
     }
     }
 }
+

@@ -6,6 +6,7 @@ import authReducer from './authReducer';
 import questionsReducer from './questionsReducer';
 import loadingReducer from './loaderReducer';
 import commentsReducer from './commentsReducer';
+import imageReducer from './imageReducer';
 import { combineReducers } from 'redux';
 
 const rootReducer = combineReducers({
@@ -15,7 +16,8 @@ const rootReducer = combineReducers({
   login: loginReducer,
   questions: questionsReducer,
   loading: loadingReducer,
-  comments: commentsReducer
+  comments: commentsReducer,
+  image: imageReducer
 })
 
 

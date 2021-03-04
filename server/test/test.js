@@ -207,7 +207,7 @@ describe('user validation{login)', () => {
         password: 'lukas'
       })
       .end((err, res) => {
-        expect(res.status).to.equal(200);
+        expect(res.status).to.equal(201);
         expect(res.body.data).to.haveOwnProperty('token');
         expect(res.body.status).to.equal('success');
         /* eslint-disable prefer-destructuring */
@@ -223,7 +223,7 @@ describe('user validation{login)', () => {
         password: 'opemipo'
       })
       .end((err, res) => {
-        expect(res.status).to.equal(200);
+        expect(res.status).to.equal(201);
         expect(res.body.data).to.haveOwnProperty('token');
         expect(res.body.status).to.equal('success');
         /* eslint-disable prefer-destructuring */
@@ -274,7 +274,7 @@ describe('user validation{login)', () => {
 });
 
 // it should create a request
-describe('create a question', () => {
+ describe('create a question', () => {
   it('it should  create a question', (done) => {
     request(app)
       .post('/api/v1/questions')
@@ -325,7 +325,7 @@ describe('create a question', () => {
       .send({
         question: 'Requ',
         date: '2019-04-09',
-        userId: 2
+        userId: 1
       })
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -500,7 +500,8 @@ describe('create a comment', () => {
       .set('x-access-token', token)
       .send({
         comment: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo odit accusantium voluptatem, libero',
-        questionId: 1
+        questionId: 1,
+        likes: 'no'
       })
       .end((err, res) => {
         expect(res.status).to.equal(201);
@@ -570,7 +571,7 @@ describe('create a comment', () => {
 });
 
 // it should get all comments
-describe('get a comment', () => {
+ describe('get a comment', () => {
   it('it should  get a comment', (done) => {
     request(app)
       .get('/api/v1/comments/1')
@@ -727,7 +728,7 @@ describe('UPDATE a comment', () => {
 describe('DELETE a comment', () => {
   it('it should  delete a comment', (done) => {
     request(app)
-      .delete('/api/v1/comments/2')
+      .delete('/api/v1/comments/1/2')
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res.status).to.equal(200);
@@ -737,7 +738,7 @@ describe('DELETE a comment', () => {
   });
   it('it should not delete comment for an unauthorized user ', (done) => {
     request(app)
-      .delete('/api/v1/comments/1')
+      .delete('/api/v1/comments/1/2')
       .end((err, res) => {
         expect(res.status).to.equal(401);
         expect(res.body.status).to.equal('fail');
@@ -746,7 +747,7 @@ describe('DELETE a comment', () => {
   });
   it('it should not delete comment without an invalid comment Id', (done) => {
     request(app)
-      .delete('/api/v1/comments/e')
+      .delete('/api/v1/comments/e/1')
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res.status).to.equal(400);
@@ -757,7 +758,7 @@ describe('DELETE a comment', () => {
   });
   it('it should not delete comment', (done) => {
     request(app)
-      .delete('/api/v1/comments/10')
+      .delete('/api/v1/comments/10/1')
       .set('x-access-token', token)
       .end((err, res) => {
         expect(res.status).to.equal(404);
