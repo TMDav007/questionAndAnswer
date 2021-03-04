@@ -2,10 +2,11 @@ import userController from '../controller/userController';
 import AdminController from '../controller/adminController';
 import QuestionsController from '../controller/questionsController';
 import CommentsController from '../controller/commentsController';
+import ImageController from '../controller/imageController';
 import Middleware from '../middleware/middleware';
 
 const {
-  signUp, login
+  signUp, login, updateUser, getUser
 } = userController;
 
 const {
@@ -17,6 +18,8 @@ const {
 } = QuestionsController;
 
 const { createAComment, getAComment, getAllCommentsByAQuestion,deleteAComment,updateAComment} = CommentsController;
+
+const {imageUpload, getImage, deleteImage, updateImage } = ImageController;
 
 const { authenicateUser, authenicateAdmin, checkMailAndUsername, validateSignUp, validateLogin, validateQuestionAndComment } = Middleware;
 
@@ -35,7 +38,9 @@ const routes = (app) => {
   );
 
   app.post('/api/v1/auth/signup',validateSignUp, checkMailAndUsername,signUp);  
-  app.post('/api/v1/auth/login',validateLogin, login);  
+  app.post('/api/v1/auth/login',validateLogin, login);
+  app.get('/api/v1/user', authenicateUser, getUser)  
+  app.put('/api/v1/user', authenicateUser, updateUser)
 
   app.get('/api/v1/users/getAllUsers',authenicateAdmin, getAllUsers);
   app.delete('/api/v1/users/deleteAUser/:userId',authenicateAdmin, deleteAUser);
@@ -51,6 +56,11 @@ const routes = (app) => {
   app.get('/api/v1/comment/:commentId',authenicateUser, getAComment);
   app.put('/api/v1/comments/:commentId', authenicateUser,updateAComment);
   app.delete('/api/v1/comments/:questionId/:commentId',authenicateUser, deleteAComment);
+
+  app.post('/api/v1/image',authenicateUser,imageUpload);
+  app.get('/api/v1/image/', getImage);
+  app.delete('/api/v1/image/:userId/:imageId', deleteImage)
+  app.put('/api/v1/image/:userId/:imageId', updateImage)
 
 };
 

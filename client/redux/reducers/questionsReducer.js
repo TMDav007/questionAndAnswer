@@ -77,6 +77,20 @@ const questionsReducer = (state = initialState, action) => {
             ...state,
             submitType: "Ask"
           }
+          case actionTypes.GET_COMMENTS:
+            return {
+              ...state,
+              isLoading: false,
+              comments: payload
+            }
+          case actionTypes.GET_COMMENTS_FAIL:
+            return {
+              ...state,
+              errors:payload,
+              comments: [],
+              isLoading: false,
+              serverMessage: payload
+            }
       default:
         return state;
     } 

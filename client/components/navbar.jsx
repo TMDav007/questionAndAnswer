@@ -14,30 +14,37 @@ export class navbar extends Component {
 
   const userLinks = (
     <nav>
-        <div className="menu-bar"><Link to ="/"> <h1>Q&A</h1></Link>
-          <div className="links">
-            <Link to ="/dashboard"> Home </Link>
-            <Link to ="/questions"> Questions</Link>
-            <Link to ="/profile"> Profile</Link>
-            <Link to ="/login" id="log-out" onClick={ () => logout()}> Log out</Link>
-        </div>
+        <div className="menu-bar" id="menubar"><Link to ="/"> <h1>Q&A</h1></Link>
           <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
       </div>
       <div className={isMenu ? "dropdown" : " "}>
-          <Link to ="/dashboard"> {isMenu ?'home': ''}</Link>
+          <Link to ="/dashboard" > {isMenu ?'home': ''}</Link>
           <Link to ="/questions"> {isMenu ? 'questions' : ''}</Link>
           <Link to ="/profile"> {isMenu ? 'profile' : ''}</Link>
           <Link to ="/login" onClick={ () => logout()}> {isMenu ? 'log out' : ''}</Link>
+      </div>
+      <div className="sidebar">
+        <div className="side-link">
+          <Link to ="/dashboard" > {'home'}</Link>
+          <Link to ="/questions"> {'questions'}</Link>
+          <Link to ="/profile"> {'profile'}</Link>
+          <Link to ="/login" onClick={ () => logout()}> {'log out' }</Link>
+        </div>
+
       </div>
     </nav>
   )
 
   const guestLinks = (
     <nav>
-      <div className="menu-bar"><Link to ="/"> <h1>Q&A</h1></Link>
+      <div className="menu-bar" id="menubar">
+        <div><Link to ="/"> 
+          <h1>Q&A</h1></Link>
+        </div>
+       
         <div className="links">
-          <Link to ="/login"> login </Link>
-          <Link to ="/signup"> signup </Link>
+          <Link to ="/login"> Login </Link>
+          <Link to ="/signup"> Signup </Link>
        </div>
         <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
      </div>
@@ -45,9 +52,9 @@ export class navbar extends Component {
         <Link to ="/login"> {isMenu ?'login': ''}</Link>
         <Link to ="/signup"> {isMenu ? 'sign up' : ''}</Link>
     </div>
+  
   </nav>
   );
-
  
     return (
       <div>

@@ -2,12 +2,14 @@ import React, { Component,useState, useEffect } from "react";
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
+import history from './../src/history';
 import { getAllQuestions, removeMessage, askQuestion, isAsk, editQuestion } from './../redux/actions'
 import { DropdownMenu, ModalQuestion, DeleteQuestion} from './../components/dropdown/dropdown'
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
 
 import { QuestionComponent } from './questions/questionComponent';
+import Spinners from './../components/spinner/spinner.component';
 
 const todaysDate = () => {
   let today = new Date();
@@ -40,7 +42,7 @@ export let Dashboardbody = (props) => {
     getAllQuestions();
     localStorage.removeItem("data")
   }, [])
-
+console.log(isLoading)
   const [isOpen, setIsOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   
@@ -50,19 +52,18 @@ export let Dashboardbody = (props) => {
     values.date= todaysDate();
     if (noErrors){
       askQuestion(values);
-      window.location.reload();
+      isLoading ? " " : setTimeout(location.reload(), 5000);
+      
     } 
   }
 
   const onSubmitEdit = () => {  
    handleSubmit.call(this, event);
-    console.log(errors);
-    console.log(values, "here")
     const noErrors = Object.keys(errors).length === 0;
    
     if (noErrors){
       editQuestion(values);
-      window.location.reload();
+      isLoading ? "" : location.reload(true);
     } 
   }
     return (
@@ -85,11 +86,12 @@ export let Dashboardbody = (props) => {
                }
                 } type="submit" id="submit_ask">Ask </button>
             </div>  
+            {isLoading ? <Spinners /> : null}
             {isOpen ? <ModalQuestion setIsOpen={setIsOpen} handleBlur={handleBlur} handleChange={handleChange} isLoading={isLoading} onSubmitQuestion={onSubmitQuestion} onSubmitEdit={onSubmitEdit} values={values} errors={errors} submitType={submitType} type={"Ask"} /> : ""}
             
             <QuestionComponent setIsOpen={setIsOpen} handleBlur={handleBlur} handleChange={handleChange} isLoading={isLoading} values={values} errors={errors} setOpenDeleteModal={setOpenDeleteModal} />
 
-            { openDeleteModal? <DeleteQuestion setOpenDeleteModal={setOpenDeleteModal} /> : ""}
+            { openDeleteModal? <DeleteQuestion setOpenDeleteModal={setOpenDeleteModal} type={"Question"} isLoading={isLoading}/> : ""}
             <div className="question-buttons"></div>
           </div>
         </div>

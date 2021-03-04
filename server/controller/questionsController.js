@@ -79,6 +79,8 @@ class QuestionsController {
         user_name
         FROM questions, users
         WHERE questions.user_id = users.id
+        
+        
       `;      
       const allQuestions = await client.query(getAllQuestionsQuery);
 

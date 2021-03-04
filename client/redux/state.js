@@ -11,7 +11,9 @@ const initialState = {
   user: {},
   errors: {},
   show: false,
-  submitType: "Ask"
+  submitType: "Ask",
+  image: [],
+  user: []
 }
 
 export default initialState;
