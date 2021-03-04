@@ -9,6 +9,7 @@ const createAndSeed = `
   CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     user_name VARCHAR (50) UNIQUE NOT NULL,
+    phone_no VARCHAR (50),
     email VARCHAR (255) UNIQUE NOT NULL,
     password VARCHAR (150) NOT NULL,
     user_role status DEFAULT 'user'
@@ -97,6 +98,15 @@ const createAndSeed = `
     'Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta corporis alias voluptas nesciunt quidem illo odit accusantium voluptatem, libero, cum rerum praesentium. Tenetur quis fugiat praesentium voluptas possimus officiis',
     3,
     1
+  );
+
+  DROP TABLE IF EXISTS images CASCADE;
+  CREATE TABLE images (
+    id SERIAL PRIMARY KEY,
+    title VARCHAR(128) NOT NULL,
+    cloudinary_id VARCHAR(128) NOT NULL,
+    image_url VARCHAR(128) NOT NULL,
+    users_id INT REFERENCES users(id) ON DELETE CASCADE
   );
 
 `;

@@ -8,7 +8,7 @@ import comment from '../pages/commentPage';
 import { getComments, commentx , editComment} from './../redux/actions/actionComment';
 import {DropdownMenu, ModalQuestion, DeleteQuestion} from './dropdown/dropdown'
 import Spinners from './../components/spinner/spinner.component';
-import {GenericCommentPage} from './pageComponent/genericPage'
+import {GenericCommentPage} from  './pageComponent/genericPage'
 import { navbar } from './navbar';
 
 const INITIAL_STATE = {
@@ -23,6 +23,7 @@ export let Comments = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
+  console.log(isLoading);
   const question = JSON.parse(localStorage.getItem('data'));
 
   useEffect( ()=> {
@@ -44,7 +45,6 @@ export let Comments = (props) => {
     handleSubmit.call(this, event);
     const noErrors = Object.keys(errors).length === 0;
     values.comment = values.question;
-    console.log(values)
     if (noErrors) {
       editComment(values);
       getComments(values.questionId);
@@ -62,6 +62,7 @@ commentBox = modalRef.current;
         <div className="main-content">
           <div id="sidebar_space"></div>
           <div id="content_space">
+          {isLoading ? <Spinners /> : null}
             <div id="ask_question">
               <p>{question.question}
               </p>
@@ -107,7 +108,7 @@ commentBox = modalRef.current;
 let lastScrollTop = 0;
 
 //hide and show comment
-console.log(commentBox)
+
 commentBox? 
 (window.addEventListener("scroll", ()=> {
     const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
@@ -122,7 +123,7 @@ commentBox?
 
 const mapStateToProps = (state) => ({
     question: state.questions.question,
-    isLoading: state.comments.isLoading,
+    isLoading: state.questions.isLoading,
     allComments: state.comments.comments,
     currentUser: state.auth.user.user_name
 })
@@ -136,28 +137,3 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 Comments = connect(mapStateToProps, mapDispatchToProps)(Comments)
-
-
-
-
-/*
-                allComments && allComments.sort((a, b) => parseFloat(a.id)- parseFloat(b.id)).map((coment, key) => {
-                   return <div className="questions" key={coment.id}> 
-                      <div className="profile_img_section"> <img src="" className="profile_img" /> 
-                      </div>
-                      <div className="questions_section">
-                        <h4 className="username">{coment.user_name}</h4>
-                        <p>{coment.comment}</p>
-                        <div className="icons">
-                          <Link to=""><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-                          <i className="fa fa-heart like" aria-hidden="true"></i>
-                        </div>
-                      </div>
-
-                      <div className="menu_section">
-                        <i className="fa fa-sort-desc menu_icon" aria-hidden="true">
-                        </i>
-                      </div>
-                  </div>
-                })
-*/

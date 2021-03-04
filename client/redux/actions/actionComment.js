@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useEffect } from 'react';
 import { Redirect } from 'react-router-dom';
-import * as actionTypes from '../actionTypes'; 
+import * as actionTypes from './../actionTypes'; 
 import jwt from 'jsonwebtoken';
 
 import { setToken } from './../setToken';
@@ -10,8 +10,8 @@ import setAuthorizationToken from './../utils';
 
 let token;
 const api = axios.create({
-   // baseURL: `https://questionsandanswer.herokuapp.com`
-   baseURL: `http://localhost:8000/`
+    baseURL: `https://questionsandanswer.herokuapp.com`
+   //baseURL: `http://localhost:8000/`
 })
 
 
@@ -25,14 +25,15 @@ export const commentx = (value) => async dispatch => {
         'x-access-token': localStorage.token
       }
     });
-    console.log(response, "commentResponse")
-    dispatch({
-      type: actionTypes.COMMENT,
-      payload: response.data.data.newQuestion
+  response?dispatch({
+    type: actionTypes.COMMENT,
+    payload: response.data.data.newQuestion
+  }) : dispatch({
+      type: actionTypes.IS_LOADING
     })
 
   } catch(error) {
-    console.log(error.response, "commentError")
+   //console.log(error.response, "commentError")
       if(!error.response.data){
       return dispatch({
         type: actionTypes.COMMENT_FAIL,
@@ -55,10 +56,13 @@ export const getComments = (questionId) => async dispatch => {
         'x-access-token': localStorage.token
       }
     });
-    dispatch({
+    response ? dispatch({
       type: actionTypes.GET_COMMENTS,
       payload: response.data.data.Comments
+    }): dispatch({
+      type: actionTypes.IS_LOADING
     })
+    
   } catch (error) {
     if(!error.response){
       return dispatch({

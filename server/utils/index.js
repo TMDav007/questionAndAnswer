@@ -14,7 +14,11 @@ const pgConnect = () => {
   } else if (process.env.NODE_ENV === 'test'){
     config = testConfig;
   } else {
-    config = process.env.DATABASE_URL
+      config={ connectionString:process.env.DATABASE_URL,
+      ssl: {
+        rejectUnauthorized: false 
+      }
+    }
   }
 
 

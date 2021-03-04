@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import {DropdownMenu} from './../dropdown/dropdown'
+import Spinners from './../spinner/spinner.component';
 
 export const GenericCommentPage = ({
   dataArray ,
@@ -33,15 +34,15 @@ export const GenericCommentPage = ({
   return (
     dataArray && dataArray.sort((a,b) => parseFloat(a.id)-parseFloat(b.id)).map((data, key) => {
      return <div className={dataClassName} key={data.id}>
-        <div className="profile_img_section">
+        <div 
+        className="profile_img_section">
           <img src="" className="profile_img" /> 
         </div>
         <div className="questions_section">
             <h4 className="username">{data.user_name}</h4>
             <p>{data.comment || data.question}</p>
             <div className="icons">
-              <Link to=""><i className="fa fa-comment-o comment" aria-hidden="true"></i></Link>
-              <i className="fa fa-heart like" aria-hidden="true"></i>
+            
             </div>
         </div>
 

@@ -12,6 +12,7 @@
 
   @media only screen and (min-width: 700px) {
       display: none;
+
   }
 }
 
@@ -35,6 +36,7 @@
 }
 
 @mixin menu-bar{ 
+  font-family: 'Montserrat', sans-serif;
   background-color: $navbar;
   display: grid;
   place-items: center;
@@ -48,6 +50,10 @@
     font-size: 25px;
     @media only screen and (min-width: 700px) {
       font-size: 2em;
+      left: 2em;
+      right: 40%;
+
+      
     }
     @media only screen and (min-width: 1000px) {
       right: 40%;
@@ -58,6 +64,7 @@
   .menu, .close{
     position: relative;
     left: 2em;
+    transition: .5s;
     &:hover{
       filter: opacity(50%);
       cursor: pointer;
@@ -73,7 +80,7 @@
     @media only screen and (min-width: 700px) {
       display: grid;
       position: relative;
-      left: 30%;
+      left: 35%;
       font-size: 1em;
       grid-gap: 0px;
       place-items: center;
@@ -82,7 +89,18 @@
     }
   }
   @media only screen and (min-width: 700px) {
+   // position: absolute;
+    grid-template-columns: 20px auto;
+    grid-gap: 10px;
     background-color: #00000000;
+    transition: all 600ms ;
+    height: 3px;
+    padding-top: 2em;
+    a{
+      &:hover{
+        opacity: 0.5;
+      }
+    }
   }
 }
 
@@ -105,11 +123,11 @@
       width: 100%;
       margin: auto;
       text-decoration: none;
-      transition: all 600ms ease;
-      background: $navbar;
+      transition: all 600ms ;
+      background: #080e0f;
 
       &:hover{
-        opacity: .7;
+        opacity: .5;
         cursor: pointer;
         user-select: none;
         -webkit-user-select: none;;
@@ -136,11 +154,13 @@
   transform-origin: left;
   transform:perspective(1200px) rotateY(90deg);
   transition: all 600ms ease;
+  //display: none;
   @media only screen and (min-width: 700px) {
    position: absolute;
    height: 100vh;
    width: 20%;
    transform: none;
+   display: block;
    background: #080e0f;
  }
    @media only screen and (min-width: 900px) {
@@ -151,8 +171,10 @@
      transform: perspective(1200px) rotateY(0deg);
  }
 
-  .sidebar-link{
-    padding-top: 7em;
+  .side-link{
+    @media only screen and (min-width: 700px) {
+      padding-top: 7em;
+    }
   } 
 
  a{
@@ -166,8 +188,11 @@
    height: 40px;
    border-bottom: 1px solid #ffffff1e;
    line-height: 50px;
+   &:hover{
+    opacity: .5;
+  }
  }
-   #active_link{
+   .active_link{
     color: #277379;
    }
    #log-out{
@@ -235,3 +260,4 @@
     }
 
 }
+

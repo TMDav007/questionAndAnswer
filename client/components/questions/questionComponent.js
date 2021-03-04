@@ -3,13 +3,14 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import { getAllQuestions, removeMessage, askQuestion, getAQuestion } from './../../redux/actions';
+import {getImage } from './../../redux/actions/actionImage'
 import { DropdownMenu, DeleteQuestion } from './../dropdown/dropdown'
 import { Comments } from './../comments';
 import CarretLink from './../carretLink/carret'
 import './../dropdown/style.scss';
 
 export let QuestionComponent = (props) => {
-  const { message, removeMessage, allQuestions,getAllQuestions, currentUser,askQuestion,isLoading, getAQuestion} = props;
+  const { message, removeMessage, allQuestions,getAllQuestions, currentUser,askQuestion,isLoading, getAQuestion, getImage, image} = props;
   const [open, setOpen] = useState({});
   const [element, setElement] = useState(null);
   const [userDropdown, setUserDropdown] = useState(false);
@@ -61,6 +62,7 @@ const mapStateToProps = (state) => ({
   message: state.questions.serverMessage,
   allQuestions: state.questions.allQuestions,
   isLoading: state.questions.isLoading,
+  image: state.image.image,
   currentUser: state.auth.user.user_name
 })
 
@@ -68,6 +70,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getAllQuestions: () => dispatch(getAllQuestions()),
     removeMessage: () => dispatch(removeMessage()),
+    getImage: () => dispatch(getImage()),
     askQuestion: (value) => dispatch(askQuestion(value)),
     getAQuestion: (data) => dispatch(getAQuestion(data))
   }
