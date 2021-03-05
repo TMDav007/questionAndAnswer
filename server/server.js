@@ -16,8 +16,14 @@ app.use(bodyParser.json({ type: 'application/json'}));
 
 routes(app);
 
-app.use('/public',express.static(path.join(__dirname,'../client/public')));
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'build')));
+  app.get('*', function (req, res) {
+      res.sendFile(path.join(__dirname, 'build', 'index.html'));
+  });
+}
 
+routes(app);
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
