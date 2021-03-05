@@ -6,12 +6,15 @@
   "scripts": {
     "start:app": "webpack-dev-server --open --mode development --history-api-fallback",
     "build": "webpack --mode production",
-    "start": "babel-node server/server.js",
+    "start-all": "babel-node server/server.js",
     "start:dev": "set NODE_ENV=development&& nodemon --watch server --exec babel-node server/server.js",
     "db:migrate": "babel-node server/seed/index.js",
     "migrate": "set NODE_ENV=development&& babel-node server/seed/index.js",
     "test": "set NODE_ENV=test&& babel-node server/seed/index.js && mocha --require @babel/register --require babel-polyfill ./server/test/ --timeout 10000 --exit",
-    "nyc": "nyc --reporter=lcov npm run test"
+    "nyc": "nyc --reporter=lcov npm run test",
+
+    "heroku-postbuild": "npm run build",
+    "start": "babel-node server/server.js"
   },
   "repository": {
     "type": "git",

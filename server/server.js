@@ -14,10 +14,14 @@ app.use(cors({
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json({ type: 'application/json'}));
 
+if (process.env.NODE_ENV !== 'development' || process.env.NODE_ENV !== 'test') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  app.get('*', function (req, res) {
+      res.sendFile(path.join(__dirname, 'client/build/index.html'));
+  });
+}
+
 routes(app);
-
-app.use('/public',express.static(path.join(__dirname,'../client/public')));
-
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 
