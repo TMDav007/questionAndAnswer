@@ -314,6 +314,7 @@ header {
             margin-left: 1em
           }
           -webkit-user-select: none;
+          user-select: none;
         }
         &::after{
           content: 'upload';
