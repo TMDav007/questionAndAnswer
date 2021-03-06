@@ -25,12 +25,16 @@ You can check the UI pages on [https://tmdav007.github.io/questionAndAnswer/UI/i
 API is deployed at [https://questionsandanswer.herokuapp.com/api/v1/](https://questionsandanswer.herokuapp.com/api/v1/)
 
 ### Frontend
-API is deployed at [https://questionsandanswer.herokuapp.com/](https://questionsandanswer.herokuapp.com/)
+API is deployed at [https://questionsandanswer.herokuapp.com/](https://questionsandanswer.herokuapp.com/login)
 
 ## Technologies
 
 * [NodeJS](https://nodejs.org/) - Runtime Environment
 * [ExpressJs](https://expressjs.com/) - Web Application Framework
+* [ReactJs](https://reactjs.org/) - Frontend Application Framework
+* [React-Redux](https://react-redux.js.org/) - Frontend Application Framework
+* [Sass](https://sass-lang.com/) - Frontend Application Framework
+* [Postgres]()- Database
 
 ### Supporting Packages
 
