@@ -23,7 +23,6 @@ You can check the UI pages on [https://tmdav007.github.io/questionAndAnswer/UI/i
 
 ### API Deployment
 API is deployed at [https://questionsandanswer.herokuapp.com/api/v1/](https://questionsandanswer.herokuapp.com/api/v1/)
-=======
 
 ### Frontend
 API is deployed at [https://questionsandanswer.herokuapp.com/](https://questionsandanswer.herokuapp.com/)
