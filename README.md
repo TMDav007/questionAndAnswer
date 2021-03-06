@@ -25,7 +25,7 @@ You can check the UI pages on [https://tmdav007.github.io/questionAndAnswer/UI/i
 API is deployed at [https://questionsandanswer.herokuapp.com/](https://questionsandanswer.herokuapp.com/)
 
 ### Frontend
-API is deployed at [https://questionsandanswer.herokuapp.com/client](https://questionsandanswer.herokuapp.com/client)
+API is deployed at [https://questionsandanswer.herokuapp.com/client](https://questionsandanswer.herokuapp.com/)
 
 ## Technologies
 
