@@ -33,7 +33,6 @@ export const commentx = (value) => async dispatch => {
     })
 
   } catch(error) {
-   //console.log(error.response, "commentError")
       if(!error.response.data){
       return dispatch({
         type: actionTypes.COMMENT_FAIL,

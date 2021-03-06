@@ -34,7 +34,6 @@ function login(props) {
       <div className='content-wrap words'>
         <div id='question_answer'>
           {message &&  toast.success(message)}
-                 { }
           <div id='get_started'>
             <h1>QuestionAnswer</h1>
             <p>Get answers to your questions</p>

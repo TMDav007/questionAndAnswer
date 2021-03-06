@@ -4,14 +4,17 @@ import { connect } from "react-redux";
 import NavBar from './../components/navbar';
 import SignupForm from './../components/signup';
 import Footer from './../components/footer';
+import Spinners from './../components/spinner/spinner.component';
 import { registerUser, removeMessage } from './../redux/actions'
 
 
 export class signupPage extends Component {
   render() {
+    const { isLoading } = this.props;
     return (
       <div>
         <NavBar />
+        { isLoading ? <Spinners /> : null }
         <SignupForm props={this.props} />
         <Footer />
       </div>
@@ -21,7 +24,8 @@ export class signupPage extends Component {
 
 const mapStateToProps = state => ({
   message: state.signup.serverMessage,
-  isLoading: state.signup.isLoading
+  isLoading: state.signup.isLoading,
+  currentUser: state.auth.user.user_name
 })
 
 const mapDispatchToProps = (dispatch) => {

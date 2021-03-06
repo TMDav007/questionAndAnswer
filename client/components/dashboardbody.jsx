@@ -42,7 +42,6 @@ export let Dashboardbody = (props) => {
     getAllQuestions();
     localStorage.removeItem("data")
   }, [])
-console.log(isLoading)
   const [isOpen, setIsOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
   
@@ -52,8 +51,8 @@ console.log(isLoading)
     values.date= todaysDate();
     if (noErrors){
       askQuestion(values);
-      isLoading ? " " : setTimeout(location.reload(), 5000);
-      
+      getAllQuestions();
+      window.location.reload();
     } 
   }
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { logout } from './../redux/actions'
 
@@ -12,30 +12,30 @@ export class navbar extends Component {
   const isMenu = this.state.isCollapsed;
   const { authenticated, logout } = this.props;
 
-  const userLinks = (
+  const userNavLinks = (
     <nav>
-        <div className="menu-bar" id="menubar"><Link to ="/dashbord"> <h1>Q&A</h1></Link>
+        <div className="menu-bar" id="menubar"><Link to ="/dashboard"> <h1>Q&A</h1></Link>
           <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
       </div>
       <div className={isMenu ? "dropdown" : " "}>
-          <Link to ="/dashboard" > {isMenu ?'home': ''}</Link>
-          <Link to ="/questions"> {isMenu ? 'questions' : ''}</Link>
-          <Link to ="/profile"> {isMenu ? 'profile' : ''}</Link>
-          <Link to ="/login" onClick={ () => logout()}> {isMenu ? 'log out' : ''}</Link>
+          <NavLink to ="/dashboard" activeClassName="active" > {isMenu ?'home': ''}</NavLink>
+          <NavLink to ="/questions" activeClassName="active"> {isMenu ? 'questions' : ''}</NavLink>
+          <NavLink to ="/profile" activeClassName="active"> {isMenu ? 'profile' : ''}</NavLink>
+          <NavLink to ="/login" onClick={ () => logout()}> {isMenu ? 'log out' : ''}</NavLink>
       </div>
       <div className="sidebar">
         <div className="side-link">
-          <Link to ="/dashboard" > {'home'}</Link>
-          <Link to ="/questions"> {'questions'}</Link>
-          <Link to ="/profile"> {'profile'}</Link>
-          <Link to ="/login" onClick={ () => logout()}> {'log out' }</Link>
+          <NavLink to ="/dashboard" activeClassName="active" > {'home'}</NavLink>
+          <NavLink to ="/questions" activeClassName="active"> {'questions'}</NavLink>
+          <NavLink to ="/profile" activeClassName="active"> {'profile'}</NavLink>
+          <NavLink to ="/login" onClick={ () => logout()}> {'log out' }</NavLink>
         </div>
 
       </div>
     </nav>
   )
 
-  const guestLinks = (
+  const guestNavLinks = (
     <nav>
       <div className="menu-bar" id="menubar">
         <div><Link to ="/"> 
@@ -43,14 +43,14 @@ export class navbar extends Component {
         </div>
        
         <div className="links">
-          <Link to ="/login"> Login </Link>
-          <Link to ="/signup"> Signup </Link>
+          <NavLink to ="/login" activeClassName="active"> Login </NavLink>
+          <NavLink to ="/signup" activeClassName="active"> Signup </NavLink>
        </div>
         <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
      </div>
     <div className={isMenu ? "dropdown" : " "}>
-        <Link to ="/login"> {isMenu ?'login': ''}</Link>
-        <Link to ="/signup"> {isMenu ? 'sign up' : ''}</Link>
+        <NavLink to ="/login" activeClassName="active"> {isMenu ?'login': ''}</NavLink>
+        <NavLink to ="/signup" activeClassName="active"> {isMenu ? 'sign up' : ''}</NavLink>
     </div>
   
   </nav>
@@ -59,7 +59,7 @@ export class navbar extends Component {
     return (
       <div>
           <header>
-            {authenticated ? userLinks: guestLinks }
+            {authenticated ? userNavLinks: guestNavLinks }
           </header>
       </div>
     )
