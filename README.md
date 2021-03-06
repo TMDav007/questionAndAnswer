@@ -22,10 +22,10 @@ This is an application that allows users interaction through questions and comme
 You can check the UI pages on [https://tmdav007.github.io/questionAndAnswer/UI/index.html](https://tmdav007.github.io/questionAndAnswer/UI/index.html)
 
 ### API Deployment
-API is deployed at [https://questionsandanswer.herokuapp.com/](https://questionsandanswer.herokuapp.com/)
+API is deployed at [https://questionsandanswer.herokuapp.com/api/v1/](https://questionsandanswer.herokuapp.com/api/v1/)
 
 ### Frontend
-API is deployed at [https://questionsandanswer.herokuapp.com/client](https://questionsandanswer.herokuapp.com/client)
+API is deployed at [https://questionsandanswer.herokuapp.com/](https://questionsandanswer.herokuapp.com/)
 
 ## Technologies
 
