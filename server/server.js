@@ -7,19 +7,17 @@ import babelPolyfill from 'babel-polyfill';
 
 
 const app = express();
-app.use(cors({
-    origin: ['http://localhost:8080'],
-    credentials: true
-}));
+app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json({ type: 'application/json'}));
 
+routes(app);
 app.use(express.static(path.join(__dirname, '../client/build')));
-app.get('/index', function (req, res) {
+app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
 });
 
-routes(app);
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);
 

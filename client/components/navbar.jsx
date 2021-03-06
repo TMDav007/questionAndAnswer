@@ -14,7 +14,7 @@ export class navbar extends Component {
 
   const userLinks = (
     <nav>
-        <div className="menu-bar" id="menubar"><Link to ="/"> <h1>Q&A</h1></Link>
+        <div className="menu-bar" id="menubar"><Link to ="/dashbord"> <h1>Q&A</h1></Link>
           <i className={isMenu ? "material-icons close" : "material-icons menu"} onClick={ () => this.setState({isCollapsed: !isMenu})}>{isMenu ? 'close' : 'menu'}</i>
       </div>
       <div className={isMenu ? "dropdown" : " "}>

@@ -5,7 +5,8 @@ module.exports = {
     entry: './client/src/index.js',
     output: {
       path: path.resolve(__dirname, './client/build'),
-      filename: '[name].js'
+      filename: '[name].js',
+      publicPath:'/'
     },
     resolve: {
       extensions: ['.html','.js', '.jsx']
@@ -46,6 +47,9 @@ module.exports = {
               ]
             }
         ]
+    },
+    devServer: {
+      historyApiFallback: true,
     },
     plugins: [
         new HtmlWebPackPlugin({

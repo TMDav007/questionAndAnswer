@@ -1,8 +1,13 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
+import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
+import history from './../src/history';
 
-export class homePageBody extends Component {
-  render() {
+export let  HomePageBody =(props) =>{
+    const { currentUser } = props
+    useEffect( ()=> {
+      currentUser? history.push("/dashboard") : ""
+    }, [])
     return (
       <div id="showcase" className="grid">
           <div id="bg-image"></div>
@@ -18,7 +23,11 @@ export class homePageBody extends Component {
         </div>
       </div>
     )
-  }
 }
 
-export default homePageBody
+const mapStateToProps = state => ({
+  currentUser: state.auth.user.user_name
+})
+
+
+HomePageBody = connect(mapStateToProps,null)(HomePageBody);

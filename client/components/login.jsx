@@ -1,10 +1,11 @@
-import React, { Component, useState } from 'react'
+import React, { Component, useState,useEffect } from 'react'
 import ReactDOM from "react-dom";
 import { connect } from 'react-redux';
 import { toast } from 'react-toastify'
 import formValidation from "./formValidation";
 import validateAuth from "./validateAuth";
 import Spinners from './../components/spinner/spinner.component';
+import history from './../src/history';
 
 const INITIAL_STATE = {
   email: "",
@@ -12,7 +13,7 @@ const INITIAL_STATE = {
 }
 
 function login(props) {
-  const { isloading, message, removeMessage, loginUser} = props.props;
+  const { isloading, message, removeMessage, loginUser, currentUser} = props.props;
   const { handleChange, handleBlur, handleSubmit,errors, values, } = formValidation(INITIAL_STATE, validateAuth);
 
   const onSubmitLogin = () => {
@@ -22,6 +23,10 @@ function login(props) {
       loginUser(values);
     }
   }
+  
+  useEffect( ()=> {
+    currentUser? history.push("/dashboard") : ""
+  }, [])
 
   return (
     <div id='showcase'>
@@ -29,12 +34,7 @@ function login(props) {
       <div className='content-wrap words'>
         <div id='question_answer'>
           {message &&  toast.success(message)}
-                 { /*<div id='modal_error_display'>
-                  <div id='serverMessage'>
-                    <span className="popup_close" onClick={() => removeMessage() } >&times;</span>
-                    { message }
-                  </div>
-                  </div> */}
+                 { }
           <div id='get_started'>
             <h1>QuestionAnswer</h1>
             <p>Get answers to your questions</p>

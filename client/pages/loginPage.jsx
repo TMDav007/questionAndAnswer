@@ -24,7 +24,8 @@ class loginPage extends Component {
 
 const mapStateToProps = state => ({
   message: state.login.serverMessage,
-  isLoading: state.login.isLoading
+  isLoading: state.login.isLoading,
+  currentUser: state.auth.user.user_name
 })
 
 const mapDispatchToProps = (dispatch) => {
@@ -36,4 +37,3 @@ const mapDispatchToProps = (dispatch) => {
 
 export default connect(mapStateToProps, mapDispatchToProps)(loginPage);
 
-//export default loginPage
