@@ -25,13 +25,11 @@ export const addImage = (value) => async dispatch => {
         'x-access-token': localStorage.token
       }
     });
-    console.log(response, "getResponse")
     dispatch({
       type: actionTypes.ADD_IMAGE,
       payload: response.data.data.newQuestion
     })
   } catch(error) {
-    console.log(error.response, "imageError")
     if(!error.response.data){
       return dispatch({
         type: actionTypes.ADD_IMAGE_FAIL,
@@ -56,13 +54,11 @@ export const getImage = () => async dispatch => {
         'x-access-token': localStorage.token
       }
     });
-    console.log(response, "getResponse")
     dispatch({
       type: actionTypes.GET_IMAGE,
       payload: response.data.data
     })
   } catch(error) {
-    console.log(error.response, "imageError")
     if(!error.response.data){
       return dispatch({
         type: actionTypes.GET_IMAGE_FAIL,

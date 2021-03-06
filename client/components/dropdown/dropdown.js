@@ -141,7 +141,6 @@ export let DropdownMenu = (props) => {
         <li id={props.id} onClick={()=>{
           isEdit() 
           editQuestionClick(data,props.values)}}><a>Edit</a></li>
-        <li><a>Vote</a></li>
         <li onClick={()=> showDeleteModal()}><a>Delete</a></li>
       </ul>
     </div>  

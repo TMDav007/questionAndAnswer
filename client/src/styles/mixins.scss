@@ -87,6 +87,15 @@
       grid-auto-flow: column;
       grid-auto-columns: minmax(min-content, 70px);
     }
+    a{
+      &:hover{
+        opacity: 0.5;
+      }
+      &.active{
+        opacity: .9;
+        color: #1c958b;
+      }
+    }
   }
   @media only screen and (min-width: 700px) {
    // position: absolute;
@@ -100,8 +109,13 @@
       &:hover{
         opacity: 0.5;
       }
+      &.active{
+        opacity: .9;
+        color: #1c958b;
+      }
     }
   }
+
 }
 
 @mixin dropdown{
@@ -132,6 +146,10 @@
         user-select: none;
         -webkit-user-select: none;;
       }
+        &.active{
+          opacity: .9;
+          color: #1c958b;
+        }
       @media only screen and (min-width: 700px) {
         font-size: 18px;
         width:5em
@@ -190,6 +208,10 @@
    line-height: 50px;
    &:hover{
     opacity: .5;
+  }
+  &.active{
+    opacity: .9;
+    color: #1c958b;
   }
  }
    .active_link{

@@ -10,8 +10,8 @@ import setAuthorizationToken from './../utils';
 
 let token;
 const api = axios.create({
- baseURL: `https://questionsandanswer.herokuapp.com/`
- // baseURL: `http://localhost:8000/`
+ baseURL: `https://questionsandanswer.herokuapp.com`
+ //baseURL: `http://localhost:8000/`
   //"x-access-token": localStorage.token
 })
 
@@ -33,19 +33,24 @@ export const registerUser = (value) => async dispatch => {
       history.push("/login")
       window.location.reload() }, 2000);
   } catch (error) {
-    dispatch({
-      type: actionTypes.TOGGLE_LOADER
-    })
-    console.log(error.response.data.data.error)
-    if (error.message) {
+    if (!error.response) {
       return dispatch({
         type: actionTypes.REGISTER_FAIL,
         payload: error.message
-      }) }
+      })
+      return setTimeout(() => { 
+        dispatch({
+        type: actionTypes.REMOVE_MESSAGE
+      }) }, 2000);
+    }
     dispatch({
       type: actionTypes.REGISTER_FAIL,
       payload: error.response.data.message
     })
+    setTimeout(() => { 
+      dispatch({
+      type: actionTypes.REMOVE_MESSAGE
+    }) }, 2000);
   }
 }
 
@@ -88,9 +93,6 @@ export const setCurrentUser = (user) => {
 export const loginUser = (value) => async dispatch => {
   dispatch({
     type: actionTypes.IS_LOADING
-  })
-  dispatch({
-    type: actionTypes.TOGGLE_LOADER
   })
   try {
     let response = await api.post('/api/v1/auth/login', value);
@@ -137,18 +139,21 @@ export const logout = () => dispatch => {
 }
 
 export const getAllQuestions = () => async dispatch => {
+  dispatch({
+    type: actionTypes.IS_LOADING
+  })
   try {
     let response = await api.get('/api/v1/questions', {
       headers: {
         'x-access-token': localStorage.token
       }
     });
-    dispatch({
-      type: actionTypes.TOGGLE_LOADER
-    })
+    response ? 
     dispatch({
       type: actionTypes.FETCH_ALL_QUESTIONS,
       payload: response.data.data.questions
+    }) : dispatch({
+      type: actionTypes.IS_LOADING
     })
   } catch(error) {
       if(!error.response){
@@ -180,16 +185,9 @@ export const askQuestion = (value) => async dispatch => {
       }
     });
     console.log(response);
-    response ? 
     dispatch({
       type: actionTypes.ASK_QUESTION,
       payload: response
-    }) :   dispatch({
-      type: actionTypes.IS_LOADING
-    })
-  return dispatch({
-      type: actionTypes.FETCH_ALL_QUESTIONS,
-      payload: response.data.data.questions
     })
   } catch(error) {
       if(!error.response.data){
@@ -306,6 +304,12 @@ export const getUser = () => async dispatch => {
       type: actionTypes.GET_USER_FAIL,
       payload: error.response.data.message
     })
+    setTimeout(() => { 
+      if(error.response.status === 401){
+        localStorage.removeItem('token');
+      }
+      history.push("/login")
+      window.location.reload() }, 2000);
   }
 }
 

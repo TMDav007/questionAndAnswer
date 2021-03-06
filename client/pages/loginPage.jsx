@@ -10,7 +10,6 @@ import { loginUser, removeMessage } from './../redux/actions';
 class loginPage extends Component {
   render() {
     const { isLoading } = this.props;
-    console.log(isLoading)
     return (
       <div>
         <NavBar />

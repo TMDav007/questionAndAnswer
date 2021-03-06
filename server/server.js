@@ -13,10 +13,10 @@ app.use(bodyParser.urlencoded({ extended: false}));
 app.use(bodyParser.json({ type: 'application/json'}));
 
 routes(app);
-app.use(express.static(path.join(__dirname, '../client/build')));
+/*app.use(express.static(path.join(__dirname, '../client/build')));
 app.get('*', function (req, res) {
     res.sendFile(path.join(__dirname, '../client/build/index.html'));
-});
+}); */
 
 const port = parseInt(process.env.PORT, 10) || 8000;
 app.set('port', port);

@@ -23,7 +23,6 @@ export let Comments = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const [openDeleteModal, setOpenDeleteModal] = useState(false);
 
-  console.log(isLoading);
   const question = JSON.parse(localStorage.getItem('data'));
 
   useEffect( ()=> {
@@ -35,7 +34,7 @@ export let Comments = (props) => {
     values.questionId = question.id;
     const noErrors = Object.keys(errors).length === 0;
     if (noErrors){
-     commentx(values);
+      commentx(values);
       getComments(values.questionId);
       window.location.reload();
     }
